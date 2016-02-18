@@ -2,6 +2,10 @@
 <div class="row">       <!-- //    show paper all    //  -->
 	<div class="col-sm-12">
 		<p class="">
+		<?php
+			  $text = shell_exec('hostname');
+			  echo $text,"<br/>";
+		 ?>
 			Welcome to Chiang Mai Journal of Science, an international journal for the publication of all preliminary communications in Science.
 			<br/><br/>
 			First launched in 1973 by Faculty of Science, Chiangmai University, CMJS is peer-reviewed and published as hardcopy and online open-access journal. It is indexed/abstracted in :

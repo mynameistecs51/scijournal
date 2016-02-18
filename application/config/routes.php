@@ -38,7 +38,7 @@
 |
 */
 
-$route['default_controller'] = "ctl_journal";
+$route['default_controller'] = "home";
 $route['404_override'] = '';
 
 
