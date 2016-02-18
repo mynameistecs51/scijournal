@@ -20,6 +20,20 @@ class Mdl_menu extends CI_Model {
 		);
 		return $data;
 	}
+	public function getScreenName($filelocation)
+ {
+ 	$sql ="
+ 	SELECT CONCAT(' ','>',' ',menu.menu_name) as screenname FROM menu WHERE menu.filelocation = '".$filelocation."'";
+	$query = $this->db->query($sql);
+	if($query->num_rows() > 0)
+	{
+		$row = $query->row();
+		return  $row->screenname;
+	}else{
+		return  '-';
+	}
+
+ }
 }
 
 /* End of file mdl_menu.php */

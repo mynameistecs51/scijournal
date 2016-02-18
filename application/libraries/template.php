@@ -10,7 +10,7 @@ class Template
        	$this->ci->load->model('mdl_menu');
 	}
 
-	public function getHeader($base_url)
+	public function getHeader($base_url,$SCREENNAME)
 	{
 		return'
 			<!DOCTYPE html>
@@ -20,7 +20,7 @@ class Template
 				<title>Science UDRU Journal</title>
 				<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap-theme.css"/>
 				<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.min.css"/>
-				<script src="'.base_url().'js/bootstrap.js"></script>
+				<!--<script src="'.base_url().'js/bootstrap.js"></script>-->
 				<script src="'.base_url().'js/jquery.js"></script>
 
 				<!-- start bootstrap data table -->
@@ -38,7 +38,7 @@ class Template
 					});
 				</script>
 				<!-- end data table bootstrap -->
-			</head>
+				</head>
 			<body>
 				<div class="container">
 					<div class="col-sm-12">
@@ -59,7 +59,7 @@ class Template
 							</div>
 							<!-- end menu -->
 							<!-- body -->
-							<div class="col-sm-9 well ">
+							<div class="col-sm-9  ">
 		';
 	}
 
@@ -95,19 +95,24 @@ class Template
 		';
 	}
 
-	public function menu($active_menu)
+	public function menu($SCREENNAME)
 	{
-			echo $active_menu,"<->","<br/>";
 		$result =$this->ci->mdl_menu->getMenu();
-		$menu = '<ul class="nav nav-pills nav-stacked">';
+		$menu = '<ul class="nav nav-pills nav-stacked pull-left inline">';
 		foreach($result['result'] as $row) {
 			//$active=($active_menu=='active'?'active':'');
-			$menu.='<li role="presentation" class='.$active_menu.'>'. anchor("$row->filelocation","$row->menu_name").'</li>';
+			$menu.='<li role="presentation" id="'.$row->menu_name.'" class="">'. anchor("$row->filelocation","$row->menu_name").'</li>';
 		}
 		$menu .= '</ul>';
 
 		return $menu;
 	}
+
+	public function getScreenName($ctl_name)
+	{
+		return $this->ci->mdl_menu->getScreenName($ctl_name);
+	}
+
 
 }
 
