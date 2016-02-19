@@ -10,60 +10,64 @@
 			<div class ="panel-body">
 				<?php echo form_open_multipart('','class="form-horizontal role="form"');?>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">Title</label>
+					<label for="title" class="col-sm-2 control-label"><i style="color: red;">**</i> Title</label>
 					<div class="col-sm-10">
-						<textarea style="width: 100%"></textarea>
+						<textarea id="title" name="title" style="width: 100%"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputPassword3" class="col-sm-2 control-label">** Author</label>
+					<label for="author" class="col-sm-2 control-label"><i style="color: red;">**</i>  Author</label>
 					<div class="col-sm-10">
-						<textarea style="width: 100%"></textarea>
+						<textarea id="author" name="author" style="width: 100%"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">**Email</label>
+					<label for="email" class="col-sm-2 control-label"><i style="color: red;">**</i> Email</label>
 					<div class="col-sm-10">
-						<input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+						<input type="email"  class="form-control" id="email" name="email" placeholder="Email">
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">** Abstract</label>
+					<label for="abstract" class="col-sm-2 control-label"><i style="color: red;">**</i>  Abstract</label>
 					<div class="col-sm-10">
-						<textarea rows="15" style="width: 100%"></textarea>
+						<textarea rows="15" id="abstract" name="abstract" style="width: 100%"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">** Paper Type</label>
-					<div class="col-sm-10">
-						<select>
-							<option>asdf</option>
+					<label for="paper_type" class="col-sm-2 control-label"><i style="color: red;">**</i>  Paper Type</label>
+					<div class="col-sm-3">
+						<select class="form-control" id="paper_type" name="paper_type">
+							<?php foreach ($paperType['result'] as $rowPaper) : ?>
+								<option value="<?php echo $rowPaper->id_ptype; ?>"><?php echo $rowPaper->ptype_name;?></option>
+							<?php endforeach;?>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">** Category</label>
-					<div class="col-sm-10">
-						<select>
-							<option>asdf</option>
+					<label for="category" class="col-sm-2 control-label"><i style="color: red;">**</i>  Category</label>
+					<div class="col-sm-3">
+						<select class="form-control" id="category" name="category">
+							<?php foreach ($category['result'] as $rowCategory):?>
+								<option value="<?php echo $rowCategory->id_category;?>"><?php echo $rowCategory->cat_name;?></option>
+							<?php endforeach;?>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">** Full Text</label>
+					<label for="full_text" class="col-sm-2 control-label"><i style="color: red;">**</i>  Full Text</label>
 					<div class="col-sm-10">
-						<input type="file"></input>
+						<input type="file" id="full_text" name="full_text" class="form-control"></input>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="inputEmail3" class="col-sm-2 control-label">** Suggested Reviewers</label>
+					<label for="sugges_review" class="col-sm-2 control-label"><i style="color: red;">**</i>  Suggested Reviewers</label>
 					<div class="col-sm-10">
-						<textarea rows="15" style="width: 100%"></textarea>
+						<textarea rows="15" id="sugges_review" name="sugges_review" style="width: 100%"></textarea>
 					</div>
 				</div>
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
-						<button type="submit" class="btn btn-default">Sign in</button>
+						<button type="submit" class="btn btn-primary">Submit</button>
 					</div>
 				</div>
 				<?php echo form_close();?>

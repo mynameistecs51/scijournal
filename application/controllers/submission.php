@@ -7,6 +7,7 @@ class Submission extends CI_Controller {
 		parent::__construct();
 		$this->ctl="Submission";
 		$this->SCREENNAME=$this->template->getScreenName($this->ctl);
+		$this->load->model('mdl_journal');
 	}
 
 	public function index()
@@ -23,7 +24,8 @@ class Submission extends CI_Controller {
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $this->SCREENNAME;
-		//$this->data['NAV'] =$this->SCREENNAME;
+		$this->data['paperType'] = $this->mdl_journal->getPaper_type();
+		$this->data['category'] = $this->mdl_journal->getCategory();
 	}
 
 }
