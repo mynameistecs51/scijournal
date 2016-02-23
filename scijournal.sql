@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 19, 2016 at 11:12 AM
+-- Generation Time: Feb 23, 2016 at 09:14 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -66,12 +66,12 @@ CREATE TABLE IF NOT EXISTS `menu` (
 INSERT INTO `menu` (`id_menu`, `menu_name`, `filelocation`) VALUES
 (1, 'Home', 'home'),
 (2, 'Submission', 'Submission'),
-(3, 'Papers In Press', 'Papers In Press'),
+(3, 'Papers In Press', 'home/paperInpress'),
 (4, 'Search', 'Search'),
-(5, 'Information for Contributors', 'Information for Contributors'),
-(6, 'Introducing the Journal', 'Introducing the Journal'),
+(5, 'Information for Contributors', 'home/information'),
+(6, 'Introducing the Journal', 'home/Introducing'),
 (7, 'Board of Journal of Science', 'Board of Journal of Science'),
-(8, 'Contact addrress', 'Contact addrress');
+(8, 'Contact addrress', 'home/contact');
 
 -- --------------------------------------------------------
 
@@ -93,6 +93,24 @@ INSERT INTO `paper_type` (`id_ptype`, `ptype_name`) VALUES
 (2, 'Opinion'),
 (3, 'Short Communication'),
 (4, 'Review');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `submission`
+--
+
+CREATE TABLE IF NOT EXISTS `submission` (
+  `id_submission` int(11) NOT NULL,
+  `sub_title` text NOT NULL,
+  `sub_author` text NOT NULL,
+  `sub_email` text NOT NULL,
+  `sub_abstract` text NOT NULL,
+  `id_ptype` int(11) NOT NULL,
+  `id_category` int(11) NOT NULL,
+  `sub_fileName` text NOT NULL,
+  `sub_suggessted` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -117,6 +135,12 @@ ALTER TABLE `paper_type`
   ADD PRIMARY KEY (`id_ptype`);
 
 --
+-- Indexes for table `submission`
+--
+ALTER TABLE `submission`
+  ADD PRIMARY KEY (`id_submission`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -135,6 +159,11 @@ ALTER TABLE `menu`
 --
 ALTER TABLE `paper_type`
   MODIFY `id_ptype` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `submission`
+--
+ALTER TABLE `submission`
+  MODIFY `id_submission` int(11) NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
