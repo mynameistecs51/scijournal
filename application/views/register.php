@@ -1,0 +1,159 @@
+<?php echo $header; ?>
+<script type="text/javascript">
+	$(function(){
+		$("input[name=zipcode]").change(function(){
+			$.ajax({
+				url: '<?php echo base_url().$controller; ?>/getProvince/',
+				data:"zipcode="+$("input[name=zipcode]").val(),
+				type: 'POST',
+				dataType: 'json',
+				success:function(res){
+					// var amphur="<option >----เลือกอำเภอ----</option>";
+					var district="<option >---เลือกตำบล---</option>";
+					$.each(res, function( index, value ) {
+						// $('input[name=province]').val(value['PROVINCE_NAME']);
+						// $('input[name=amphur]').val(value["AMPHUR_NAME"]);
+						province = "<option value="+value['PROVINCE_ID']+"> "+value['PROVINCE_NAME']+"</option>";
+						amphur = "<option value="+value['AMPHUR_ID']+"> "+value['AMPHUR_NAME']+"</option>";
+						district += "<option value="+value['DISTRICT_ID']+"> "+value['DISTRICT_NAME']+"</option>";
+					});
+					$('#province').html(province);
+					$('#amphur').html(amphur);
+					$('#district').html(district);
+
+				},
+				error:function(err){
+					alert("รหัสไปรษณีย์ไม่ถูกต้อง"+'<?php echo base_url().$controller; ?>/getProvince/');
+					$('input[name=zipcode]').val('');
+					$('#province').html('');
+					$('#amphur').html('');
+					$('#district').html('');
+				}
+			});
+		});
+	}); //----------------------- end javascript---------------------//
+</script>
+<form>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-6">
+			<label for="username">Username</label>
+			<input type="text" name="username" id="username" class="form-control">
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-6">
+			<label for="password">Password</label>
+			<input type="password" name="password" id="password" class="form-control">
+		</div>
+		<div class="col-sm-6">
+			<label for="conf_password">Confirm Password</label>
+			<input type="password" name="conf_password" id="conf_password" class="form-control">
+		</div>
+	</div>
+	<div class="form-group col-sm-12"><hr/></div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-6">
+			<label for="prefixName">คำนำหน้า</label>
+			<select name="prefixName" id="prefixName" class="form-control">
+				<?php foreach ($getPrefixName['result'] as $rowPrefix): ?>
+					<option value="<?php echo $rowPrefix->id_prefixName;?>"><?php echo $rowPrefix->pre_name; ?></option>
+				<?php endforeach ?>
+			</select>
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-6">
+			<label for="name">ชื่อ</label>
+			<input type="text" name="name"  class="form-control">
+		</div>
+		<div class="col-sm-6">
+			<label for="lastname">นามสกุล</label>
+			<input type="text" name="lastname" class="form-control">
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-4">
+			<label for="sex">เพศ</label><br/>
+			<label>
+				<input type="radio" name="sex" value="1">ชาย&nbsp;&nbsp;
+			</label>
+			<label>
+				<input type="radio" name="sex" value="1">หญิง
+			</label>
+		</div>
+		<div class="col-sm-7">
+			<label for="education">การศึกษา</label><br/>
+			<label>
+				<input type="radio" name="education" value="1">น้อยกว่า ปริญาตรี&nbsp;&nbsp;
+			</label>
+			<label>
+				<input type="radio" name="education" value="2">ปริญาตรี&nbsp;&nbsp;
+			</label>
+			<label>
+				<input type="radio" name="education" value="3">ปริญาโท&nbsp;&nbsp;
+			</label>
+			<label>
+				<input type="radio" name="education" value="4">ปริญาเอก&nbsp;&nbsp;
+			</label>
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-6">
+			<label for="career">อาชีพ</label>
+			<input type="text" name="career" class="form-control">
+		</div>
+		<div class="col-sm-6">
+			<label for="career">ชื่อองกร(ถ้ามี)</label>
+			<input type="text" name="career" class="form-control">
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-12">
+			<label>ที่อยู่</label>
+			<input tye="text" class="form-control" name="address" required />
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-3">
+			<label>รหัสไปรษณีย์</label>
+			<input type="text" class="form-control" name="zipcode" required/>
+		</div>
+		<div class="col-sm-3">
+			<label>จังหวัด</label>
+			<!-- <input type="text" class="form-control" name="province"  /> -->
+			<select name="province" id="province" class="form-control"  >
+				<!-- <option value="">----เลือกอำเภอ----</option> -->
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<label>เขต/อำเภอ</label>
+			<!-- <input type="text" class="form-control" name="amphur"   /> -->
+			<select name="amphur" id="amphur" class="form-control"  >
+				<!-- <option value="">----เลือกอำเภอ----</option> -->
+			</select>
+		</div>
+		<div class="col-sm-3">
+			<label>แขวง/ตำบล</label>
+			<select name="district" id="district" class ="form-control"  required>
+				<option value="">--เลือก--</option>
+			</select>
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-6">
+			<label for="tel">โทรศัพท์</label>
+			<input type="tel" name="tel" class="form-control">
+		</div>
+		<div class="col-sm-6">
+			<label for="email">Email</label>
+			<input type="email" name="email" class="form-control">
+		</div>
+	</div>
+	<div class="form-group col-sm-12">
+		<div class="col-sm-6">
+		<button type="submit" class="btn btn-primary">บันทึก</button>
+		<button type="reset" class="btn btn-wranning">ยกเลิก</button>
+		</div>
+	</div>
+</form>
+<?php echo $footer; ?>
