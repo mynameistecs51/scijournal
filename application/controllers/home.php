@@ -47,6 +47,13 @@ class Home extends CI_Controller {
 		echo json_encode($showdata);
 	}
 
+	public function inserMember()
+	{
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		$pre_name = $this->input->post('pre_name')
+	}
+
 	//---------------------- call page -----------------------//
 
 	public function paperInpress()
@@ -92,7 +99,7 @@ class Home extends CI_Controller {
 	public function register()
 	{
 		$SCREENID="register";
-		$SCREENNAME=$this->template->getScreenName('home/'.$SCREENID);
+		$SCREENNAME="> Register";
 		$this->mainpage($SCREENNAME);
 		$this->load->view($SCREENID,$this->data);
 	}
