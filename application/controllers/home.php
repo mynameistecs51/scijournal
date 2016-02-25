@@ -49,9 +49,33 @@ class Home extends CI_Controller {
 
 	public function inserMember()
 	{
-		$username = $this->input->post('username');
+
+		$this->form_validation->set_rules('username', 'Username','required');
+		$this->form_validation->set_rules('password', 'รหัสผ่าน', 'trim|xss_clean');
+		$this->form_validation->set_rules('confirm_password', '**ยืนยันรหัสผ่าน', 'trim|xss_clean|callback_confirm_password');
+		$this->form_validation->set_rules('prefixName','** คำนำหน้าชื่อ','required');
+		//$this->form_validation->set_rules('email', 'Email', 'required|is_unique[users.email]');
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->form_validation->set_message('', '%s ไม่ถูกต้อง');
+			$this->register();
+		}
+		else
+		{
+			//$this->load->view('formsuccess');
+			echo "OK <-------";
+		}
+	}
+
+	public function confirm_password($value)			//check confirm password
+	{
 		$password = $this->input->post('password');
-		$pre_name = $this->input->post('pre_name')
+		if($value == $password){
+			return TRUE;
+		}else{
+			$this->form_validation->set_message('confirm_password', '%s ไม่ถูกต้อง');
+			return FALSE;
+		}
 	}
 
 	//---------------------- call page -----------------------//

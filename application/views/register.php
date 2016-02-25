@@ -40,21 +40,22 @@
 		<div class ="panel-title">Register </div>
 	</div>
 	<div class ="panel-body">
-		<form action="home/inserMember/" method="POST" accept-charset="utf-8">
+		<form action="inserMember/" method="POST" accept-charset="utf-8">
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
 					<label for="username">Username</label>
-					<input type="text" name="username" id="username" class="form-control" required/>
+					<input type="text" name="username" id="username" class="form-control" value="<?php echo set_value('username'); ?>" required/>
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
 					<label for="password">Password</label>
-					<input type="password" name="password" id="password" class="form-control" required/>
+					<input type="password" name="password" id="password" class="form-control"  value="<?php echo set_value('password'); ?>"required/>
 				</div>
 				<div class="col-sm-6">
-					<label for="conf_password">Confirm Password</label>
-					<input type="password" name="conf_password" id="conf_password" class="form-control" required/>
+					<label for="confirm_password">Confirm Password</label>
+					<input type="password" name="confirm_password" id="confirm_password" class="form-control" value="<?php echo set_value('confirm_password'); ?>"required/>
+					<?php echo form_error('confirm_password','<span class="label label-warning">','</span>');?>
 				</div>
 			</div>
 			<div class="form-group col-sm-12"><hr/></div>
@@ -62,20 +63,22 @@
 				<div class="col-sm-6">
 					<label for="prefixName">คำนำหน้า</label>
 					<select name="prefixName" id="prefixName" class="form-control" required>
+						<option value=''>-----กรุณาเลือก------</option>
 						<?php foreach ($getPrefixName['result'] as $rowPrefix): ?>
-							<option value="<?php echo $rowPrefix->id_prefixName;?>"><?php echo $rowPrefix->pre_name; ?></option>
+							<option value="<?php echo $rowPrefix->id_prefixName;?>" <?php echo set_select('$rowPrefix->pre_name');?> ><?php echo $rowPrefix->pre_name; ?></option>
 						<?php endforeach ?>
 					</select>
+					<?php echo form_error('prefixName','<span class="label label-warning">','</span>');?>
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
 					<label for="name">ชื่อ</label>
-					<input type="text" name="name"  class="form-control" required/>
+					<input type="text" name="name"  class="form-control" value="<?php echo set_value('name'); ?>"required/>
 				</div>
 				<div class="col-sm-6">
 					<label for="lastname">นามสกุล</label>
-					<input type="text" name="lastname" class="form-control" required />
+					<input type="text" name="lastname" class="form-control" value="<?php echo set_value('lastname'); ?>" required />
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
@@ -91,10 +94,10 @@
 				<div class="col-sm-7">
 					<label for="education">การศึกษา</label><br/>
 					<label>
-						<input type="radio" name="education" value="1" >น้อยกว่า ปริญาตรี&nbsp;&nbsp;
+						<input type="radio" name="education" value="1" required>น้อยกว่า ปริญาตรี&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="education" value="2" required>ปริญาตรี&nbsp;&nbsp;
+						<input type="radio" name="education" value="2" checked>ปริญาตรี&nbsp;&nbsp;
 					</label>
 					<label>
 						<input type="radio" name="education" value="3">ปริญาโท&nbsp;&nbsp;
@@ -107,17 +110,17 @@
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
 					<label for="career">อาชีพ</label>
-					<input type="text" name="career" class="form-control">
+					<input type="text" name="career" class="form-control" value="<?php echo set_value('career'); ?>">
 				</div>
 				<div class="col-sm-6">
-					<label for="career">ชื่อองกร(ถ้ามี)</label>
-					<input type="text" name="career" class="form-control">
+					<label for="organizetion">ชื่อองกร(ถ้ามี)</label>
+					<input type="text" name="organizetion" class="form-control"  value="<?php echo set_value('organizetion'); ?>">
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-12">
 					<label>ที่อยู่</label>
-					<input tye="text" class="form-control" name="address" required />
+					<input tye="text" class="form-control" name="address" value="<?php echo set_value('address'); ?>"accept="" required />
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
@@ -149,11 +152,11 @@
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
 					<label for="tel">โทรศัพท์</label>
-					<input type="tel" name="tel" class="form-control" required/>
+					<input type="tel" name="tel" class="form-control" value="<?php echo set_value('tel');?>" required/>
 				</div>
 				<div class="col-sm-6">
 					<label for="email">Email</label>
-					<input type="email" name="email" class="form-control" />
+					<input type="email" name="email" class="form-control" value="<?php echo set_value('email');?>"  required/>
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
