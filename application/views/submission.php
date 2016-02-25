@@ -8,7 +8,7 @@
 				<div class ="panel-title">Add journal </div>
 			</div>
 			<div class ="panel-body">
-				<?php echo form_open_multipart('','class="form-horizontal role="form"');?>
+				<?php echo form_open_multipart('home/insertJournal/','class="form-horizontal role="form"');?>
 				<div class="form-group">
 					<label for="title" class="col-sm-2 control-label"><i style="color: red;">**</i> Title</label>
 					<div class="col-sm-10">

@@ -16,7 +16,7 @@
 | environments.
 |
 */
-$config['base_url'] = 'http://multimedia.udru.ac.th/scijournal/';
+$config['base_url'] = 'http://localhost/scijournal/';
 
 /*
 |--------------------------------------------------------------------------

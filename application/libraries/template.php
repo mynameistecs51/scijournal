@@ -116,6 +116,28 @@ class Template
 		return $this->ci->mdl_menu->getScreenName($ctl_name);
 	}
 
+	function upload_file()
+	{
+		$file_name =  date('d_m_y_H_i_s');
+		$config['upload_path'] =  './file_journal/';
+		$config['allowed_types'] = 'PDF|';
+		$config['file_name'] = $file_name.'.'.substr($_FILES['full_text']['name'],-4);		//file_name
+		//$config['remove_spaces'] = TRUE;
+
+		$this->load->library("upload",$config);		//library upload
+		$this->upload->initialize($config);
+		if($this->upload->do_upload('full_text')){	//ถ้า upload ไม่มีปัญหา
+			$insert_table = array(
+				'table_trem' => $this->input->post('num_trem'),
+				'table_name' => $this->upload->data('file_name'),
+				);
+			$this->db->insert('table_teacher',$insert_table);
+		}else{
+			return $this->upload->display_errors();
+		}
+	}
+
+
 
 }
 
