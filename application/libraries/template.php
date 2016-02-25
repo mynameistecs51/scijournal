@@ -17,6 +17,9 @@ class Template
 			<html lang="en">
 			<head>
 				<meta charset="utf-8">
+				<meta name="description" content="SCIENCE JOURNAL UDRU,วิจัย,คณะวิทยาศาสตร์ ราชภัฏอุดรธานี">
+				<meta name="keywords" content="วิจัย,คณะวิทยาศาสตร์ ราชภัฏอุดรธานี">
+				<meta name="author" content="SCIENCE UDRU">
 				<title>Science UDRU Journal</title>
 				<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap-theme.css"/>
 				<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.min.css"/>

@@ -12,7 +12,7 @@ class Submission extends CI_Controller {
 
 	public function index()
 	{
-		$SCREENID="Submission";
+		$SCREENID="submission";
 		$this->mainpage();
 		$this->load->view($SCREENID,$this->data);
 	}

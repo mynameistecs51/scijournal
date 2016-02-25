@@ -54,7 +54,7 @@
 				</div>
 				<div class="col-sm-6">
 					<label for="confirm_password">Confirm Password</label>
-					<input type="password" name="confirm_password" id="confirm_password" class="form-control" value="<?php echo set_value('confirm_password'); ?>"required/>
+					<input type="password" name="confirm_password" id="confirm_password" class="form-control" value="<?php echo set_value('confirm_password'); ?>" required/>
 					<?php echo form_error('confirm_password','<span class="label label-warning">','</span>');?>
 				</div>
 			</div>
@@ -74,7 +74,7 @@
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
 					<label for="name">ชื่อ</label>
-					<input type="text" name="name"  class="form-control" value="<?php echo set_value('name'); ?>"required/>
+					<input type="text" name="name"  class="form-control"  value="<?php echo set_value('name'); ?>" required/>
 				</div>
 				<div class="col-sm-6">
 					<label for="lastname">นามสกุล</label>

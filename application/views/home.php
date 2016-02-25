@@ -1,16 +1,13 @@
 <?php echo $header;?>
-<script type="text/javascript" language="javascript" charset="utf-8">
-	
-</script>
 <div class="row">       <!-- //    show paper all    //  -->
 	<div class="col-sm-12">
 	<div class="nev_url"><?php echo "Page -",$NAV; ?> </div>
 	<hr/>
 		<p class="">
 		<?php ?>
-			Welcome to Chiang Mai Journal of Science, an international journal for the publication of all preliminary communications in Science.
+			Welcome to udon thani rajabhat university Journal of Science, an international journal for the publication of all preliminary communications in Science.
 			<br/><br/>
-			First launched in 1973 by Faculty of Science, Chiangmai University, CMJS is peer-reviewed and published as hardcopy and online open-access journal. It is indexed/abstracted in :
+			First launched in 1973 by Faculty of Science, udon thani rajabhat university, CMJS is peer-reviewed and published as hardcopy and online open-access journal. It is indexed/abstracted in :
 			<br/><br/>
 			• Science Citation Index Expanded (SciResearch®)<br/>
 			• Journal Citation Reports/Science Edition<br/>
