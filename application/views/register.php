@@ -3,7 +3,7 @@
 	$(function(){
 		$("input[name=zipcode]").change(function(){
 			$.ajax({
-				url: '<?php echo base_url().$controller; ?>/getProvince/',
+				url: '<?php echo base_url().'index.php/'.$controller; ?>/getProvince/',
 				data:"zipcode="+$("input[name=zipcode]").val(),
 				type: 'POST',
 				dataType: 'json',

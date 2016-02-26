@@ -6,95 +6,95 @@ class Template
 
 	public function __construct()
 	{
-       	$this->ci =& get_instance();
-       	$this->ci->load->model('mdl_menu');
+		$this->ci =& get_instance();
+		$this->ci->load->model('mdl_menu');
 	}
 
 	public function getHeader($base_url,$SCREENNAME)
 	{
 		return'
-			<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="utf-8">
-				<meta name="description" content="SCIENCE JOURNAL UDRU,วิจัย,คณะวิทยาศาสตร์ ราชภัฏอุดรธานี">
-				<meta name="keywords" content="วิจัย,คณะวิทยาศาสตร์ ราชภัฏอุดรธานี">
-				<meta name="author" content="SCIENCE UDRU">
-				<title>Science UDRU Journal</title>
-				<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap-theme.css"/>
-				<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.min.css"/>
-				<!--<script src="'.base_url().'js/bootstrap.js"></script>-->
-				<script src="'.base_url().'js/jquery.js"></script>
+		<!DOCTYPE html>
+		<html lang="en">
+		<head>
+			<meta charset="utf-8">
+			<meta name="description" content="SCIENCE JOURNAL UDRU,วิจัย,คณะวิทยาศาสตร์ ราชภัฏอุดรธานี">
+			<meta name="keywords" content="วิจัย,คณะวิทยาศาสตร์ ราชภัฏอุดรธานี">
+			<meta name="author" content="SCIENCE UDRU">
+			<title>Science UDRU Journal</title>
+			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap-theme.css"/>
+			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.min.css"/>
+			<!--<script src="'.base_url().'js/bootstrap.js"></script>-->
+			<script src="'.base_url().'js/jquery.js"></script>
 
-				<!-- start bootstrap data table -->
-				<link rel="stylesheet" type="text/css" href="'.base_url().'DataTables/media/css/jquery.dataTables.css">
-				<style type="text/css" class="init">
-					div.dataTables_wrapper {
-						margin-bottom: 3em;
-					}
-				</style>
-				<script type="text/javascript" language="javascript" src="'.base_url().'DataTables/media/js/jquery.js"></script>
-				<script type="text/javascript" language="javascript" src="'.base_url().'DataTables/media/js/jquery.dataTables.js"></script>
-				<script type="text/javascript" language="javascript" class="init">
-					$(document).ready(function () {
-						$("table.display").dataTable();
-					});
-				</script>
-				<!-- end data table bootstrap -->
-				</head>
-			<body>
-				<div class="container">
+			<!-- start bootstrap data table -->
+			<link rel="stylesheet" type="text/css" href="'.base_url().'DataTables/media/css/jquery.dataTables.css">
+			<style type="text/css" class="init">
+				div.dataTables_wrapper {
+					margin-bottom: 3em;
+				}
+			</style>
+			<script type="text/javascript" language="javascript" src="'.base_url().'DataTables/media/js/jquery.js"></script>
+			<script type="text/javascript" language="javascript" src="'.base_url().'DataTables/media/js/jquery.dataTables.js"></script>
+			<script type="text/javascript" language="javascript" class="init">
+				$(document).ready(function () {
+					$("table.display").dataTable();
+				});
+			</script>
+			<!-- end data table bootstrap -->
+		</head>
+		<body>
+			<div class="container">
+				<div class="col-sm-12">
+					&nbsp;
+				</div>
+				<div class="row">
 					<div class="col-sm-12">
-						&nbsp;
-					</div>
-					<div class="row">
-						<div class="col-sm-12">
-							<!-- Jumbotron Header -->
-							<header class="jumbotron hero-spacer" style="height: 270px;">
-								<h1>SCIENCE UDRU JOURNAL...</h1>
-								<p>Faculty of Science and Journal</p>
-							</header>
-							<!-- menu -->
-							<div class="col-sm-3 well pull-left">
-								<div class="col-sm-12">
-									'.$this->menu($base_url).'
-								</div>
+						<!-- Jumbotron Header -->
+						<header class="jumbotron hero-spacer" style="height: 270px;">
+							<h1>SCIENCE UDRU JOURNAL...</h1>
+							<p>Faculty of Science and Journal</p>
+						</header>
+						<!-- menu -->
+						<div class="col-sm-3 well pull-left">
+							<div class="col-sm-12">
+								'.$this->menu($base_url).'
 							</div>
-							<!-- end menu -->
-							<!-- body -->
-							<div class="col-sm-9  ">
-		';
-	}
+						</div>
+						<!-- end menu -->
+						<!-- body -->
+						<div class="col-sm-9  ">
+							';
+						}
 
-	public function getFooter()
-	{
-		return'
-			</div>
-				<!-- /.body -->
-			</div>
-		</div>
-	</div>
-	<!-- /.container -->
-
-	<div class="container">
-		<hr>
-		<!-- Footer -->
-		<footer class="pull-right">
-			<div class="row">
-				<div class="col-lg-12">
-					<p>
-						Faculty of Science <br/>
-						UDON THANI RAJABHAT UNIVERSITY<br/>
-						Copyright &copy; Your Website 2016
-					</p>
+						public function getFooter()
+						{
+							return'
+						</div>
+						<!-- /.body -->
+					</div>
 				</div>
 			</div>
-		</footer>
+			<!-- /.container -->
 
-	</div>
-	<!-- /.container -->
-</body>
-</html>
+			<div class="container">
+				<hr>
+				<!-- Footer -->
+				<footer class="pull-right">
+					<div class="row">
+						<div class="col-lg-12">
+							<p>
+								Faculty of Science <br/>
+								UDON THANI RAJABHAT UNIVERSITY<br/>
+								Copyright &copy; Your Website 2016
+							</p>
+						</div>
+					</div>
+				</footer>
+
+			</div>
+			<!-- /.container -->
+		</body>
+		</html>
 		';
 	}
 
@@ -115,29 +115,6 @@ class Template
 	{
 		return $this->ci->mdl_menu->getScreenName($ctl_name);
 	}
-
-	function upload_file()
-	{
-		$file_name =  date('d_m_y_H_i_s');
-		$config['upload_path'] =  './file_journal/';
-		$config['allowed_types'] = 'PDF|';
-		$config['file_name'] = $file_name.'.'.substr($_FILES['full_text']['name'],-4);		//file_name
-		//$config['remove_spaces'] = TRUE;
-
-		$this->load->library("upload",$config);		//library upload
-		$this->upload->initialize($config);
-		if($this->upload->do_upload('full_text')){	//ถ้า upload ไม่มีปัญหา
-			$insert_table = array(
-				'table_trem' => $this->input->post('num_trem'),
-				'table_name' => $this->upload->data('file_name'),
-				);
-			$this->db->insert('table_teacher',$insert_table);
-		}else{
-			return $this->upload->display_errors();
-		}
-	}
-
-
 
 }
 

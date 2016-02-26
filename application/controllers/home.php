@@ -79,17 +79,6 @@ class Home extends CI_Controller {
 		}
 	}
 
-	public function insertJournal()
-	{
-		echo $this->input->post('title');
-		$this->input->post('author');
-		$this->input->post('email');
-		$this->input->post('abstract');
-		$this->input->post('paper_type');
-		$this->input->post('category');
-		$this->input->post('full_text');
-		$this->input->post('sugges_review');
-	}
 
 	//---------------------- call page -----------------------//
 

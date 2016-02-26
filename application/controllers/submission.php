@@ -28,6 +28,33 @@ class Submission extends CI_Controller {
 		$this->data['category'] = $this->mdl_journal->getCategory();
 	}
 
+	public function insertJournal()
+	{
+		$this->form_validation->set_rules('title', 'Title','required');
+		$this->form_validation->set_rules('author', 'Author','required');
+		$this->form_validation->set_rules('email', 'Email','required');
+		$this->form_validation->set_rules('abstract', 'Abstract','required');
+		$this->form_validation->set_rules('paper_type', 'Paper_type','required');
+		$this->form_validation->set_rules('category', 'Category','required');
+		//$this->form_validation->set_rules('full_text', 'Full_text','required');
+		$this->form_validation->set_rules('sugges_review', 'Sugges_review','required');
+
+		if ($this->form_validation->run() == FALSE)
+		{
+			$this->form_validation->set_message('', ' กรุณากรอกข้อมูล %s ');
+			$this->index();
+		}
+		else
+		{
+			$this->mdl_journal->insertJournal();
+		//redirect('home','refresh');
+			//$this->load->view('formsuccess');
+			echo "OK <-------";
+		}
+
+	}
+
+
 }
 
 /* End of file ctl_journal.php */
