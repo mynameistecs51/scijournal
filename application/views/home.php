@@ -7,17 +7,27 @@
 	}
 </style>
 <script type="text/javascript" charset="utf-8" >
-	$(function () {
-		$('.show_abstract').length();
-		$('.abstract').click(function(){
-			if($('.show_abstract').is(':hidden')){
-				$(this).slideDown('slow');
+	$(function(){
+		count_abstract();
+		show_abstract();
+	});
+	function count_abstract() {
+		var nums = $('.abstract').length;
+		for (i=1;i<=nums;i++){
+			show_abstract(i);
+		}
+	}
+	function show_abstract(num) {
+		
+		$('#abstract'+num).click(function(){
+			if($('#show_abstract'+num).is(':hidden')){
+				$('#show_abstract'+num).slideDown('slow');
 			}else{
-				$(this).hide();
+				$('#show_abstract'+num).hide();
 			}
 
 		});
-	}); //end function start jquery -->
+	}//end function start jquery -->
 </script>
 <div class="row">       <!-- //    show paper all    //  -->
 	<div class="col-sm-12">
@@ -59,8 +69,8 @@
 									echo "<span class='text-primary'><b>",$rowJournal->uld_title,"</b></span>","<br/>";
 									echo "Author :",$rowJournal->uld_author,"<br/>";
 									echo "E-mail :",$rowJournal->uld_email,"<br/>";
-									echo "<i class=\"glyphicon glyphicon-search\" aria-hidden=\"true\">FullText</i>|<i class=\"glyphicon glyphicon-search abstract\" aria-hidden=\"true\">Abstract</i>";
-									echo "<div class='show_abstract well ' id='show_abstract".$number."'>".$rowJournal->uld_abstract."</div>";
+									echo "<i class=\"glyphicon glyphicon-search\" aria-hidden=\"true\">FullText</i>|<i class=\"glyphicon glyphicon-search abstract\" id='abstract".$number."' aria-hidden=\"true\">Abstract</i>";
+									echo "<div class='show_abstract well ' id='show_abstract".$number."' >".$rowJournal->uld_abstract."</div>";
 									?>
 								</td>
 							</tr>
