@@ -47,13 +47,9 @@ class Submission extends CI_Controller {
 		else
 		{
 			$this->mdl_journal->insertJournal();
-		//redirect('home','refresh');
-			//$this->load->view('formsuccess');
-			echo "OK <-------";
+			redirect('home','refresh');
 		}
-
 	}
-
 
 }
 

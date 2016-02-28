@@ -28,6 +28,7 @@ class Home extends CI_Controller {
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
+		$this->data['getjournal'] = $this->mdl_journal->getjournal();
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 

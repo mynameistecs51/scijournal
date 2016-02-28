@@ -96,13 +96,24 @@ class Mdl_journal extends CI_Model {
 				'uld_suggestedReview' => $sugges_review,
 				);
 			// $file_upload= $this->ci->upload->data('file_name');
-			// $this->db->insert('member_up_journal',$dataSubmission);
-			echo "<pre>";
-			print_r($dataSubmission);
-			return true;
+			$this->db->insert('member_up_journal',$dataSubmission);
+			// echo "<pre>";
+			// print_r($dataSubmission);
+			// return true;
 		}else{
 			return $this->upload->display_errors();
 		}
+	}
+
+	public function getjournal()
+	{
+		$sql = "SELECT * FROM member_up_journal";
+		$query = $this->db->query($sql);
+		$result = $query->result();
+		$data = array(
+			'result' => $result,
+			);
+		return $data;
 	}
 
 }
