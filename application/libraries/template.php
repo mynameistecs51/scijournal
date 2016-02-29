@@ -43,17 +43,18 @@ class Template
 			<!-- end data table bootstrap -->
 		</head>
 		<body>
-			<div class="container">
+			<div class="container" style="bg-color:#fff;">
 				<div class="col-sm-12">
 					&nbsp;
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
+							<img src="'.base_url().'img/header.png"  >
 						<!-- Jumbotron Header -->
-						<header class="jumbotron hero-spacer" style="height: 270px;">
-							<h1>SCIENCE UDRU JOURNAL...</h1>
+						<!--<header class="jumbotron hero-spacer" style="height: 270px;" >
+							 <h1>SCIENCE UDRU JOURNAL...</h1>
 							<p>Faculty of Science and Journal</p>
-						</header>
+						</header> -->
 						<!-- menu -->
 						<div class="col-sm-3 well pull-left">
 							<div class="col-sm-12">

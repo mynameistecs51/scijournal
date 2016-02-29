@@ -18,12 +18,12 @@
 		}
 	}
 	function show_abstract(num) {
-		
+
 		$('#abstract'+num).click(function(){
 			if($('#show_abstract'+num).is(':hidden')){
 				$('#show_abstract'+num).slideDown('slow');
 			}else{
-				$('#show_abstract'+num).hide();
+				$('#show_abstract'+num).hide('slow');
 			}
 
 		});
