@@ -1,6 +1,6 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /scijournal/
+RewriteBase /journal/
 
 RewriteCond $1 !^(index\.php|css|font-awesome-4.1.0|fonts|images|js|robots\.txt)
 RewriteCond %{REQUEST_URI} ^system.*
