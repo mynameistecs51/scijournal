@@ -11,7 +11,8 @@ class Login extends CI_model{
         //     );
 
         // $this->load->library('facebook', $config);
-        $this->load->library('facebook');
+        $this->load->library('session');
+        $this->load->library('fb_login/facebook');
 
         $user = $this->facebook->getUser();
 
@@ -25,7 +26,7 @@ class Login extends CI_model{
         {
             try {
                 // Proceed knowing you have a logged in user who's authenticated.
-                $profile = $this->facebook->api('/me?fields=id,name,link,email,first_name,last_name,gender');
+                $profile = $this->facebook->api('/me?fields=id,name,email,first_name,last_name,gender');
             } catch (FacebookApiException $e) {
                 error_log($e);
                 $user = null;
@@ -37,7 +38,7 @@ class Login extends CI_model{
             'uid' => $user,
             'loginUrl' => $this->facebook->getLoginUrl(
                 array(
-                                'scope' => 'public_profile,email', // app permissions
+                                'scope' => 'public_profile,email,name', // app permissions
                                 'redirect_uri' => base_url(), // URL where you want to redirect your users after a successful login
                                 )
                 ),
@@ -49,13 +50,13 @@ class Login extends CI_model{
 
     public function logout(){
 
-        $this->load->library('facebook');
+        $this->load->library('fb_login/facebook');
 
                 // Logs off session from website
         $this->facebook->destroySession();
                 // Make sure you destory website session as well.
 
-        redirect('welcome','refresh');
+        redirect('home','refresh');
     }
     /*
     public function get_news_id_userpost($fb_data){

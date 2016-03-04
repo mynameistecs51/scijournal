@@ -30,14 +30,14 @@ class Submission extends CI_Controller {
 
 	public function insertJournal()
 	{
-		$this->form_validation->set_rules('title', 'Title','required');
-		$this->form_validation->set_rules('author', 'Author','required');
-		$this->form_validation->set_rules('email', 'Email','required');
-		$this->form_validation->set_rules('abstract', 'Abstract','required');
-		$this->form_validation->set_rules('paper_type', 'Paper_type','required');
-		$this->form_validation->set_rules('category', 'Category','required');
+		$this->form_validation->set_rules('title', 'Title','required|xss_clean|trim');
+		$this->form_validation->set_rules('author', 'Author','required|xss_clean|trim');
+		$this->form_validation->set_rules('email', 'Email','required|xss_clean|trim');
+		$this->form_validation->set_rules('abstract', 'Abstract','required|xss_clean|trim');
+		$this->form_validation->set_rules('paper_type', 'Paper_type','required|xss_clean');
+		$this->form_validation->set_rules('category', 'Category','required|xss_clean');
 		//$this->form_validation->set_rules('full_text', 'Full_text','required');
-		$this->form_validation->set_rules('sugges_review', 'Sugges_review','required');
+		$this->form_validation->set_rules('sugges_review', 'Sugges_review','xss_clean|trim');
 
 		if ($this->form_validation->run() == FALSE)
 		{
