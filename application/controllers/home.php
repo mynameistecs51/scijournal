@@ -29,7 +29,7 @@ class Home extends CI_Controller {
 		//$SCREENNAME="Home";
 		$this->data['controller'] = $this->ctl;
 		$this->data['base_url'] = base_url();
-		// $this->data['getPrefixName'] = $this->mdl_journal->getPrefixName();
+		// $this->data['getPrefixName'] = $this->getPrefixName();
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
@@ -40,7 +40,8 @@ class Home extends CI_Controller {
 	public function getPrefixName()
 	{
 		$prefixName = $this->mdl_journal->getPrefixName();
-		echo json_encode($prefixName);
+		// return $prefixName;
+		echo  json_encode($prefixName);
 	}
 
 	public function getProvince() //แสดงรายการ รหัสไปรษณีย์ จังหวัด อำเภอ ตำบล
