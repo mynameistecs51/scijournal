@@ -8,11 +8,11 @@ class Home extends CI_Controller {
 		$this->ctl="home";
 		$this->load->model('mdl_journal');
 		$fb_data = $this->session->userdata('fb_data');
-		if($fb_data['me'] == ""){
-			redirect('authen','refresh');
-		}else{
-			echo "OK";
-		}
+		// if($fb_data['me'] == ""){
+		// 	redirect('authen','refresh');
+		// }else{
+		// 	echo "OK";
+		// }
 	}
 
 	public function index()
@@ -29,12 +29,18 @@ class Home extends CI_Controller {
 		//$SCREENNAME="Home";
 		$this->data['controller'] = $this->ctl;
 		$this->data['base_url'] = base_url();
-		$this->data['getPrefixName'] = $this->mdl_journal->getPrefixName();
+		// $this->data['getPrefixName'] = $this->mdl_journal->getPrefixName();
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
 		// $this->data['NAV'] = $this->SCREENNAME;
+	}
+
+	public function getPrefixName()
+	{
+		$prefixName = $this->mdl_journal->getPrefixName();
+		echo json_encode($prefixName);
 	}
 
 	public function getProvince() //แสดงรายการ รหัสไปรษณีย์ จังหวัด อำเภอ ตำบล

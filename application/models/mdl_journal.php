@@ -33,12 +33,8 @@ class Mdl_journal extends CI_Model {
 	public function getPrefixName()
 	{
 		$sql = "SELECT * FROM prefixname";
-		$query = $this->db->query($sql);
-		$result = $query->result();
-		$data = array(
-			'result' => $result,
-			);
-		return $data;
+		$query = $this->db->query($sql)->result();
+		return $query;
 	}
 
 	public function getProvince($zipcode) // province and zipcode

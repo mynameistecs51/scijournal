@@ -1,4 +1,5 @@
 <?php echo $header; ?>
+
 <script type="text/javascript">
 	$(function(){
 		$("input[name=zipcode]").change(function(){
@@ -32,6 +33,25 @@
 			});
 		});
 	}); //----------------------- end javascript---------------------//
+
+	$(function(){
+		$.ajax({
+			url: '<?php echo base_url().'index.php/'.$controller; ?>/getPrefixName/',
+			data:"",
+			type: 'POST',
+			dataType: 'json',
+			success:function(resp){
+				var selected="<option>----------select----------</option>";
+				$.each(resp, function( index, value ) {
+				console.log(value['pre_name']);
+					selected+="<option value='"+value['id_prefixName']+"' data-subtext='"+value['pre_nameEng']+"'>"+value['pre_name']+"</option>";
+				});
+				$('#prefixName').html(selected);
+				 $('.selectpicker').selectpicker('show');
+			}
+		});
+	});
+
 </script>
 <!-- <div class="nev_url"><?php echo "Page -",$NAV; ?> </div> -->
 <!-- <hr/> -->
@@ -61,89 +81,86 @@
 			<div class="form-group col-sm-12"><hr/></div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
-					<label for="prefixName">คำนำหน้า</label>
-					<select name="prefixName" id="prefixName" class="form-control" required>
-						<option value=''>-----กรุณาเลือก------</option>
-						<?php foreach ($getPrefixName['result'] as $rowPrefix): ?>
-							<option value="<?php echo $rowPrefix->id_prefixName;?>" <?php echo set_select('$rowPrefix->pre_name');?> ><?php echo $rowPrefix->pre_name; ?></option>
-						<?php endforeach ?>
+					<label for="prefixName">Prefix</label>
+					<select class="selectpicker form-control" id="prefixName" name="prefixName" >
+
 					</select>
 					<?php echo form_error('prefixName','<span class="label label-warning">','</span>');?>
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
-					<label for="name">ชื่อ</label>
+					<label for="name">Name</label>
 					<input type="text" name="name"  class="form-control"  value="<?php echo set_value('name'); ?>" required/>
 				</div>
 				<div class="col-sm-6">
-					<label for="lastname">นามสกุล</label>
+					<label for="lastname">Last names</label>
 					<input type="text" name="lastname" class="form-control" value="<?php echo set_value('lastname'); ?>" required />
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-4">
-					<label for="sex">เพศ</label><br/>
+					<label for="sex">Sex</label><br/>
 					<label>
-						<input type="radio" name="sex" value="1" checked>ชาย&nbsp;&nbsp;
+						<input type="radio" name="sex" value="1" checked>Male&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="sex" value="2">หญิง
+						<input type="radio" name="sex" value="2">Female
 					</label>
 				</div>
 				<div class="col-sm-7">
-					<label for="education">การศึกษา</label><br/>
+					<label for="education">Education</label><br/>
 					<label>
-						<input type="radio" name="education" value="1" required>น้อยกว่า ปริญาตรี&nbsp;&nbsp;
+						<input type="radio" name="education" value="1" required>Less than a bachelor's degree&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="education" value="2" checked>ปริญาตรี&nbsp;&nbsp;
+						<input type="radio" name="education" value="2" checked>Bachelor&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="education" value="3">ปริญาโท&nbsp;&nbsp;
+						<input type="radio" name="education" value="3">Master degree&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="education" value="4">ปริญาเอก&nbsp;&nbsp;
+						<input type="radio" name="education" value="4">Doctorate(Ph.D.)&nbsp;&nbsp;
 					</label>
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
-					<label for="career">อาชีพ</label>
+					<label for="career">Career</label>
 					<input type="text" name="career" class="form-control" value="<?php echo set_value('career'); ?>">
 				</div>
 				<div class="col-sm-6">
-					<label for="organizetion">ชื่อองกร(ถ้ามี)</label>
+					<label for="organizetion">Organizetion(if available)</label>
 					<input type="text" name="organizetion" class="form-control"  value="<?php echo set_value('organizetion'); ?>">
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-12">
-					<label>ที่อยู่</label>
+					<label>Address</label>
 					<input tye="text" class="form-control" name="address" value="<?php echo set_value('address'); ?>"accept="" required />
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-3">
-					<label>รหัสไปรษณีย์</label>
+					<label>Zip code</label>
 					<input type="text" class="form-control" name="zipcode" required/>
 				</div>
 				<div class="col-sm-3">
-					<label>จังหวัด</label>
+					<label>Province</label>
 					<!-- <input type="text" class="form-control" name="province"  /> -->
 					<select name="province" id="province" class="form-control"  >
 						<!-- <option value="">----เลือกอำเภอ----</option> -->
 					</select>
 				</div>
 				<div class="col-sm-3">
-					<label>เขต/อำเภอ</label>
+					<label>District</label>
 					<!-- <input type="text" class="form-control" name="amphur"   /> -->
 					<select name="amphur" id="amphur" class="form-control"  >
 						<!-- <option value="">----เลือกอำเภอ----</option> -->
 					</select>
 				</div>
 				<div class="col-sm-3">
-					<label>แขวง/ตำบล</label>
+					<label>Sub district</label>
 					<select name="district" id="district" class ="form-control"  required>
 						<option value="">--เลือก--</option>
 					</select>
@@ -151,7 +168,7 @@
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
-					<label for="tel">โทรศัพท์</label>
+					<label for="tel">Telephone</label>
 					<input type="tel" name="tel" class="form-control" value="<?php echo set_value('tel');?>" required/>
 				</div>
 				<div class="col-sm-6">

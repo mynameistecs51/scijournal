@@ -30,9 +30,12 @@ class Template
 			<title>Science UDRU Journal</title>
 			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap-theme.css"/>
 			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.min.css"/>
-			<!--<script src="'.base_url().'js/bootstrap.js"></script>-->
-			<script src="'.base_url().'js/jquery.js"></script>
+			 <link rel="stylesheet" href="'.base_url().'css/bootstrap-select/bootstrap-select.css">
 
+			<script src="'.base_url().'js/jquery.js"></script>
+			<!--<script src="'.base_url().'js/bootstrap.js"></script>-->
+			<script src="'.base_url().'js/bootstrap.min.js"></script>
+			<script  src="'.base_url().'js/bootstrap-select/bootstrap-select.js"></script>
 			<!-- start bootstrap data table -->
 			<link rel="stylesheet" type="text/css" href="'.base_url().'DataTables/media/css/jquery.dataTables.css">
 			<style type="text/css" class="init">
@@ -40,7 +43,7 @@ class Template
 					margin-bottom: 3em;
 				}
 			</style>
-			<script type="text/javascript" language="javascript" src="'.base_url().'DataTables/media/js/jquery.js"></script>
+			<!-- <script type="text/javascript" language="javascript" src="'.base_url().'DataTables/media/js/jquery.js"></script> -->
 			<script type="text/javascript" language="javascript" src="'.base_url().'DataTables/media/js/jquery.dataTables.js"></script>
 			<script type="text/javascript" language="javascript" class="init">
 				$(document).ready(function () {
@@ -114,6 +117,7 @@ public function menu($SCREENNAME)
 			//$active=($active_menu=='active'?'active':'');
 		$menu.='<li role="presentation" id="'.$row->menu_name.'" class="">'. anchor("$row->filelocation","$row->menu_name").'</li>';
 	}
+	$menu.='<li role="presentation" id="login logout" class="">'. anchor("#","login logout").'</li>';
 	$menu .= '</ul>';
 
 	return $menu;
