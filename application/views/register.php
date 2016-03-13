@@ -43,11 +43,11 @@
 			success:function(resp){
 				var selected="<option>----------select----------</option>";
 				$.each(resp, function( index, value ) {
-				console.log(value['pre_name']);
+					console.log(value['pre_name']);
 					selected+="<option value='"+value['id_prefixName']+"' data-subtext='"+value['pre_nameEng']+"'>"+value['pre_name']+"</option>";
 				});
-				$('#prefixName').html(selected);
-				 $('.selectpicker').selectpicker('show');
+				$('#prefixName').html(selected).selectpicker();
+				// $('.selectpicker').selectpicker();
 			}
 		});
 	});
@@ -65,6 +65,11 @@
 				<div class="col-sm-6">
 					<label for="username">Username</label>
 					<input type="text" name="username" id="username" class="form-control" value="<?php echo set_value('username'); ?>" required/>
+					<select class="selectpicker">
+						<option>Mustard</option>
+						<option>Ketchup</option>
+						<option>Relish</option>
+					</select>
 				</div>
 			</div>
 			<div class="form-group col-sm-12">

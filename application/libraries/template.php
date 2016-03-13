@@ -28,12 +28,13 @@ class Template
 			<meta name="keywords" content="วิจัย,คณะวิทยาศาสตร์ ราชภัฏอุดรธานี">
 			<meta name="author" content="SCIENCE UDRU">
 			<title>Science UDRU Journal</title>
-			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap-theme.css"/>
+			<!-- <link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap-theme.css"/> -->
+			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.css"/>
 			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.min.css"/>
 			 <link rel="stylesheet" href="'.base_url().'css/bootstrap-select/bootstrap-select.css">
 
 			<script src="'.base_url().'js/jquery.js"></script>
-			<!--<script src="'.base_url().'js/bootstrap.js"></script>-->
+			<script src="'.base_url().'js/bootstrap.js"></script>
 			<script src="'.base_url().'js/bootstrap.min.js"></script>
 			<script  src="'.base_url().'js/bootstrap-select/bootstrap-select.js"></script>
 			<!-- start bootstrap data table -->
