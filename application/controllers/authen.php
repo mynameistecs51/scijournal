@@ -22,8 +22,9 @@ class Authen extends CI_Controller {
 		}else{
 			echo $fb_data['me']['name'],"<br/>";
 			echo $fb_data['me']['first_name'],"<br/>";
+			echo $fb_data['me']['email'],"<br/>";
 			echo $fb_data['me']['gender']."<br/>";
-				echo anchor('Login/logout','logout','class="pull-right navbar-brand inline "');
+				echo anchor('home/logout','logout','class="pull-right navbar-brand inline "');
 		}
 	}
 

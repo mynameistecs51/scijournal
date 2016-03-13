@@ -8,6 +8,12 @@ class Submission extends CI_Controller {
 		$this->ctl="Submission";
 		$this->SCREENNAME=$this->template->getScreenName($this->ctl);
 		$this->load->model('mdl_journal');
+		$fb_data = $this->session->userdata('fb_data');
+		if($fb_data['me'] == ""){
+			redirect('authen','refresh');
+		}else{
+			echo "OK";
+		}
 	}
 
 	public function index()

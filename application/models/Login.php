@@ -38,7 +38,7 @@ class Login extends CI_model{
             'uid' => $user,
             'loginUrl' => $this->facebook->getLoginUrl(
                 array(
-                                'scope' => 'public_profile,email,name', // app permissions
+                                'scope' => 'public_profile,email', // app permissions
                                 'redirect_uri' => base_url(), // URL where you want to redirect your users after a successful login
                                 )
                 ),
@@ -49,11 +49,12 @@ class Login extends CI_model{
     }
 
     public function logout(){
-
+       $fb_data = $this->session->userdata("fb_data");
         $this->load->library('fb_login/facebook');
 
                 // Logs off session from website
         $this->facebook->destroySession();
+        $this->session->unset_userdata($fb_data);
                 // Make sure you destory website session as well.
 
         redirect('home','refresh');

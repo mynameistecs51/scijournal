@@ -7,7 +7,12 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->ctl="home";
 		$this->load->model('mdl_journal');
-		//$this->SCREENNAME=$this->template->getScreenName($this->ctl);
+		$fb_data = $this->session->userdata('fb_data');
+		if($fb_data['me'] == ""){
+			redirect('authen','refresh');
+		}else{
+			echo "OK";
+		}
 	}
 
 	public function index()
@@ -78,6 +83,11 @@ class Home extends CI_Controller {
 			$this->form_validation->set_message('confirm_password', '%s ไม่ถูกต้อง');
 			return FALSE;
 		}
+	}
+
+	public function logout()
+	{
+		$this->Login->logout();
 	}
 
 

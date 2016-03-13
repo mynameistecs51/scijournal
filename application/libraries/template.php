@@ -9,6 +9,7 @@ class Template
 		$this->ci =& get_instance();
 		$this->ci->load->model('mdl_menu','',TRUE);
 		$this->ci->load->model('Login','',TRUE);
+		// $fb_data =  anchor($fb_data['loginUrl'],'<image src="'.base_url().'img/fb_login.png"/>');
 	}
 
 	// public function index(){
@@ -113,7 +114,6 @@ public function menu($SCREENNAME)
 			//$active=($active_menu=='active'?'active':'');
 		$menu.='<li role="presentation" id="'.$row->menu_name.'" class="">'. anchor("$row->filelocation","$row->menu_name").'</li>';
 	}
-
 	$menu .= '</ul>';
 
 	return $menu;
