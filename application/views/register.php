@@ -52,10 +52,13 @@
 				dataType: 'json',
 				success:function(resp){
 					var selected ="<option value='0'>----------select----------</option>";
-					$.each(resp, function( index, value ) {
-						selected +="<option value='"+value['id_prefixName']+"'>"+value['pre_name']+"</option>";
+					$.each(resp, function( indexPre, valuePre ) {
+						console.log(valuePre['pre_name']);
+						selected +="<option value='"+valuePre['id_prefixName']+"'>"+valuePre['pre_name']+"</option>";
 					});
-					$('#prefixName').html(selected).selectpicker({size: 4});
+					$('select[name=prefixName]').html(selected).selectpicker('show');
+					// $('.selectpicker').selectpicker('show');
+
 				},
 				error:function(err){
 					alert(err+"error");
@@ -83,7 +86,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="form-group col-sm-12">
+				<!-- <div class="form-group col-sm-12">
 					<div class="col-sm-6">
 						<label for="password">Password</label>
 						<input type="password" name="password" id="password" class="form-control"  value="<?php echo set_value('password'); ?>"required/>
@@ -93,7 +96,7 @@
 						<input type="password" name="confirm_password" id="confirm_password" class="form-control" value="<?php echo set_value('confirm_password'); ?>" required/>
 						<?php echo form_error('confirm_password','<span class="label label-warning">','</span>');?>
 					</div>
-				</div>
+				</div> -->
 				<div class="form-group col-sm-12"><hr/></div>
 				<div class="form-group col-sm-12">
 					<div class="col-sm-6">
