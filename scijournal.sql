@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 13, 2016 at 11:34 AM
+-- Generation Time: Mar 14, 2016 at 12:12 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -10036,7 +10036,14 @@ CREATE TABLE IF NOT EXISTS `member` (
   `m_username` varchar(255) NOT NULL,
   `m_password` varchar(255) NOT NULL,
   `m_type` int(11) NOT NULL DEFAULT '0' COMMENT 'ประเภทของสมาชิก 1=ทั่วไป,2=กรรมการ,3=admin,4=staff'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `member`
+--
+
+INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `zipcode_id`, `district_id`, `amphur_id`, `province_id`, `m_address`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`) VALUES
+(1, 13, 'a', 'a', 1, 2, 'a', 'a', 41000, 3751, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 0);
 
 -- --------------------------------------------------------
 
@@ -10089,8 +10096,7 @@ INSERT INTO `menu` (`id_menu`, `menu_name`, `filelocation`) VALUES
 (5, 'Information for Contributors', 'home/information'),
 (6, 'Introducing the Journal', 'home/Introducing'),
 (7, 'Board of Journal of Science', 'Board of Journal of Science'),
-(8, 'Contact addrress', 'home/contact'),
-(9, 'Login/Register', 'home/login');
+(8, 'Contact addrress', 'home/contact');
 
 -- --------------------------------------------------------
 
@@ -10136,13 +10142,13 @@ INSERT INTO `prefixname` (`id_prefixName`, `pre_name`, `pre_nameEng`) VALUES
 (4, 'ดร.', 'Dr.'),
 (5, 'ผู้ช่วยศาสตราจารย์', 'Assistant professor'),
 (6, 'ผู้ช่วยศาสตราจารย์ ดร.', 'Assistant profess Dr.'),
-(7, 'รองศาสตราจารย์', ' Associate professor'),
+(7, 'รองศาสตราจารย์', 'Associate professor'),
 (8, 'รองศาสตราจารย์ ดร.', 'Associate professor Dr.'),
 (9, 'ศาสตราจารย์', 'Professor'),
 (10, 'ศาสตราจารย์ ดร.', 'Professor Dr.'),
 (11, 'ศาสตราจารย์เกียรติคุณ', 'Professor Emeritus'),
 (12, 'ศาสตราจารย์เกียรติคุณ ดร.', 'Professor Emeritus Dr.'),
-(13, 'อาจารย์', '	 teacher');
+(13, 'อาจารย์', 'teacher');
 
 -- --------------------------------------------------------
 
@@ -17844,7 +17850,7 @@ ALTER TABLE `geography`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `member_up_journal`
 --
