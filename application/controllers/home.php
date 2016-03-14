@@ -7,6 +7,7 @@ class Home extends CI_Controller {
 		parent::__construct();
 		$this->ctl="home";
 		$this->load->model('mdl_journal');
+		$this->load->model('mdl_register');
 		$fb_data = $this->session->userdata('fb_data');
 		// if($fb_data['me'] == ""){
 		// 	redirect('authen','refresh');
@@ -29,7 +30,7 @@ class Home extends CI_Controller {
 		//$SCREENNAME="Home";
 		$this->data['controller'] = $this->ctl;
 		$this->data['base_url'] = base_url();
-		// $this->data['getPrefixName'] = $this->getPrefixName();
+		$this->data['fb_data'] = $this->session->userdata('fb_data');
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
@@ -76,8 +77,7 @@ class Home extends CI_Controller {
 		}
 		else
 		{
-			//$this->load->view('formsuccess');
-			echo "OK <-------";
+			$this->mdl_register->insertRegister();
 		}
 	}
 

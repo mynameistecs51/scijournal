@@ -9,6 +9,7 @@ class Template
 		$this->ci =& get_instance();
 		$this->ci->load->model('mdl_menu','',TRUE);
 		$this->ci->load->model('Login','',TRUE);
+		$this->fb_data = $this->ci->session->userdata("fb_data");
 		// $fb_data =  anchor($fb_data['loginUrl'],'<image src="'.base_url().'img/fb_login.png"/>');
 	}
 
@@ -31,10 +32,10 @@ class Template
 			<!-- <link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap-theme.css"/> -->
 			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.css"/>
 			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.min.css"/>
-			 <link rel="stylesheet" href="'.base_url().'css/bootstrap-select/bootstrap-select.css">
+			<link rel="stylesheet" href="'.base_url().'css/bootstrap-select/bootstrap-select.css">
 
 			<script src="'.base_url().'js/jquery.js"></script>
-			<script src="'.base_url().'js/bootstrap.js"></script>
+			<!-- <script src="'.base_url().'js/bootstrap.js"></script>-->
 			<script src="'.base_url().'js/bootstrap.min.js"></script>
 			<script  src="'.base_url().'js/bootstrap-select/bootstrap-select.js"></script>
 			<!-- start bootstrap data table -->
@@ -112,13 +113,18 @@ class Template
 
 public function menu($SCREENNAME)
 {
+
 	$result =$this->ci->mdl_menu->getMenu();
 	$menu = '<ul class="nav nav-pills nav-stacked pull-left inline">';
 	foreach($result['result'] as $row) {
 			//$active=($active_menu=='active'?'active':'');
 		$menu.='<li role="presentation" id="'.$row->menu_name.'" class="">'. anchor("$row->filelocation","$row->menu_name").'</li>';
 	}
-	$menu.='<li role="presentation" id="login logout" class="">'. anchor("#","login logout").'</li>';
+	if($this->fb_data['me'] == ''){
+		$menu.='<li role="presentation" id="login" class="">'.  anchor($this->fb_data['loginUrl'],'<image src="'.base_url().'img/fb_login.png"/>').'</li>';
+	}else{
+		$menu.= '<li role="presentation" id="login" class="">'.  anchor('home/logout','logout'.$this->fb_data['me']['name']).'</li>';
+	}
 	$menu .= '</ul>';
 
 	return $menu;

@@ -53,8 +53,9 @@ class Login extends CI_model{
         $this->load->library('fb_login/facebook');
 
                 // Logs off session from website
-        $this->facebook->destroySession();
+        $this->facebook->destroySession($fb_data);
         $this->session->unset_userdata($fb_data);
+        $this->session->unset_userdata();
                 // Make sure you destory website session as well.
 
         redirect('home','refresh');

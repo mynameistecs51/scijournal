@@ -10,6 +10,7 @@ class Authen extends CI_Controller {
 		$this->load->model('Login');
 		//$this->load->model('mdl_authen');
 		//$this->load->library('Template_authen');
+		$this->fb_data = $this->session->userdata("fb_data");
 		date_default_timezone_set('Asia/Bangkok');
 	}
 
@@ -24,7 +25,7 @@ class Authen extends CI_Controller {
 			echo $fb_data['me']['first_name'],"<br/>";
 			echo $fb_data['me']['email'],"<br/>";
 			echo $fb_data['me']['gender']."<br/>";
-				echo anchor('home/logout','logout','class="pull-right navbar-brand inline "');
+			echo anchor('home/logout','logout','class="pull-right navbar-brand inline "');
 		}
 	}
 
