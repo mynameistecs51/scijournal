@@ -3,12 +3,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Mdl_authen extends CI_Controller {
 
-	public function index()
+	public function __construct()
 	{
-		public function __construct()
-		{
-			parent::__construct();
-		}
+		parent::__construct();
+	}
+
+	public function getMember($email,$password)
+	{
+		$sql = "SELECT * FROM member WHERE email=".$email." AND  password = ".$password;
+		$query = $this->db->query($sql)->result();
+		return  $query;
 	}
 
 }

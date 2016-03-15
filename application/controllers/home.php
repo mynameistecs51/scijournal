@@ -147,6 +147,12 @@ class Home extends CI_Controller {
 		$this->mainpage($SCREENNAME);
 		$this->load->view($SCREENID,$this->data);
 	}
+
+	public function authen()
+	{
+		$email = $this->input->post('email');
+		site_url('index.php/authen',$email);
+	}
 }
 
 /* End of file ctl_journal.php */

@@ -111,13 +111,13 @@
 						<input type="radio" name="sex" value="2">Female
 					</label>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-4">
 					<label for="education">Education</label><br/>
 					<label>
 						<input type="radio" name="education" value="1" required>Less than a bachelor's degree&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="education" value="2" checked>Bachelor&nbsp;&nbsp;
+						<input type="radio" name="education" value="2" checked>Bachelor degree&nbsp;&nbsp;
 					</label>
 					<label>
 						<input type="radio" name="education" value="3">Master degree&nbsp;&nbsp;
@@ -193,8 +193,8 @@
 			</div>
 			<div class="form-group col-sm-12">
 				<div class="col-sm-6">
-					<button type="submit" class="btn btn-primary">บันทึก</button>
-					<button type="reset" class="btn btn-w anning">ยกเลิก</button>
+					<button type="submit" class="btn btn-primary">Submit</button>
+					<button type="reset" class="btn btn-w anning">Cancel</button>
 				</div>
 			</div>
 		</form>
