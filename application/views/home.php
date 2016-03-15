@@ -31,7 +31,7 @@
 </script>
 <div class="row">       <!-- //    show paper all    //  -->
 	<div class="col-sm-12">
-		<div class="nev_url"><?php echo "Page -",$NAV; ?> </div>
+		<div class="nev_url"><div class="pull-left"><?php echo "Page -",$NAV; ?> </div><div class="pull-right"><?php echo $name;?></div></div>
 		<hr/>
 		<p class="">
 			<?php ?>

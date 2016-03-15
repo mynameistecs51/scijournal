@@ -10,7 +10,7 @@ class Mdl_authen extends CI_Controller {
 
 	public function getMember($email,$password)
 	{
-		$sql = "SELECT * FROM member WHERE email=".$email." AND  password = ".$password;
+		$sql = "SELECT * FROM member WHERE m_email='".$email."' AND  m_password = '".$password."' ";
 		$query = $this->db->query($sql)->result();
 		return  $query;
 	}

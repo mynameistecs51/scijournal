@@ -9,7 +9,7 @@ class Template
 		$this->ci =& get_instance();
 		$this->ci->load->model('mdl_menu','',TRUE);
 		$this->ci->load->model('Login','',TRUE);
-		$this->sess_data = $this->ci->session->userdata('data_sess');
+		$this->session_data = $this->ci->session->userdata('session_data');
 		// $fb_data =  anchor($fb_data['loginUrl'],'<image src="'.base_url().'img/fb_login.png"/>');
 	}
 
@@ -120,10 +120,10 @@ public function menu($SCREENNAME)
 			//$active=($active_menu=='active'?'active':'');
 		$menu.='<li role="presentation" id="'.$row->menu_name.'" class="">'. anchor("$row->filelocation","$row->menu_name").'</li>';
 	}
-	if($this->sess_data == ''){
-		$menu.='<li role="presentation" id="login" class="">'.  anchor('login','Login').'</li>';
+	if($this->session_data == ''){
+		$menu.='<li role="presentation" id="login" class="">'.  anchor('home/login','Login / Register').'</li>';
 	}else{
-		$menu.= '<li role="presentation" id="login" class="">'.  anchor('home/logout','logout'.$this->fb_data['me']['name']).'</li>';
+		$menu.= '<li role="presentation" id="login" class="">'.  anchor(site_url('authen/logout'),'logout'." ".$this->session_data['m_name']).'</li>';
 	}
 	$menu .= '</ul>';
 

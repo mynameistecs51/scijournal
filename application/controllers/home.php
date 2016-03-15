@@ -8,7 +8,7 @@ class Home extends CI_Controller {
 		$this->ctl="home";
 		$this->load->model('mdl_journal');
 		$this->load->model('mdl_register');
-		$fb_data = $this->session->userdata('fb_data');
+		$this->session_data = $this->session->userdata('session_data');
 		// if($fb_data['me'] == ""){
 		// 	redirect('authen','refresh');
 		// }else{
@@ -30,7 +30,7 @@ class Home extends CI_Controller {
 		//$SCREENNAME="Home";
 		$this->data['controller'] = $this->ctl;
 		$this->data['base_url'] = base_url();
-		$this->data['fb_data'] = $this->session->userdata('fb_data');
+		$this->data['name'] = $this->session_data['m_name'];
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
@@ -148,11 +148,6 @@ class Home extends CI_Controller {
 		$this->load->view($SCREENID,$this->data);
 	}
 
-	public function authen()
-	{
-		$email = $this->input->post('email');
-		site_url('index.php/authen',$email);
-	}
 }
 
 /* End of file ctl_journal.php */
