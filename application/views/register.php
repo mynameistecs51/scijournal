@@ -24,7 +24,7 @@
 
 				},
 				error:function(err){
-					alert("รหัสไปรษณีย์ไม่ถูกต้อง"+'<?php echo base_url().$controller; ?>/getProvince/');
+					alert("Zipcode fail !!!");
 					$('input[name=zipcode]').val('');
 					$('#province').html('');
 					$('#amphur').html('');
@@ -105,37 +105,37 @@
 				<div class="col-sm-2">
 					<label for="sex">Sex</label><br/>
 					<label>
-						<input type="radio" name="sex" value="1" checked>Male&nbsp;&nbsp;
+						<input type="radio" name="sex" value="1" checked>  Male&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="sex" value="2">Female
+						<input type="radio" name="sex" value="2">  Female
 					</label>
 				</div>
-				<div class="col-sm-4">
+				<div class="col-sm-5">
 					<label for="education">Education</label><br/>
 					<label>
-						<input type="radio" name="education" value="1" required>Less than a bachelor's degree&nbsp;&nbsp;
+						<input type="radio" name="education" value="1" required>  Less than a bachelor's degree&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="education" value="2" checked>Bachelor degree&nbsp;&nbsp;
+						<input type="radio" name="education" value="2" checked>  Bachelor degree&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="education" value="3">Master degree&nbsp;&nbsp;
+						<input type="radio" name="education" value="3">  Master degree&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="education" value="4">Doctorate(Ph.D.)&nbsp;&nbsp;
+						<input type="radio" name="education" value="4">  Doctorate(Ph.D.)&nbsp;&nbsp;
 					</label>
 				</div>
 				<div class="form-group col-sm-4">
 					<label for="education">Status</label><br/>
 					<label>
-						<input type="radio" name="status" value="0" required checked>public  (Senders Research)&nbsp;&nbsp;
+						<input type="radio" name="status" value="0" required checked>  public  (Senders Research)&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="status" value="1" required >editter&nbsp;&nbsp;
+						<input type="radio" name="status" value="1" required >  editter&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="status" value="2" required >reviewer&nbsp;&nbsp;
+						<input type="radio" name="status" value="2" required >  reviewer&nbsp;&nbsp;
 					</label>
 				</div>
 			</div>

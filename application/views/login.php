@@ -1,5 +1,7 @@
 <?php echo $header; ?>
 <div class="row">
+<div class="nev_url"><div class="pull-left"><?php echo "Page -",$NAV; ?> </div><div class="pull-right"><?php echo $name;?></div></div>
+		<hr/>
 	<div class="panel panel-primary ">
 		<div class ="panel-heading">
 			<div class ="panel-title">Login</div>
@@ -21,9 +23,9 @@
 				<div class="form-group">
 					<div class="col-sm-offset-2 col-sm-10">
 						<!-- <div class="checkbox"> -->
-						<label>
+						<!-- <label>
 							<input type="checkbox"> Remember me |
-						</label>
+						</label> -->
 						<label>
 							<?php echo anchor('home/register', ' Register', '<i class="glyphicon glyphicon-user" aria-hidden="true"');?>
 						</label>

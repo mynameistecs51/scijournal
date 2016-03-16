@@ -8,11 +8,12 @@ class Submission extends CI_Controller {
 		$this->ctl="Submission";
 		$this->SCREENNAME=$this->template->getScreenName($this->ctl);
 		$this->load->model('mdl_journal');
-		$fb_data = $this->session->userdata('fb_data');
-		if($fb_data['me'] == ""){
-			redirect('authen','refresh');
-		}else{
-			echo "OK";
+		$session_data = $this->session->userdata('session_data');
+		if($session_data['m_name'] == ""){
+			$massage = "Login press agen send journal";
+			$url = "authen/";
+			$this->alert($massage, $url);
+			exit();
 		}
 	}
 
@@ -55,6 +56,15 @@ class Submission extends CI_Controller {
 			$this->mdl_journal->insertJournal();
 			redirect('home','refresh');
 		}
+	}
+
+	public function alert($massage, $url)
+	{
+		echo "<meta charset='UTF-8'>
+		<SCRIPT LANGUAGE='JavaScript'>
+			window.alert('$massage')
+			window.location.href='".site_url($url)."';
+		</SCRIPT>";
 	}
 
 }

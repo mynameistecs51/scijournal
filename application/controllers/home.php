@@ -135,7 +135,8 @@ class Home extends CI_Controller {
 	public function login()
 	{
 		$SCREENID="login";
-		$SCREENNAME=$this->template->getScreenName('home/'.$SCREENID);
+		// $SCREENNAME=$this->template->getScreenName('home/'.$SCREENID);
+		$SCREENNAME = ">Login";
 		$this->mainpage($SCREENNAME);
 		$this->load->view($SCREENID,$this->data);
 	}
