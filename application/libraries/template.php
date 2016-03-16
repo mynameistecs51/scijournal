@@ -115,7 +115,7 @@ public function menu($SCREENNAME)
 {
 
 	$result =$this->ci->mdl_menu->getMenu();
-	$menu = '<ul class="nav nav-pills nav-stacked pull-left inline">';
+	$menu = '<ul class="row  nav nav-pills nav-stacked pull-left inline ">';
 	foreach($result['result'] as $row) {
 			//$active=($active_menu=='active'?'active':'');
 		$menu.='<li role="presentation" id="'.$row->menu_name.'" class="">'. anchor("$row->filelocation","$row->menu_name").'</li>';
