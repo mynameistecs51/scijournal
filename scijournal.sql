@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 15, 2016 at 11:38 AM
+-- Generation Time: Mar 16, 2016 at 12:07 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -10035,15 +10035,18 @@ CREATE TABLE IF NOT EXISTS `member` (
   `m_tel` varchar(15) NOT NULL,
   `m_username` varchar(255) NOT NULL,
   `m_password` varchar(255) NOT NULL,
-  `m_type` int(11) NOT NULL DEFAULT '0' COMMENT 'ประเภทของสมาชิก 1=ทั่วไป,2=กรรมการ,3=admin,4=staff'
+  `m_type` int(11) NOT NULL DEFAULT '0' COMMENT 'ประเภทของสมาชิก 1=ทั่วไป,2=กรรมการ,3=admin,4=staff',
+  `dt_create` datetime NOT NULL,
+  `id_update` int(11) NOT NULL,
+  `dt_update` datetime NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `zipcode_id`, `district_id`, `amphur_id`, `province_id`, `m_address`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`) VALUES
-(1, 13, 'a', 'a', 1, 2, 'a', 'a', 41000, 3751, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 0);
+INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `zipcode_id`, `district_id`, `amphur_id`, `province_id`, `m_address`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`, `dt_create`, `id_update`, `dt_update`) VALUES
+(1, 13, 'a', 'a', 1, 2, 'a', 'a', 41000, 3751, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
