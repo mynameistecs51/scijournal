@@ -37,8 +37,8 @@ class Editor extends CI_Controller {
 
 	public function send_reviewer()
 	{
-		$SCREENID="editor";
-		$SCREENNAME = ">All Journal";
+		$SCREENID="send_review";
+		$SCREENNAME = ">Send Reviewer";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
