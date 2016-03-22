@@ -129,10 +129,10 @@
 				<div class="form-group col-sm-4">
 					<label for="education">Status</label><br/>
 					<label>
-						<input type="radio" name="status" value="0" required checked>  public  (Senders Research)&nbsp;&nbsp;
+						<input type="radio" name="status" value="1" required checked>  public  (Senders Research)&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="status" value="1" required >  editter&nbsp;&nbsp;
+						<input type="radio" name="status" value="4" required >  editter&nbsp;&nbsp;
 					</label>
 					<label>
 						<input type="radio" name="status" value="2" required >  reviewer&nbsp;&nbsp;

@@ -9,6 +9,8 @@ class Home extends CI_Controller {
 		$this->load->model('mdl_journal');
 		$this->load->model('mdl_register');
 		$this->session_data = $this->session->userdata('session_data');
+		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
+		$this->dt_now = $now->format('Y-m-d H:i:s');
 		// if($fb_data['me'] == ""){
 		// 	redirect('authen','refresh');
 		// }else{
@@ -77,7 +79,32 @@ class Home extends CI_Controller {
 		}
 		else
 		{
-			$this->mdl_register->insertRegister();
+			$dataRegister = array(
+				'm_username' => $this->input->post('username'),
+				'm_password' =>md5($this->input->post('password')),
+				'id_prefixName' => $this->input->post('prefixName'),
+				'm_name' => $this->input->post('name'),
+				'm_lastname' =>$this->input->post('lastname'),
+				'm_sex' => $this->input->post('sex'),
+				'm_education' => $this->input->post('education'),
+				'm_career' =>$this->input->post('career'),
+				'm_organizetion' => $this->input->post('organizetion'),
+				'm_address' =>$this->input->post('address'),
+				'zipcode_id' =>$this->input->post('zipcode'),
+				'province_id' =>$this->input->post('province'),
+				'amphur_id' =>$this->input->post('amphur'),
+				'district_id' =>$this->input->post('district'),
+				'm_tel' => $this->input->post('tel'),
+				'm_email' => $this->input->post('email'),
+				'm_type' => $this->input->post('status'),
+				'dt_create' => $this->dt_now ,
+				'id_update' => '',
+				'dt_update' => $this->dt_now ,
+				);
+			$insert =	$this->mdl_register->insertRegister($dataRegister);
+			$massage = "success fully register  !";
+			$url = "home/login/";
+			$this->alert($massage,$url);
 		}
 	}
 
@@ -97,6 +124,14 @@ class Home extends CI_Controller {
 		$this->Login->logout();
 	}
 
+	public function alert($massage, $url)
+	{
+		echo "<meta charset='UTF-8'>
+		<SCRIPT LANGUAGE='JavaScript'>
+			window.alert('$massage')
+			window.location.href='".site_url($url)."';
+		</SCRIPT>";
+	}
 
 	//---------------------- call page -----------------------//
 

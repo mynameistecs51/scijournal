@@ -112,6 +112,23 @@ class Mdl_journal extends CI_Model {
 		return $data;
 	}
 
+	public function geteditor($id_type)
+	{
+		$sql = "
+		SELECT
+			 CONCAT(p.pre_name,' ',m.m_name,' ',m.m_lastname) AS name,
+			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS date
+		FROM
+			member m
+		INNER JOIN
+			prefixname p
+		ON
+			m.id_prefixname = p.id_prefixName
+		WHERE
+			m_type ='2'
+				"
+	}
+
 }
 
 /* End of file mdl_journal.php */

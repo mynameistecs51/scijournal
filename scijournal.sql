@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2016 at 12:07 PM
+-- Generation Time: Mar 22, 2016 at 11:46 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -10035,18 +10035,20 @@ CREATE TABLE IF NOT EXISTS `member` (
   `m_tel` varchar(15) NOT NULL,
   `m_username` varchar(255) NOT NULL,
   `m_password` varchar(255) NOT NULL,
-  `m_type` int(11) NOT NULL DEFAULT '0' COMMENT 'ประเภทของสมาชิก 1=ทั่วไป,2=กรรมการ,3=admin,4=staff',
+  `m_type` int(11) NOT NULL DEFAULT '0' COMMENT 'ประเภทของสมาชิก 1=public,2=editor,3=reviewer,4=admin',
   `dt_create` datetime NOT NULL,
   `id_update` int(11) NOT NULL,
-  `dt_update` datetime NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  `dt_update` datetime NOT NULL,
+  `m_statusType` tinyint(3) DEFAULT NULL COMMENT 'สถานะการอนุมัติ 0=ทั่วไป,1=อนุมัติ'
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `zipcode_id`, `district_id`, `amphur_id`, `province_id`, `m_address`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`, `dt_create`, `id_update`, `dt_update`) VALUES
-(1, 13, 'a', 'a', 1, 2, 'a', 'a', 41000, 3751, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 0, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00');
+INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `zipcode_id`, `district_id`, `amphur_id`, `province_id`, `m_address`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`, `dt_create`, `id_update`, `dt_update`, `m_statusType`) VALUES
+(1, 13, 'a', 'a', 1, 2, 'a', 'a', 41000, 3751, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', NULL),
+(2, 1, 'admin', 'a', 1, 2, 'a', 'a', 41000, 3733, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 's', '03c7c0ace395d80182db07ae2c30f034', 2, '2016-03-22 09:37:03', 0, '2016-03-22 09:37:03', NULL);
 
 -- --------------------------------------------------------
 
@@ -10151,7 +10153,7 @@ INSERT INTO `prefixname` (`id_prefixName`, `pre_name`, `pre_nameEng`) VALUES
 (10, 'ศาสตราจารย์ ดร.', 'Professor Dr.'),
 (11, 'ศาสตราจารย์เกียรติคุณ', 'Professor Emeritus'),
 (12, 'ศาสตราจารย์เกียรติคุณ ดร.', 'Professor Emeritus Dr.'),
-(13, 'อาจารย์', 'teacher');
+(13, 'อาจารย์', 'Teacher');
 
 -- --------------------------------------------------------
 
@@ -17853,7 +17855,7 @@ ALTER TABLE `geography`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `member_up_journal`
 --
