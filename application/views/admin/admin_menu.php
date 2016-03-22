@@ -2,7 +2,7 @@
 	<div class="nev_url"><div class="pull-left"><?php echo "Page -",$NAV; ?> </div><div class="pull-right"><?php echo $name;?></div></div>
 	<hr/>
 	<div class=" col-lg-3 col-md-2">
-		<a href="<?php echo site_url('editor');?>">
+		<a href="<?php echo site_url('admin');?>">
 			<div class="panel panel-primary ">
 				<div class="panel-heading">
 					<div class="row">
@@ -11,7 +11,7 @@
 						</div>
 						<div class="col-md-9 text-right">
 							<div class="huge">xxxx</div>
-							<div>Editor</div>
+							<div>Confirm Editor</div>
 						</div>
 					</div>
 				</div>
@@ -24,7 +24,7 @@
 		</a>
 	</div>
 	<div class=" col-lg-3 col-md-2">
-		<a href="<?php echo base_url().'index.php/editor/send_reviewer';?>">
+		<a href="<?php echo base_url().'index.php/admin/confirm_reviewer';?>">
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<div class="row">
@@ -33,7 +33,7 @@
 						</div>
 						<div class="col-md-12 text-right">
 							<div class="huge">xxxx</div>
-							<div>Reviewer</div>
+							<div>Confirm Reviewer</div>
 						</div>
 					</div>
 				</div>
