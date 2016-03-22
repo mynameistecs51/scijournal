@@ -11,7 +11,7 @@
 							<th>id</th>
 							<th>details</th>
 							<th class="col-sm-2">date send</th>
-							<th>สถานะ</th>
+							<th class="col-sm-2">สถานะ</th>
 						</tr>
 					</thead>
 					<tbody>

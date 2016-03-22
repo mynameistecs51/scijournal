@@ -112,12 +112,13 @@ class Mdl_journal extends CI_Model {
 		return $data;
 	}
 
-	public function geteditor($id_type)
+	public function geteditor($type_editor)
 	{
 		$sql = "
 		SELECT
-			 CONCAT(p.pre_name,' ',m.m_name,' ',m.m_lastname) AS name,
-			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS date
+			CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
+			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS date,
+			m.m_organizetion
 		FROM
 			member m
 		INNER JOIN
@@ -125,8 +126,10 @@ class Mdl_journal extends CI_Model {
 		ON
 			m.id_prefixname = p.id_prefixName
 		WHERE
-			m_type ='2'
-				"
+			m_type ='$type_editor'
+		";
+		$query = $this->db->query($sql)->result();
+		return $query;
 	}
 
 }

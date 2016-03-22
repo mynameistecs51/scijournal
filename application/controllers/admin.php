@@ -20,11 +20,12 @@ class Admin extends CI_Controller {
 
 	public function index()
 	{
-		$SCREENID="admin";
-		 $SCREENNAME = ">Admin";
-		// $SCREENNAME=$this->template->getScreenName($SCREENID);
-		$this->mainpage($SCREENNAME);
-		$this->load->view('admin/'.$SCREENID,$this->data);
+		// $SCREENID="admin";
+		// $SCREENNAME = ">Admin";
+		// // $SCREENNAME=$this->template->getScreenName($SCREENID);
+		// $this->mainpage($SCREENNAME);
+		// $this->load->view('admin/'.$SCREENID,$this->data);
+		$this->geteditor();
 	}
 
 	public function mainpage($SCREENNAME)
@@ -36,8 +37,19 @@ class Admin extends CI_Controller {
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
-		$this->data['getjournal'] = $this->mdl_journal->getjournal();
+		$this->data['getmember'] = $this->mdl_journal->getjournal();
 		// $this->data['NAV'] = $this->SCREENNAME;
+	}
+
+	public function geteditor()
+	{
+		$type_editor = '2';
+		$this->data['geteditor'] = $this->mdl_journal->geteditor($type_editor);
+		$SCREENID="confirm_editor";
+		$SCREENNAME = ">Confirm Editor";
+		$this->data['hello'] = "HEllo";
+		$this->mainpage($SCREENNAME);
+		$this->load->view('admin/'.$SCREENID,$this->data);
 	}
 
 }
