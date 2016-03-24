@@ -112,13 +112,14 @@ class Mdl_journal extends CI_Model {
 		return $data;
 	}
 
-	public function geteditor($type_editor)
+	public function getmember_ofType($type_editor)
 	{
 		$sql = "
 		SELECT
 			CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
 			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS date,
-			m.m_organizetion
+			m.m_organizetion,
+			m_statusType
 		FROM
 			member m
 		INNER JOIN

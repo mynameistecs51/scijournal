@@ -33,11 +33,13 @@ class Template
 			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.css"/>
 			<link rel="stylesheet" type="text/css" href="'.base_url().'css/bootstrap.min.css"/>
 			<link rel="stylesheet" href="'.base_url().'css/bootstrap-select/bootstrap-select.css">
+			<link rel="stylesheet" href="'.base_url().'css/bootstrap-switch/bootstrap-switch.css">
 
 			<script src="'.base_url().'js/jquery.js"></script>
 			<!-- <script src="'.base_url().'js/bootstrap.js"></script>-->
 			<script src="'.base_url().'js/bootstrap.min.js"></script>
 			<script  src="'.base_url().'js/bootstrap-select/bootstrap-select.js"></script>
+			<script  src="'.base_url().'js/bootstrap-switch/bootstrap-switch.js"></script>
 			<!-- start bootstrap data table -->
 			<link rel="stylesheet" type="text/css" href="'.base_url().'DataTables/media/css/jquery.dataTables.css">
 			<style type="text/css" class="init">

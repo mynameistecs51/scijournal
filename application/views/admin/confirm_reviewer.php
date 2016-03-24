@@ -16,7 +16,10 @@
 					</thead>
 					<tbody>
 						<?php 	foreach($getreviewer as $reviewer):	?>
-							<?php $count = count($getreviewer);?>
+							<?php
+							$count = count($getreviewer);
+							$m_statusType = ($reviewer->m_statusType == '1'? "checked":"");
+							?>
 							<tr>
 								<td><?php echo $count++;?></td>
 								<td>
@@ -26,7 +29,13 @@
 									?>
 								</td>
 								<td><?php echo $reviewer->date;?></td>
-								<td>confirm</td>
+								<td class="col-sm-1">
+									<form class="check_status" name="check_status">
+										<input type="hidden" name="user_id" id="user_id" value=""/>
+										<input type="hidden" name="user" id="user" value=""/>
+										<input type="checkbox" class="form-control"  id="my-checkbox" name="my-checkbox"  <?php echo $m_statusType ;?> />
+									</form>
+								</td>
 							</tr>
 						<?php	endforeach;	?>
 					</tbody>
@@ -35,4 +44,33 @@
 		</div>
 	</div>
 </div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$("[name = 'my-checkbox']").bootstrapSwitch({ onSwitchChange : function(e,s){
+			if(s){
+				$.ajax({
+					url: "<?php echo site_url('main/manage_status');?>",
+					type: "POST",
+					data: $(this).closest('form').serialize(),
+				}).success(function(data){
+					alert("update status success");
+				});
+			}else{
+				$.ajax({
+					url: "<?php echo site_url('main/manage_status');?>",
+					type: "POST",
+					data: $(this).closest('form').serialize(),
+				}).success(function(data){
+					alert("cancen status success");
+				});
+			}
+		},
+		onText: "Reviewer",
+		onColor:'success',
+		offColor:'warning',
+		handleWidth:"50px",
+		labelWidth:'auto',
+	});
+	});
+</script>
 <?php echo $footer;?>

@@ -132,10 +132,10 @@
 						<input type="radio" name="status" value="1" required checked>  public  (Senders Research)&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="status" value="4" required >  editter&nbsp;&nbsp;
+						<input type="radio" name="status" value="2" required >  editter&nbsp;&nbsp;
 					</label>
 					<label>
-						<input type="radio" name="status" value="2" required >  reviewer&nbsp;&nbsp;
+						<input type="radio" name="status" value="3" required >  reviewer&nbsp;&nbsp;
 					</label>
 				</div>
 			</div>

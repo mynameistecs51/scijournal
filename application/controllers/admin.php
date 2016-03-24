@@ -19,9 +19,9 @@ class Admin extends CI_Controller {
 	}
 
 	public function index()
-	{ // ----- confirm editer page ---/ 
+	{ // ----- confirm editer page ---/
 		$type_editor = '2';
-		$this->data['geteditor'] = $this->mdl_journal->geteditor($type_editor);
+		$this->data['geteditor'] = $this->mdl_journal->getmember_ofType($type_editor);
 		$SCREENID="confirm_editor";
 		$SCREENNAME = ">Confirm Editor";
 		$this->mainpage($SCREENNAME);
@@ -30,8 +30,8 @@ class Admin extends CI_Controller {
 
 	public function confirm_reviewer()
 	{
-		$type_reviewer = '3';
-		$this->data['getreviewer'] = $this->mdl_journal->geteditor($type_reviewer); //getreviewer
+		$type_reviewer = '3 ';
+		$this->data['getreviewer'] = $this->mdl_journal->getmember_ofType($type_reviewer); //getreviewer
 		$SCREENID="confirm_reviewer";
 		$SCREENNAME = ">Confirm Reviewer";
 		$this->mainpage($SCREENNAME);
@@ -48,11 +48,6 @@ class Admin extends CI_Controller {
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getmember'] = $this->mdl_journal->getjournal();
 		// $this->data['NAV'] = $this->SCREENNAME;
-	}
-
-	public function geteditor()
-	{
-		
 	}
 
 }
