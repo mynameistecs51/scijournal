@@ -31,9 +31,8 @@
 								<td><?php echo $reviewer->date;?></td>
 								<td class="col-sm-1">
 									<form class="check_status" name="check_status">
-										<input type="hidden" name="user_id" id="user_id" value=""/>
-										<input type="hidden" name="user" id="user" value=""/>
-										<input type="checkbox" class="form-control"  id="my-checkbox" name="my-checkbox"  <?php echo $m_statusType ;?> />
+										<input type="hidden" name="id_update" id="id_update" value="" />
+										<input type="hidden" name="id_member" id="id_member" value="<?php echo $reviewer->id_member;?>"/>										<input type="checkbox" class="form-control"  id="my-checkbox" name="my-checkbox"  <?php echo $m_statusType ;?> />
 									</form>
 								</td>
 							</tr>

@@ -48,6 +48,7 @@ class Authen extends CI_Controller {
 					'm_email' => $row_result->m_email,
 					'm_sex' => $row_result->m_sex,
 					'm_type' => $row_result->m_type,
+					'm_statusType' => $row_result->m_statusType,
 					);
 				$this->session->set_userdata('session_data',$sess_array);
 			}

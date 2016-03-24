@@ -11,11 +11,11 @@ class Admin extends CI_Controller {
 		$this->session_data = $this->session->userdata('session_data');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
-		// if($fb_data['me'] == ""){
-		// 	redirect('authen','refresh');
-		// }else{
-		// 	echo "OK";
-		// }
+		
+		if($this->session_data['m_type']  != "4"   &&  $this->session_data['m_statusType'] != "1" )
+		{
+			redirect('authen','refresh');
+		}
 	}
 
 	public function index()

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.14
+-- version 4.5.0.2
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 24, 2016 at 10:06 AM
--- Server version: 5.6.26
--- PHP Version: 5.6.12
+-- Host: localhost
+-- Generation Time: Mar 24, 2016 at 05:47 PM
+-- Server version: 10.0.17-MariaDB
+-- PHP Version: 5.6.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -26,13 +26,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `amphur`
 --
 
-CREATE TABLE IF NOT EXISTS `amphur` (
+CREATE TABLE `amphur` (
   `AMPHUR_ID` int(5) NOT NULL,
   `AMPHUR_CODE` varchar(4) COLLATE utf8_unicode_ci NOT NULL,
   `AMPHUR_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `GEO_ID` int(5) NOT NULL DEFAULT '0',
   `PROVINCE_ID` int(5) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=1023 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `amphur`
@@ -1044,10 +1044,10 @@ INSERT INTO `amphur` (`AMPHUR_ID`, `AMPHUR_CODE`, `AMPHUR_NAME`, `GEO_ID`, `PROV
 -- Table structure for table `category`
 --
 
-CREATE TABLE IF NOT EXISTS `category` (
+CREATE TABLE `category` (
   `id_category` int(11) NOT NULL,
   `cat_name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `category`
@@ -1071,14 +1071,14 @@ INSERT INTO `category` (`id_category`, `cat_name`) VALUES
 -- Table structure for table `district`
 --
 
-CREATE TABLE IF NOT EXISTS `district` (
+CREATE TABLE `district` (
   `DISTRICT_ID` int(5) NOT NULL,
   `DISTRICT_CODE` varchar(6) COLLATE utf8_unicode_ci NOT NULL,
   `DISTRICT_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `AMPHUR_ID` int(5) NOT NULL DEFAULT '0',
   `PROVINCE_ID` int(5) NOT NULL DEFAULT '0',
   `GEO_ID` int(5) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=8915 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `district`
@@ -9994,10 +9994,10 @@ INSERT INTO `district` (`DISTRICT_ID`, `DISTRICT_CODE`, `DISTRICT_NAME`, `AMPHUR
 -- Table structure for table `geography`
 --
 
-CREATE TABLE IF NOT EXISTS `geography` (
+CREATE TABLE `geography` (
   `GEO_ID` int(5) NOT NULL,
   `GEO_NAME` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `geography`
@@ -10017,7 +10017,7 @@ INSERT INTO `geography` (`GEO_ID`, `GEO_NAME`) VALUES
 -- Table structure for table `member`
 --
 
-CREATE TABLE IF NOT EXISTS `member` (
+CREATE TABLE `member` (
   `id_member` int(11) NOT NULL,
   `id_prefixname` int(11) NOT NULL DEFAULT '0' COMMENT 'คำนำหน้าชื่อ',
   `m_name` text NOT NULL,
@@ -10040,16 +10040,16 @@ CREATE TABLE IF NOT EXISTS `member` (
   `id_update` int(11) NOT NULL,
   `dt_update` datetime NOT NULL,
   `m_statusType` tinyint(3) DEFAULT '0' COMMENT 'สถานะการอนุมัติ 0=ทั่วไป,1=อนุมัติ'
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
 --
 
 INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `zipcode_id`, `district_id`, `amphur_id`, `province_id`, `m_address`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`, `dt_create`, `id_update`, `dt_update`, `m_statusType`) VALUES
-(1, 13, 'a', 'a', 1, 2, 'a', 'a', 41000, 3751, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 1, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 0),
-(2, 1, 'admin', 'a', 1, 2, 'a', 'a', 41000, 3733, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 's', '03c7c0ace395d80182db07ae2c30f034', 4, '2016-03-22 09:37:03', 0, '2016-03-22 09:37:03', 0),
-(6, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 41000, 3732, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'chaiwat', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2016-03-24 14:25:40', 0, '2016-03-24 14:25:40', 0);
+(1, 13, 'a', 'a', 1, 2, 'a', 'a', 41000, 3751, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 4, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 1),
+(2, 1, 'admin', 'a', 1, 2, 'a', 'a', 41000, 3733, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 's', '03c7c0ace395d80182db07ae2c30f034', 3, '2016-03-22 09:37:03', 0, '2016-03-22 09:37:03', 0),
+(6, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 41000, 3732, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'chaiwat', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2016-03-24 14:25:40', 0, '2016-03-24 14:25:40', 1);
 
 -- --------------------------------------------------------
 
@@ -10057,7 +10057,7 @@ INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_s
 -- Table structure for table `member_up_journal`
 --
 
-CREATE TABLE IF NOT EXISTS `member_up_journal` (
+CREATE TABLE `member_up_journal` (
   `id_upload` int(11) NOT NULL,
   `uld_title` text NOT NULL,
   `uld_author` text NOT NULL,
@@ -10067,7 +10067,7 @@ CREATE TABLE IF NOT EXISTS `member_up_journal` (
   `id_category` int(11) NOT NULL,
   `uld_fulltext` text NOT NULL,
   `uld_suggestedReview` text NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member_up_journal`
@@ -10084,11 +10084,11 @@ INSERT INTO `member_up_journal` (`id_upload`, `uld_title`, `uld_author`, `uld_em
 -- Table structure for table `menu`
 --
 
-CREATE TABLE IF NOT EXISTS `menu` (
+CREATE TABLE `menu` (
   `id_menu` int(11) NOT NULL,
   `menu_name` varchar(255) NOT NULL,
   `filelocation` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `menu`
@@ -10110,10 +10110,10 @@ INSERT INTO `menu` (`id_menu`, `menu_name`, `filelocation`) VALUES
 -- Table structure for table `paper_type`
 --
 
-CREATE TABLE IF NOT EXISTS `paper_type` (
+CREATE TABLE `paper_type` (
   `id_ptype` int(11) NOT NULL,
   `ptype_name` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `paper_type`
@@ -10131,11 +10131,11 @@ INSERT INTO `paper_type` (`id_ptype`, `ptype_name`) VALUES
 -- Table structure for table `prefixname`
 --
 
-CREATE TABLE IF NOT EXISTS `prefixname` (
+CREATE TABLE `prefixname` (
   `id_prefixName` int(11) NOT NULL,
   `pre_name` text NOT NULL,
   `pre_nameEng` varchar(255) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `prefixname`
@@ -10162,12 +10162,12 @@ INSERT INTO `prefixname` (`id_prefixName`, `pre_name`, `pre_nameEng`) VALUES
 -- Table structure for table `province`
 --
 
-CREATE TABLE IF NOT EXISTS `province` (
+CREATE TABLE `province` (
   `PROVINCE_ID` int(5) NOT NULL,
   `PROVINCE_CODE` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
   `PROVINCE_NAME` varchar(150) COLLATE utf8_unicode_ci NOT NULL,
   `GEO_ID` int(5) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM AUTO_INCREMENT=78 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `province`
@@ -10258,7 +10258,7 @@ INSERT INTO `province` (`PROVINCE_ID`, `PROVINCE_CODE`, `PROVINCE_NAME`, `GEO_ID
 -- Table structure for table `submission`
 --
 
-CREATE TABLE IF NOT EXISTS `submission` (
+CREATE TABLE `submission` (
   `id_submission` int(11) NOT NULL,
   `sub_title` text NOT NULL,
   `sub_author` text NOT NULL,
@@ -10276,14 +10276,14 @@ CREATE TABLE IF NOT EXISTS `submission` (
 -- Table structure for table `zipcode`
 --
 
-CREATE TABLE IF NOT EXISTS `zipcode` (
+CREATE TABLE `zipcode` (
   `ZIPCODE_ID` int(5) NOT NULL,
   `DISTRICT_CODE` varchar(100) NOT NULL,
   `PROVINCE_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `AMPHUR_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `DISTRICT_ID` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `ZIPCODE` varchar(5) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=7456 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `zipcode`
@@ -17836,52 +17836,52 @@ ALTER TABLE `zipcode`
 -- AUTO_INCREMENT for table `amphur`
 --
 ALTER TABLE `amphur`
-  MODIFY `AMPHUR_ID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=1023;
+  MODIFY `AMPHUR_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1023;
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=11;
+  MODIFY `id_category` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `district`
 --
 ALTER TABLE `district`
-  MODIFY `DISTRICT_ID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8915;
+  MODIFY `DISTRICT_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8915;
 --
 -- AUTO_INCREMENT for table `geography`
 --
 ALTER TABLE `geography`
-  MODIFY `GEO_ID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `GEO_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `member_up_journal`
 --
 ALTER TABLE `member_up_journal`
-  MODIFY `id_upload` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_upload` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `menu`
 --
 ALTER TABLE `menu`
-  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id_menu` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `paper_type`
 --
 ALTER TABLE `paper_type`
-  MODIFY `id_ptype` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=5;
+  MODIFY `id_ptype` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `prefixname`
 --
 ALTER TABLE `prefixname`
-  MODIFY `id_prefixName` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=14;
+  MODIFY `id_prefixName` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 --
 -- AUTO_INCREMENT for table `province`
 --
 ALTER TABLE `province`
-  MODIFY `PROVINCE_ID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=78;
+  MODIFY `PROVINCE_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 --
 -- AUTO_INCREMENT for table `submission`
 --
@@ -17891,7 +17891,7 @@ ALTER TABLE `submission`
 -- AUTO_INCREMENT for table `zipcode`
 --
 ALTER TABLE `zipcode`
-  MODIFY `ZIPCODE_ID` int(5) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7456;
+  MODIFY `ZIPCODE_ID` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7456;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

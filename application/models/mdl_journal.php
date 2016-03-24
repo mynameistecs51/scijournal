@@ -116,6 +116,7 @@ class Mdl_journal extends CI_Model {
 	{
 		$sql = "
 		SELECT
+			id_member,
 			CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
 			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS date,
 			m.m_organizetion,

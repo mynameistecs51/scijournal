@@ -10,7 +10,6 @@ class Template
 		$this->ci->load->model('mdl_menu','',TRUE);
 		$this->ci->load->model('Login','',TRUE);
 		$this->session_data = $this->ci->session->userdata('session_data');
-		// $fb_data =  anchor($fb_data['loginUrl'],'<image src="'.base_url().'img/fb_login.png"/>');
 	}
 
 	// public function index(){
@@ -125,11 +124,17 @@ public function menu($SCREENNAME)
 	if($this->session_data == ''){
 		$menu.='<li role="presentation" id="login" class="">'.  anchor('home/login','Login / Register').'</li>';
 	}else{
-		$menu.= '<li role="presentation" id="login" class="">'.  anchor(site_url('authen/logout'),'logout'." ".$this->session_data['m_name']).'</li>';
-	}
-	$menu .= '</ul>';
+		if($this->session_data['m_type'] == 4 && $this->session_data['m_statusType'] == 1){	//admin
+			$menu.= '<li role="presentation" id="admin" class="">'.  anchor(site_url('admin'),'Admin').'</li>';
+		}elseif($this->session_data['m_type'] == 2 && $this->session_data['m_statusType'] ==1){	//editor
+			$menu.= '<li role="presentation" id="editer" class="">'.  anchor(site_url('editor'),'Editor').'</li>';
+		}
+		// ต้องเพิ่ม reviewer เข้าไปด้วยภายหลัง
+	$menu.= '<li role="presentation" id="login" class="">'.  anchor(site_url('authen/logout'),'logout'." ".$this->session_data['m_name']).'</li>';
+}
+$menu .= '</ul>';
 
-	return $menu;
+return $menu;
 }
 
 public function getScreenName($ctl_name)
