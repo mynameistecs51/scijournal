@@ -28,7 +28,7 @@
 									echo "From: ",$editor_row->m_organizetion;
 									?>
 								</td>
-								<td><?php echo $editor_row->date;?></td>
+								<td><?php echo $editor_row->dt_update;?></td>
 								<td class="col-sm-1">
 									<form class="check_status" name="check_status">
 										<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>

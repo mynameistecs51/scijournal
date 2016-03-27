@@ -11,7 +11,7 @@ class Admin extends CI_Controller {
 		$this->session_data = $this->session->userdata('session_data');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
-		
+
 		if($this->session_data['m_type']  != "4"   &&  $this->session_data['m_statusType'] != "1" )
 		{
 			redirect('authen','refresh');
@@ -58,13 +58,12 @@ class Admin extends CI_Controller {
 		$id_type = $this->input->post('type');
 		$btn_status = $this->input->post('my-checkbox');
 		if($btn_status === "on"){
-			echo "ON";
+			$sql = "UPDATE member SET id_update = '".$id_admin."' ,dt_update ='".$this->dt_now."',m_statusType = '1' WHERE id_member ='".$id_user."' AND m_type = '".$id_type."' ";
 		}else{
-			echo "Off";
+			$sql = "UPDATE member SET id_update = '".$id_admin."' ,dt_update ='".$this->dt_now."',m_statusType = '0' WHERE id_member ='".$id_user."' AND m_type = '".$id_type."' ";
 		}
-
-		$sql = "UPDATE member SET id_update = '".$id_admin."' ,dt_update ='".$this->dt_now."',m_statusType = '1' WHERE id_member ='".$id_user."' AND m_type = '".$id_type."' ";
-		//$this->db->query($sql);
+		echo $sql;
+		$this->db->query($sql);
 	}
 
 }

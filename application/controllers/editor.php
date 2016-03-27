@@ -28,6 +28,7 @@ class Editor extends CI_Controller {
 		$this->data['controller'] = $this->ctl;
 		$this->data['base_url'] = base_url();
 		$this->data['name'] = $this->session_data['m_name'];
+		$this->data['session_data'] =$this->session_data;
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
@@ -41,7 +42,13 @@ class Editor extends CI_Controller {
 		$SCREENNAME = ">Send Reviewer";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->mainpage($SCREENNAME);
+		$this->data['get_reviewer'] = $this->mdl_journal->getmember_ofType(3);
 		$this->load->view('editor/'.$SCREENID,$this->data);
+	}
+
+	public function manage_reviewer()
+	{
+		print_r($this->input->post('select_reviewer'));
 	}
 }
 

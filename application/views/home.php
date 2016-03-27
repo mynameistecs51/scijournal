@@ -66,11 +66,11 @@
 								<td><?php echo $number;?></td>
 								<td class="col-sm-12">
 									<?php
-									echo "<span class='text-primary'><b>",$rowJournal->uld_title,"</b></span>","<br/>";
-									echo "Author :",$rowJournal->uld_author,"<br/>";
-									echo "E-mail :",$rowJournal->uld_email,"<br/>";
+									echo "<span class='text-primary'><b>",$rowJournal->j_title,"</b></span>","<br/>";
+									echo "Author :",$rowJournal->j_author,"<br/>";
+									echo "E-mail :",$rowJournal->j_email,"<br/>";
 									echo "<i class=\"glyphicon glyphicon-search\" aria-hidden=\"true\">FullText</i>|<i class=\"glyphicon glyphicon-search abstract\" id='abstract".$number."' aria-hidden=\"true\">Abstract</i>";
-									echo "<div class='show_abstract well ' id='show_abstract".$number."' >".$rowJournal->uld_abstract."</div>";
+									echo "<div class='show_abstract well ' id='show_abstract".$number."' >".$rowJournal->j_abstract."</div>";
 									?>
 								</td>
 							</tr>

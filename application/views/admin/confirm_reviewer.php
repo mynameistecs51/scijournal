@@ -28,11 +28,13 @@
 									echo "From: ",$reviewer->m_organizetion;
 									?>
 								</td>
-								<td><?php echo $reviewer->date;?></td>
+								<td><?php echo $reviewer->dt_update;?></td>
 								<td class="col-sm-1">
 									<form class="check_status" name="check_status">
-										<input type="hidden" name="id_update" id="id_update" value="" />
-										<input type="hidden" name="id_member" id="id_member" value="<?php echo $reviewer->id_member;?>"/>										<input type="checkbox" class="form-control"  id="my-checkbox" name="my-checkbox"  <?php echo $m_statusType ;?> />
+										<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
+										<input type="hidden" name="id_user" id="id_user" value="<?php echo $reviewer->id_member;?>"/>
+										<input type="hidden" name="type" value="3" />
+										<input type="checkbox" class="form-control"  id="my-checkbox" name="my-checkbox"  <?php echo $m_statusType ;?> />
 									</form>
 								</td>
 							</tr>
@@ -48,7 +50,7 @@
 		$("[name = 'my-checkbox']").bootstrapSwitch({ onSwitchChange : function(e,s){
 			if(s){
 				$.ajax({
-					url: "<?php echo site_url('main/manage_status');?>",
+					url: "<?php echo site_url('admin/manage_status');?>",
 					type: "POST",
 					data: $(this).closest('form').serialize(),
 				}).success(function(data){
@@ -56,7 +58,7 @@
 				});
 			}else{
 				$.ajax({
-					url: "<?php echo site_url('main/manage_status');?>",
+					url: "<?php echo site_url('admin/manage_status');?>",
 					type: "POST",
 					data: $(this).closest('form').serialize(),
 				}).success(function(data){

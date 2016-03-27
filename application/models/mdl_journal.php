@@ -81,18 +81,18 @@ class Mdl_journal extends CI_Model {
 		 	$this->upload->initialize($config);
 		if($this->upload->do_upload('full_text')){	//ถ้า upload ไม่มีปัญหา
 			$dataSubmission = array(
-				'id_upload' => '',
-				'uld_title' => $title,
-				'uld_author' => $author,
-				'uld_email' => $email,
-				'uld_abstract' => $abstract,
+				'id_journal' => '',
+				'j_title' => $title,
+				'j_author' => $author,
+				'j_email' => $email,
+				'j_abstract' => $abstract,
 				'id_ptype' => $paper_type,
 				'id_category' => $category,
-				'uld_fulltext' => $config['file_name'],
-				'uld_suggestedReview' => $sugges_review,
+				'j_fulltext' => $config['file_name'],
+				'j_suggestedReview' => $sugges_review,
 				);
 			// $file_upload= $this->ci->upload->data('file_name');
-			$this->db->insert('member_up_journal',$dataSubmission);
+			$this->db->insert('journal',$dataSubmission);
 			// echo "<pre>";
 			// print_r($dataSubmission);
 			// return true;
@@ -103,7 +103,45 @@ class Mdl_journal extends CI_Model {
 
 	public function getjournal()
 	{
-		$sql = "SELECT * FROM member_up_journal";
+		$sql = "
+		SELECT
+			j.id_journal,
+			j.j_title,
+			j.j_author,
+			j.j_email,
+			j.j_abstract,
+			j.id_member,
+			p.id_ptype,
+			p.ptype_name,
+			c.id_category,
+			c.cat_name,
+			j.j_fulltext,
+			j.j_suggestedReview,
+			CONCAT(DATE_FORMAT(j.dt_create,'%d/%m/'),DATE_FORMAT(j.dt_create,'%y')+543)AS dt_create,
+			CONCAT(DATE_FORMAT(j.dt_update,'%d/%m/'),DATE_FORMAT(j.dt_update,'%y')+543)AS dt_update,
+			CASE  j.j_status
+				WHEN 0 THEN 'Send'
+				WHEN 1 THEN 'Reading'
+				WHEN 2 THEN 'Minor Revisions'
+				WHEN 3 THEN 'Major Revisions'
+				WHEN 4 THEN 'Accept'
+				WHEN 5 THEN 'Reject'
+			END status
+		FROM
+			journal j
+		INNER JOIN
+			paper_type p
+		ON
+			j.id_ptype = p.id_ptype
+		INNER JOIN
+			category c
+		ON
+			j.id_category = c.id_category
+		INNER JOIN
+			member m
+		ON
+			m.id_member = j.id_member
+		 ";
 		$query = $this->db->query($sql);
 		$result = $query->result();
 		$data = array(
@@ -112,13 +150,14 @@ class Mdl_journal extends CI_Model {
 		return $data;
 	}
 
-	public function getmember_ofType($type_editor)
+	public function getmember_ofType($type_member)
 	{
 		$sql = "
 		SELECT
 			id_member,
 			CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
-			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS date,
+			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS dt_create,
+			CONCAT(DATE_FORMAT(dt_update,'%d/%m/'), DATE_FORMAT(dt_update,'%y')+543)AS dt_update,
 			m.m_organizetion,
 			m_statusType
 		FROM
@@ -128,7 +167,7 @@ class Mdl_journal extends CI_Model {
 		ON
 			m.id_prefixname = p.id_prefixName
 		WHERE
-			m_type ='$type_editor'
+			m_type ='$type_member'
 		";
 		$query = $this->db->query($sql)->result();
 		return $query;
@@ -148,7 +187,7 @@ class Mdl_journal extends CI_Model {
 	// 	ON
 	// 		m.id_prefixname = p.id_prefixName
 	// 	WHERE
-	// 		m_type ='$type_editor'
+	// 		m_type ='$type_member'
 	// 	";
 	// 	$query = $this->db->query($sql)->result();
 	// 	return $query;

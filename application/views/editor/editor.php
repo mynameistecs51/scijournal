@@ -11,20 +11,26 @@
 							<th>id</th>
 							<th>details</th>
 							<th class="col-sm-2">date send</th>
-							<th>สถานะ</th>
+							<th>status</th>
 						</tr>
 					</thead>
 					<tbody>
-					<tr>
-						<td>123AAA</td>
-						<td>asdfasdfasdfasdf</td>
-						<td>12-3-2016</td>
-						<td>Accept</td>
-					</tr>
-					</tbody>
-				</table>
-			</div>
+						<?php
+						$count = count($getjournal['result']) ;
+						foreach($getjournal['result'] as $journalRow):
+							?>
+						<tr>
+							<td><?php echo $count--;?></td>
+							<td><?= $journalRow->j_title;?></td>
+							<td><?= $journalRow->dt_create;?></td>
+							<td><?= $journalRow->status;?></td>
+							<!-- <td><?= $journalRow->dt_update;?></td> -->
+						</tr>
+					<?php endforeach; ?>
+				</tbody>
+			</table>
 		</div>
 	</div>
+</div>
 </div>
 <?php echo $footer;?>
