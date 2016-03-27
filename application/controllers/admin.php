@@ -43,11 +43,28 @@ class Admin extends CI_Controller {
 		$this->data['controller'] = $this->ctl;
 		$this->data['base_url'] = base_url();
 		$this->data['name'] = $this->session_data['m_name'];
+		$this->data['session_data'] = $this->session_data;
 		$this->data["header"]=$this->template->getHeader(base_url(),$SCREENNAME);
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getmember'] = $this->mdl_journal->getjournal();
 		// $this->data['NAV'] = $this->SCREENNAME;
+	}
+
+	public function manage_status()
+	{
+		$id_admin = $this->input->post('id_admin');
+		$id_user = $this->input->post('id_user');
+		$id_type = $this->input->post('type');
+		$btn_status = $this->input->post('my-checkbox');
+		if($btn_status === "on"){
+			echo "ON";
+		}else{
+			echo "Off";
+		}
+
+		$sql = "UPDATE member SET id_update = '".$id_admin."' ,dt_update ='".$this->dt_now."',m_statusType = '1' WHERE id_member ='".$id_user."' AND m_type = '".$id_type."' ";
+		//$this->db->query($sql);
 	}
 
 }

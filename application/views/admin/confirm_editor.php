@@ -31,8 +31,9 @@
 								<td><?php echo $editor_row->date;?></td>
 								<td class="col-sm-1">
 									<form class="check_status" name="check_status">
-										<input type="hidden" name="user_id" id="user_id" value=""/>
-										<input type="hidden" name="user" id="user" value=""/>
+										<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
+										<input type="hidden" name="id_user" id="id_user" value="<?php echo $editor_row->id_member;?>"/>
+										<input type="hidden" name="type" value="2" />
 										<input type="checkbox" class="form-control"  id="my-checkbox" name="my-checkbox"  <?php echo $m_statusType ;?> />
 									</form>
 								</td>
@@ -49,19 +50,21 @@
 		$("[name = 'my-checkbox']").bootstrapSwitch({ onSwitchChange : function(e,s){
 			if(s){
 				$.ajax({
-					url: "<?php echo site_url('main/manage_status');?>",
+					url: "<?php echo site_url('admin/manage_status');?>",
 					type: "POST",
 					data: $(this).closest('form').serialize(),
 				}).success(function(data){
-					alert("อัพเดทสถานะแล้ว");
+					console.log(data);
+					alert("update status success");
 				});
 			}else{
 				$.ajax({
-					url: "<?php echo site_url('main/manage_status');?>",
+					url: "<?php echo site_url('admin/manage_status');?>",
 					type: "POST",
 					data: $(this).closest('form').serialize(),
 				}).success(function(data){
-					alert("ยกเลิกสถานะแล้ว");
+					console.log(data);
+					alert("cancen satatus success");
 				});
 			}
 		},
