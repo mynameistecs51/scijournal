@@ -48,28 +48,21 @@
 </div>
 <script>
 	$(document).ready(function(){
-		// $('#select_reviewer1').on('change',function() {
+		// $('[name="select_reviewer"]').on('change',function() {
 		// 	console.log($(this).val());
 		// 	$(this).selectpicker('refresh');
 		// });
-		$('input[name=select_reviewer]').selectpicker('changed.bs.select',function(e) {
-			if(e){
-				$.ajax({
-					url: "<?php echo site_url('editor/manage_reviewer');?>",
-					type: "POST",
-					data: $(this).closest('form').serialize(),
-				}).success(function(data){
-					alert("update status success");
-				});
-			}else{
-				$.ajax({
-					url: "<?php echo site_url('editor/manage_reviewer');?>",
-					type: "POST",
-					data: $(this).closest('form').serialize(),
-				}).success(function(data){
-					alert("cancen status success");
-				});
-			}
+		$('[name="select_reviewer"]').on('change',function() {
+			$.ajax({
+				url: "<?php echo site_url('editor/manage_reviewer');?>",
+				type: "POST",
+				// data: $(this).closest('form').serialize(),
+				data: {"select_reviewer" :$(this).val(),"id_admin ":$('[name = "id_admin"]').val()},
+				dataType:"JSON"
+			}).success(function(data){
+				alert("update status success");
+			});
+			$(this).selectpicker('refresh');
 		});
 	});
 </script>

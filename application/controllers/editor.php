@@ -48,7 +48,9 @@ class Editor extends CI_Controller {
 
 	public function manage_reviewer()
 	{
-		print_r($this->input->post('select_reviewer'));
+		echo $this->input->post('select_reviewer');
+		echo "<br/>";
+		echo $this->input->post('id_admin');
 	}
 }
 
