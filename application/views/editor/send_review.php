@@ -26,15 +26,17 @@
 							<td><?php echo $journalRow->j_title;?></td>
 							<!-- <td><?php echo $journalRow->dt_create;?></td> -->
 							<td>
-								<form class="check_status" name="check_status">
+								<form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
 									<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
 									<input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
-									<select id="select_reviewer<?php echo $num;?>" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer" title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
+									<input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
+									<?php echo $journalRow->id_member;?>
+									<select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
 										<?php foreach ($get_reviewer as $rowReviewer):?>
 											<option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
 										<?php endforeach; ?>
 									</select>
-									<input type="submit" class="btn btn-primary btn-xs inline" name="send[]" value="send" />
+									<input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
 								</form>
 							</td>
 							<td><?php echo $journalRow->dt_update;?></td>
@@ -52,18 +54,20 @@
 		// 	console.log($(this).val());
 		// 	$(this).selectpicker('refresh');
 		// });
-		$('[name="select_reviewer"]').on('change',function() {
-			$.ajax({
-				url: "<?php echo site_url('editor/manage_reviewer');?>",
-				type: "POST",
-				// data: $(this).closest('form').serialize(),
-				data: {"select_reviewer" :$(this).val(),"id_admin ":$('[name = "id_admin"]').val()},
-				dataType:"JSON"
-			}).success(function(data){
-				alert("update status success");
-			});
-			$(this).selectpicker('refresh');
-		});
+
+		// $('[name="select_reviewer"]').on('change',function(e) {
+		// 	$.ajax({
+		// 		url: "<?php echo site_url('editor/manage_reviewer');?>",
+		// 		type: "POST",
+		// 		data: $(this).closest('form').serialize(),
+		// 		// data: {"select_reviewer" :$(this).val(),"id_admin":$('[name = "id_admin"]').val(),"id_user":$('[name = "id_user"]').val(),"id_journal":$('[name="id_journal"]').val()},
+		// 		dataType:"JSON"
+		// 	}).success(function(data){
+		// 		alert("update status success");
+		// 		alert(data);
+		// 	});
+		// 	$(this).selectpicker('refresh');
+		// });
 	});
 </script>
 <?php echo $footer;?>

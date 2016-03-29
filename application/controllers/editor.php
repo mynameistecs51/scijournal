@@ -11,6 +11,11 @@ class Editor extends CI_Controller {
 		$this->load->model('mdl_journal');
 		$this->load->model('mdl_register');
 		$this->session_data = $this->session->userdata('session_data');
+
+		if($this->session_data['m_type']  != "2"   &&  $this->session_data['m_statusType'] != "1" )
+		{
+			redirect('authen','refresh');
+		}
 	}
 
 	public function index()
@@ -48,9 +53,13 @@ class Editor extends CI_Controller {
 
 	public function manage_reviewer()
 	{
-		echo $this->input->post('select_reviewer');
-		echo "<br/>";
-		echo $this->input->post('id_admin');
+		$data = array(
+			'select_reviewer' => $this->input->post('select_reviewer'),
+			'id_admin'  => $this->input->post('id_admin'),
+			'id_user' => $this->input->post('id_user'),
+			'id_journal' => $this->input->post('id_journal'),
+			);
+		print_r($data);
 	}
 }
 
