@@ -173,26 +173,6 @@ class Mdl_journal extends CI_Model {
 		return $query;
 	}
 
-	// public function getreviewer($type_reviewer)
-	// {
-	// 	$sql = "
-	// 	SELECT
-	// 		CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
-	// 		CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS date,
-	// 		m.m_organizetion
-	// 	FROM
-	// 		member m
-	// 	INNER JOIN
-	// 		prefixname p
-	// 	ON
-	// 		m.id_prefixname = p.id_prefixName
-	// 	WHERE
-	// 		m_type ='$type_member'
-	// 	";
-	// 	$query = $this->db->query($sql)->result();
-	// 	return $query;
-	// }
-
 }
 
 /* End of file mdl_journal.php */

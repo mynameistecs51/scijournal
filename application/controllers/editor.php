@@ -9,8 +9,10 @@ class Editor extends CI_Controller {
 		parent::__construct();
 		$this->ctl="editter";
 		$this->load->model('mdl_journal');
-		$this->load->model('mdl_register');
+		$this->load->model('mdl_editor');
 		$this->session_data = $this->session->userdata('session_data');
+		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
+		$this->dt_now = $now->format('Y-m-d H:i:s');
 
 		if($this->session_data['m_type']  != "2"   &&  $this->session_data['m_statusType'] != "1" )
 		{
@@ -53,13 +55,24 @@ class Editor extends CI_Controller {
 
 	public function manage_reviewer()
 	{
-		$data = array(
-			'select_reviewer' => $this->input->post('select_reviewer'),
-			'id_admin'  => $this->input->post('id_admin'),
-			'id_user' => $this->input->post('id_user'),
-			'id_journal' => $this->input->post('id_journal'),
-			);
-		print_r($data);
+		$id_member = $this->input->post('select_reviewer');
+		
+		$reveiw = array();
+		foreach($id_member as $key => $value):
+			$reveiw[].=$value;
+		endforeach;
+		for($i=0;$i<count($reveiw);$i++){
+			$data = array(	
+				'id_member' => $reveiw[$i],		
+				'id_update'  => $this->input->post('id_admin'),
+			// 'id_user' => $this->input->post('id_user'),
+				'id_journal' => $this->input->post('id_journal'),
+				'dt_create' => $this->dt_now,
+				);
+			$this->mdl_editor->insertEditor($data);
+		}
+		// redirect('editor/send_reviewer','refresh');
+		$this->send_reviewer();
 	}
 }
 
