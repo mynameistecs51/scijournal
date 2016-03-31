@@ -16,10 +16,8 @@ class Mdl_reviewer extends CI_Model {
 		m.m_name AS reviewer,
 		j.id_journal,
 		j.j_title,
-       #r.id_update AS admin_sender ,
+		r.id_update,
 		r.m_name AS admin,
-      # a.m_name AS name_sender,
-      # admin.m_name AS name_sender,
 		CONCAT(DATE_FORMAT(r.dt_create,'%d/%m/'),DATE_FORMAT(r.dt_create,'%Y')+543)AS date_send
 		FROM
 		member m
@@ -33,8 +31,11 @@ class Mdl_reviewer extends CI_Model {
 		journal j
 		ON
 		j.id_journal = r.id_journal
+		WHERE 
+		j.id_journal = r.id_journal
 		";
-
+		$query = $this->db->query($sql);
+		return $query->result_array();
 	}
 
 }

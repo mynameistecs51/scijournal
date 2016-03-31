@@ -10,6 +10,7 @@ class Editor extends CI_Controller {
 		$this->ctl="editter";
 		$this->load->model('mdl_journal');
 		$this->load->model('mdl_editor');
+		$this->load->model('mdl_reviewer');
 		$this->session_data = $this->session->userdata('session_data');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
@@ -50,6 +51,7 @@ class Editor extends CI_Controller {
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->mainpage($SCREENNAME);
 		$this->data['get_reviewer'] = $this->mdl_journal->getmember_ofType(3);
+		$this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
 
