@@ -56,14 +56,14 @@ class Editor extends CI_Controller {
 	public function manage_reviewer()
 	{
 		$id_member = $this->input->post('select_reviewer');
-		
+
 		$reveiw = array();
 		foreach($id_member as $key => $value):
 			$reveiw[].=$value;
 		endforeach;
 		for($i=0;$i<count($reveiw);$i++){
-			$data = array(	
-				'id_member' => $reveiw[$i],		
+			$data = array(
+				'id_member' => $reveiw[$i],
 				'id_update'  => $this->input->post('id_admin'),
 			// 'id_user' => $this->input->post('id_user'),
 				'id_journal' => $this->input->post('id_journal'),
@@ -71,8 +71,7 @@ class Editor extends CI_Controller {
 				);
 			$this->mdl_editor->insertEditor($data);
 		}
-		// redirect('editor/send_reviewer','refresh');
-		$this->send_reviewer();
+		redirect('editor/send_reviewer','refresh');
 	}
 }
 

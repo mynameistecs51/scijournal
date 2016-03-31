@@ -30,7 +30,7 @@
 									<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
 									<input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
 									<input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
-									
+
 									<select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
 										<?php foreach ($get_reviewer as $rowReviewer):?>
 											<option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>

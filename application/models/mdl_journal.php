@@ -117,8 +117,8 @@ class Mdl_journal extends CI_Model {
 			c.cat_name,
 			j.j_fulltext,
 			j.j_suggestedReview,
-			CONCAT(DATE_FORMAT(j.dt_create,'%d/%m/'),DATE_FORMAT(j.dt_create,'%y')+543)AS dt_create,
-			CONCAT(DATE_FORMAT(j.dt_update,'%d/%m/'),DATE_FORMAT(j.dt_update,'%y')+543)AS dt_update,
+			CONCAT(DATE_FORMAT(j.dt_create,'%d/%m/'),DATE_FORMAT(j.dt_create,'%Y')+543)AS dt_create,
+			CONCAT(DATE_FORMAT(j.dt_update,'%d/%m/'),DATE_FORMAT(j.dt_update,'%Y')+543)AS dt_update,
 			CASE  j.j_status
 				WHEN 0 THEN 'Send'
 				WHEN 1 THEN 'Reading'
@@ -156,8 +156,8 @@ class Mdl_journal extends CI_Model {
 		SELECT
 			id_member,
 			CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
-			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%y')+543)AS dt_create,
-			CONCAT(DATE_FORMAT(dt_update,'%d/%m/'), DATE_FORMAT(dt_update,'%y')+543)AS dt_update,
+			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%Y')+543)AS dt_create,
+			CONCAT(DATE_FORMAT(dt_update,'%d/%m/'), DATE_FORMAT(dt_update,'%Y')+543)AS dt_update,
 			m.m_organizetion,
 			m_statusType
 		FROM
