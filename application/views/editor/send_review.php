@@ -41,10 +41,10 @@
                                	<td><?php echo $journalRow->j_title;?></td>
                                	<!-- <td><?php echo $journalRow->dt_create;?></td> -->
                                	<td>
-                               		<?php 
-                               		if( !empty( $selected_review[$journalRow->id_journal])){  
+                               		<?php
+                               		if( !empty( $selected_review[$journalRow->id_journal])){
                                			foreach($selected_review[$journalRow->id_journal] as $REVIEWER =>$VALUE_REVIEW):
-                               				echo $VALUE_REVIEW['reviewer_name'],",";
+                               				echo "<btn class='btn btn-primary'>",$VALUE_REVIEW['reviewer_name']," </btn>&nbsp;  ";
                                			endforeach;
                                		}else{
                                			?>
