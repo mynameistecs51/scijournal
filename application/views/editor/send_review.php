@@ -46,33 +46,47 @@
                                			foreach($selected_review[$journalRow->id_journal] as $REVIEWER =>$VALUE_REVIEW):
                                				echo "<btn class='btn btn-primary'>",$VALUE_REVIEW['reviewer_name']," </btn>&nbsp;  ";
                                			endforeach;
-                               		}else{
-                               			?>
-                               			<form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
-                               				<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
-                               				<input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
-                               				<input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
+                                    ?>
+                                    <form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
+                                      <input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
+                                      <input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
+                                      <input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
 
-                               				<select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
-                               					<?php foreach ($get_reviewer as $rowReviewer):?>
-                               						<option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
-                               					<?php endforeach; ?>
-                               				</select>
-                               				<input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
-                               			</form>
-                               			<?php } ?>
-                               		</td>
-                               		<td><?php echo $journalRow->dt_update;?></td>
-                               	</tr>
-                               <?php endforeach; ?>
-                             </tbody>
-                           </table>
-                         </div>
-                       </div>
+                                      <select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
+                                        <?php foreach ($get_reviewer as $rowReviewer):?>
+                                          <option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
+                                        <?php endforeach; ?>
+                                      </select>
+                                      <input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
+                                    </form>
+                                    <?php
+                                  }else{
+                                    ?>
+                                    <form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
+                                     <input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
+                                     <input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
+                                     <input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
+
+                                     <select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
+                                      <?php foreach ($get_reviewer as $rowReviewer):?>
+                                       <option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
+                                     <?php endforeach; ?>
+                                   </select>
+                                   <input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
+                                 </form>
+                                 <?php } ?>
+                               </td>
+                               <td><?php echo $journalRow->dt_update;?></td>
+                             </tr>
+                           <?php endforeach; ?>
+                         </tbody>
+                       </table>
                      </div>
                    </div>
-                   <script>
-                   	$(document).ready(function(){
+                 </div>
+               </div>
+               <script>
+                $(document).ready(function(){
 		// $('[name="select_reviewer"]').on('change',function() {
 		// 	console.log($(this).val());
 		// 	$(this).selectpicker('refresh');
