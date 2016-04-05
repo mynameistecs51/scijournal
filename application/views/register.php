@@ -156,29 +156,13 @@
 				</div>
 			</div>
 			<div class="form-group col-sm-12">
-				<div class="col-sm-3">
-					<label>Zip code</label>
-					<input type="text" class="form-control" name="zipcode" required/>
+				<div class="col-sm-6">
+					<label>Country</label>
+					<input type="text" name="county"  class="form-control" required />
 				</div>
-				<div class="col-sm-3">
-					<label>Province</label>
-					<!-- <input type="text" class="form-control" name="province"  /> -->
-					<select name="province" id="province" class="form-control"  >
-						<!-- <option value="">----เลือกอำเภอ----</option> -->
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<label>District</label>
-					<!-- <input type="text" class="form-control" name="amphur"   /> -->
-					<select name="amphur" id="amphur" class="form-control"  >
-						<!-- <option value="">----เลือกอำเภอ----</option> -->
-					</select>
-				</div>
-				<div class="col-sm-3">
-					<label>Sub district</label>
-					<select name="district" id="district" class ="form-control"  required>
-						<option value="">--เลือก--</option>
-					</select>
+				<div class="col-sm-6">
+					<label>Zipcode</label>
+					<input type="text" name="zipcode"  class="form-control" required />
 				</div>
 			</div>
 			<div class="form-group col-sm-12">

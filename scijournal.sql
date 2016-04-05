@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 31, 2016 at 01:06 PM
+-- Generation Time: Apr 05, 2016 at 11:42 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -10058,11 +10058,9 @@ CREATE TABLE IF NOT EXISTS `member` (
   `m_education` int(11) NOT NULL DEFAULT '0' COMMENT 'การศึกษา 1<ป.ตรี,2= ป.ตรี,3 ป.โท , 4 ป.เอก',
   `m_career` text NOT NULL COMMENT 'อาชีพ',
   `m_organizetion` text NOT NULL,
-  `zipcode_id` int(11) NOT NULL DEFAULT '0' COMMENT 'รหัสไปรษณีย์',
-  `district_id` int(11) NOT NULL DEFAULT '0' COMMENT 'ตำบล',
-  `amphur_id` int(11) NOT NULL DEFAULT '0' COMMENT 'อำเภอ',
-  `province_id` int(11) DEFAULT NULL COMMENT 'จังหวัด',
   `m_address` text NOT NULL COMMENT 'ที่อยู่',
+  `m_country` text NOT NULL,
+  `m_zipcode` char(20) NOT NULL,
   `m_email` text NOT NULL,
   `m_tel` varchar(15) NOT NULL,
   `m_username` varchar(255) NOT NULL,
@@ -10072,17 +10070,18 @@ CREATE TABLE IF NOT EXISTS `member` (
   `id_update` int(11) NOT NULL,
   `dt_update` datetime NOT NULL,
   `m_statusType` tinyint(3) DEFAULT '0' COMMENT 'สถานะการอนุมัติ 0=ไม่อนุมัติ,1=อนุมัติ'
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `zipcode_id`, `district_id`, `amphur_id`, `province_id`, `m_address`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`, `dt_create`, `id_update`, `dt_update`, `m_statusType`) VALUES
-(1, 13, 'a', 'a', 1, 2, 'a', 'a', 41000, 3751, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 4, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 1),
-(2, 1, 'admin', 'a', 1, 2, 'a', 'a', 41000, 3733, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 's', '03c7c0ace395d80182db07ae2c30f034', 3, '2016-03-22 09:37:03', 1, '2016-03-27 10:37:48', 1),
-(6, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 41000, 3732, 421, 29, 'a', 'mynameistecs51@gmail.com', '1', 'chaiwat', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2016-03-24 14:25:40', 1, '2016-03-27 10:51:21', 1),
-(7, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 41000, 3732, 421, 29, 'a', 'te@hotmail.com', '1', 's', '81dc9bdb52d04dc20036dbd8313ed055', 3, '2016-03-27 15:27:40', 1, '2016-03-27 15:47:30', 0);
+INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `m_address`, `m_country`, `m_zipcode`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`, `dt_create`, `id_update`, `dt_update`, `m_statusType`) VALUES
+(1, 13, 'a', 'a', 1, 2, 'a', 'a', 'a', '', '', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 4, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 1),
+(2, 1, 'admin', 'a', 1, 2, 'a', 'a', 'a', '', '', 'mynameistecs51@gmail.com', '1', 's', '03c7c0ace395d80182db07ae2c30f034', 3, '2016-03-22 09:37:03', 1, '2016-03-27 10:37:48', 1),
+(6, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 'a', '', '', 'mynameistecs51@gmail.com', '1', 'chaiwat', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2016-03-24 14:25:40', 1, '2016-03-27 10:51:21', 1),
+(7, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 'a', '', '', 'te@hotmail.com', '1', 's', '81dc9bdb52d04dc20036dbd8313ed055', 3, '2016-03-27 15:27:40', 1, '2016-03-27 15:47:30', 0),
+(8, 1, 'a', 'a', 2, 4, 'a', 'a', 'a', 'a', '41000', 'te@hotmail.com', 'a', 'a', '0cc175b9c0f1b6a831c399e269772661', 2, '2016-04-05 16:42:23', 0, '2016-04-05 16:42:23', 0);
 
 -- --------------------------------------------------------
 
@@ -10270,7 +10269,7 @@ CREATE TABLE IF NOT EXISTS `reviewer` (
   `id_journal` int(11) NOT NULL,
   `dt_create` datetime NOT NULL,
   `id_update` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `reviewer`
@@ -10278,7 +10277,8 @@ CREATE TABLE IF NOT EXISTS `reviewer` (
 
 INSERT INTO `reviewer` (`id_reviewer`, `id_member`, `id_journal`, `dt_create`, `id_update`) VALUES
 (5, 2, 4, '2016-03-31 16:36:55', 6),
-(6, 7, 4, '2016-03-31 16:36:55', 6);
+(6, 7, 4, '2016-03-31 16:36:55', 6),
+(7, 2, 4, '2016-04-04 10:12:18', 6);
 
 -- --------------------------------------------------------
 
@@ -17895,7 +17895,7 @@ ALTER TABLE `journal`
 -- AUTO_INCREMENT for table `member`
 --
 ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `menu`
 --
@@ -17920,7 +17920,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT for table `reviewer`
 --
 ALTER TABLE `reviewer`
-  MODIFY `id_reviewer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `id_reviewer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `submission`
 --
