@@ -21,9 +21,9 @@
 							?>
 						<tr>
 							<td><?php echo $count--;?></td>
-							<td><?= $journalRow->j_title;?></td>
-							<td><?= $journalRow->dt_create;?></td>
-							<td><?= $journalRow->status;?></td>
+							<td><?php echo  $journalRow->j_title;?></td>
+							<td><?php echo  $journalRow->dt_create;?></td>
+							<td><?php echo  $journalRow->status;?></td>
 							<!-- <td><?= $journalRow->dt_update;?></td> -->
 						</tr>
 					<?php endforeach; ?>
