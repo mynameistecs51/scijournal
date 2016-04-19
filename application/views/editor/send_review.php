@@ -44,9 +44,12 @@
                                		<?php
                                		if( !empty( $selected_review[$journalRow->id_journal])){
                                			foreach($selected_review[$journalRow->id_journal] as $REVIEWER =>$VALUE_REVIEW):
-                               				echo "<btn class='btn btn-primary'>",$VALUE_REVIEW['reviewer_name']," </btn>&nbsp;  ";
+                               				echo "<button class='btnReviewer btn btn-primary'  value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button>&nbsp;  ";
+                                    // echo '<button data-toggle="tooltip" class="btn btn-primary" title="Hooray!">',$VALUE_REVIEW["reviewer_name"],'</button>';
                                			endforeach;
                                     ?>
+                                    <br/>
+                                    <br/>
                                     <form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
                                       <input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
                                       <input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
@@ -67,13 +70,14 @@
                                      <input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
                                      <input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
 
-                                     <select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
+                                     <select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] "  multiple="true"  data-actions-box="true">';
                                       <?php foreach ($get_reviewer as $rowReviewer):?>
                                        <option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
                                      <?php endforeach; ?>
                                    </select>
                                    <input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
                                  </form>
+                                 <!-- <button data-toggle="tooltip" title="Hooray!">Hover over me</button> -->
                                  <?php } ?>
                                </td>
                                <td><?php echo $journalRow->dt_update;?></td>
@@ -86,25 +90,40 @@
                  </div>
                </div>
                <script>
-                $(document).ready(function(){
-		// $('[name="select_reviewer"]').on('change',function() {
-		// 	console.log($(this).val());
-		// 	$(this).selectpicker('refresh');
-		// });
+                $(function(){
+                 countBtnManagReviewer();
+                  selectReviewer();
+                  btnReviewer();
+                });
 
-		// $('[name="select_reviewer"]').on('change',function(e) {
-		// 	$.ajax({
-		// 		url: "<?php echo site_url('editor/manage_reviewer');?>",
-		// 		type: "POST",
-		// 		data: $(this).closest('form').serialize(),
-		// 		// data: {"select_reviewer" :$(this).val(),"id_admin":$('[name = "id_admin"]').val(),"id_user":$('[name = "id_user"]').val(),"id_journal":$('[name="id_journal"]').val()},
-		// 		dataType:"JSON"
-		// 	}).success(function(data){
-		// 		alert("update status success");
-		// 		alert(data);
-		// 	});
-		// 	$(this).selectpicker('refresh');
-		// });
-	});
-</script>
-<?php echo $footer;?>
+                function countBtnManagReviewer(){
+                  var count = $('.btnReviewer').length;
+                  for(i =1;i <= count;i++){
+                   btnReviewer(i);
+                   manageReviwer(i);
+                   // console.log(i);
+                  }
+                }
+                function selectReviewer(){
+                 $('.selectpicker').selectpicker({
+                  width:'190px',
+                  title:'SELECT REVIEWER',
+                });
+               }
+
+               function btnReviewer(num){
+                $('.btnReviewer').popover({
+                  trigger:'click',
+                  placement:'top',
+                  html: 'true',
+                  title : '<button class=\"btnEdit pull-left btn-xs  btn btn-info\" id=\"btnReviewer\" onclick="manageReviwer();" >Edit</button> &nbsp; <button class=\"btnDelete pull-right btn-xs  btn btn-danger\">Delete</button>',
+                });
+
+              }
+              function manageReviwer(num){
+                $('.btnEdit').on('click',function(){
+                 console.log(num);
+               });
+              }
+            </script>
+            <?php echo $footer;?>
