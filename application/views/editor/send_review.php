@@ -1,4 +1,23 @@
 <?php echo $header;?>
+<script type="text/javascript" language="javascript" charset="utf-8">
+	$(function(){
+		countBtnManagReviewer();
+		selectReviewer();
+	});
+
+	function selectReviewer(){
+		$('.selectpicker').selectpicker({
+			width:'190px',
+			title:'SELECT REVIEWER',
+		});
+	}
+
+	function manageReviwer(num){
+		$('#btnEdit'+num).click(function(){
+			alert($(this).val());
+		});
+	}
+</script>
 <?php $this->load->view('editor/head_menu');?>
 <div class="panel-body">
 	<div class="row">
@@ -44,86 +63,66 @@
                                		<?php
                                		if( !empty( $selected_review[$journalRow->id_journal])){
                                			foreach($selected_review[$journalRow->id_journal] as $REVIEWER =>$VALUE_REVIEW):
-                               				echo "<button class='btnReviewer btn btn-primary'  value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button>&nbsp;  ";
-                                    // echo '<button data-toggle="tooltip" class="btn btn-primary" title="Hooray!">',$VALUE_REVIEW["reviewer_name"],'</button>';
+                               				echo "<button class='btnReviewer btn btn-primary' data-toggle=\"modal\" data-target=\"#myModal\" value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button> &nbsp;  ";
                                			endforeach;
-                                    ?>
-                                    <br/>
-                                    <br/>
-                                    <form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
-                                      <input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
-                                      <input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
-                                      <input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
+                               			?>
+                               			<br/>
+                               			<br/>
+                               			<form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
+                               				<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
+                               				<input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
+                               				<input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
 
-                                      <select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
-                                        <?php foreach ($get_reviewer as $rowReviewer):?>
-                                          <option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
-                                        <?php endforeach; ?>
-                                      </select>
-                                      <input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
-                                    </form>
-                                    <?php
-                                  }else{
-                                    ?>
-                                    <form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
-                                     <input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
-                                     <input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
-                                     <input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
+                               				<select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
+                               					<?php foreach ($get_reviewer as $rowReviewer):?>
+                               						<option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
+                               					<?php endforeach; ?>
+                               				</select>
+                               				<input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
+                               			</form>
+                               			<?php
+                               		}else{
+                               			?>
+                               			<form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
+                               				<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
+                               				<input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
+                               				<input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
 
-                                     <select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] "  multiple="true"  data-actions-box="true">';
-                                      <?php foreach ($get_reviewer as $rowReviewer):?>
-                                       <option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
-                                     <?php endforeach; ?>
-                                   </select>
-                                   <input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
-                                 </form>
-                                 <!-- <button data-toggle="tooltip" title="Hooray!">Hover over me</button> -->
-                                 <?php } ?>
-                               </td>
-                               <td><?php echo $journalRow->dt_update;?></td>
-                             </tr>
-                           <?php endforeach; ?>
-                         </tbody>
-                       </table>
+                               				<select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] "  multiple="true"  data-actions-box="true">';
+                               					<?php foreach ($get_reviewer as $rowReviewer):?>
+                               						<option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
+                               					<?php endforeach; ?>
+                               				</select>
+                               				<input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
+                               			</form>
+                               			<?php } ?>
+                               		</td>
+                               		<td><?php echo $journalRow->dt_update;?></td>
+                               	</tr>
+                               <?php endforeach; ?>
+                             </tbody>
+                           </table>
+                         </div>
+                       </div>
                      </div>
                    </div>
-                 </div>
-               </div>
-               <script>
-                $(function(){
-                 countBtnManagReviewer();
-                  selectReviewer();
-                  btnReviewer();
-                });
+                   <!-- Modal -->
+                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                   	<div class="modal-dialog" role="document">
+                   		<div class="modal-content">
+                   			<div class="modal-header">
+                   				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                   				<h4 class="modal-title" id="myModalLabel">management reviewer</h4>
+                   			</div>
+                   			<div class="modal-body">
+                   				<button class="btn btn-pirmary">Edit</button>   <button class="btn btn-danger">Delete</button>
+                   			</div>
+                   			<div class="modal-footer">
+                   				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                   				<button type="button" class="btn btn-primary">Save changes</button>
+                   			</div>
+                   		</div>
+                   	</div>
+                   </div>
 
-                function countBtnManagReviewer(){
-                  var count = $('.btnReviewer').length;
-                  for(i =1;i <= count;i++){
-                   btnReviewer(i);
-                   manageReviwer(i);
-                   // console.log(i);
-                  }
-                }
-                function selectReviewer(){
-                 $('.selectpicker').selectpicker({
-                  width:'190px',
-                  title:'SELECT REVIEWER',
-                });
-               }
-
-               function btnReviewer(num){
-                $('.btnReviewer').popover({
-                  trigger:'click',
-                  placement:'top',
-                  html: 'true',
-                  title : '<button class=\"btnEdit pull-left btn-xs  btn btn-info\" id=\"btnReviewer\" onclick="manageReviwer();" >Edit</button> &nbsp; <button class=\"btnDelete pull-right btn-xs  btn btn-danger\">Delete</button>',
-                });
-
-              }
-              function manageReviwer(num){
-                $('.btnEdit').on('click',function(){
-                 console.log(num);
-               });
-              }
-            </script>
-            <?php echo $footer;?>
+                   <?php echo $footer;?>
