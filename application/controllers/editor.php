@@ -7,7 +7,7 @@ class Editor extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->ctl="editter";
+		$this->ctl="editor";
 		$this->load->model('mdl_journal');
 		$this->load->model('mdl_editor');
 		$this->load->model('mdl_reviewer');
@@ -41,6 +41,7 @@ class Editor extends CI_Controller {
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
+		$this->data['url_edit']= base_url().'index.php/'.$this->ctl."/edit/";
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 
@@ -74,6 +75,16 @@ class Editor extends CI_Controller {
 			$this->mdl_editor->insertEditor($data);
 		}
 		redirect('editor/send_reviewer','refresh');
+	}
+
+	public function EDIT()
+	{
+		$SCREENID="E001";
+		$this->mainpage($SCREENID);
+		// $this->data['idx']=$idx;
+		// $this->data['listcustomer']= $data_array;
+		// $this->load->view('editor/'.$SCREENID,$this->data);
+		$this->load->view('editor/'.$SCREENID);
 	}
 }
 
