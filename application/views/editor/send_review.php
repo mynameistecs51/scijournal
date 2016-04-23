@@ -1,22 +1,14 @@
 <?php echo $header;?>
-<style type="text/css">
-	.showContain{
-		display: none;
-		word-wrap:break-word;
-		width: 700px;
-	}
-</style>
 <script type="text/javascript" language="javascript" charset="utf-8">
 	$(function(){
 		selectReviewer();
-		manageReviwer();
-
 	});
 	$(function(){
 		$('.btnReviewer').on( 'click', function () {
           //var idx=$(this).closest('tr').index(); // หาลำดับแถวของ TR ที่คลิกแก้ไข
           // edit($(this).data('idedit'));
-          edit();
+          var idreviewer = $(this).val(); // id Reviewer
+           edit($(this).data('idjournal'),idreviewer);
         } );
 
 	});
@@ -28,12 +20,13 @@
 		});
 	}
 
-	function edit()
+	function edit(idjournal,idreviewer)
 	{
-		var screenname="แก้ไขข้อมูล :: ";
+		var screenname=":: Management Reviewer :: ";
       	// var baseurl_edit = $('#baseurl_edit').val();
       	// var url=baseurl_edit+num+"/"+idx;
-      	var url = "<?php echo $url_edit;?>";
+      	var baseurl_edit = "<?php echo $url_edit;?>";
+      	var url = baseurl_edit+idjournal+"/"+idreviewer;
       	var n=0;
       	$('.div_modal').html('');
       	modal_form(n,screenname);
@@ -45,37 +38,28 @@
       	setInterval(function(){$('#ajaxLoaderModal').remove()},5000);
       }
 
-      function manageReviwer(){
-      	$('.btnEdit').click(function(){
-      		if ( $( ".showContain" ).is( ":hidden" ) ) {
-      			$( ".showContain" ).slideDown( "slow" );
-      		} else {
-      			$( ".showContain" ).hide('slow');
-      		}
-      	});
-      }
       function modal_form(n,screenname)
       {
       	var div='';
-      	div+='<form name="main" role="form" data-toggle="validator" id="form" method="post">';
+      	// div+='<form name="main" role="form" data-toggle="validator" id="form" method="post">';
       	div+='<!-- Modal -->';
       	div+='<div class="modal modal-wide fade" id="myModal'+n+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
       	div+='<div class="modal-dialog">';
       	div+='<div class="modal-content">';
-      	div+='<div class="modal-header" style="background:#d9534f;color:#FFFFFF;">';
+      	div+='<div class="modal-header info" style="background:#58FAF4color:#FFFFFF;">';
       	div+='<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
       	div+='<h4 class="modal-title">'+screenname+'</h4>';
       	div+='</div>';
       	div+='<div class="modal-body">';
       	div+='</div>';
-      	div+='<div class="modal-footer" style="text-align:center; background:#F6CECE;">';
-      	div+='<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span></button>';
-      	div+='<button type="reset" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span></button>';
-      	div+='</div>';
+      	// div+='<div class="modal-footer" style="text-align:center; background:#F6CECE;">';
+      	// div+='<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span></button>';
+      	// div+='<button type="reset" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span></button>';
+      	// div+='</div>';
       	div+='</div><!-- /.modal-content -->';
       	div+='</div><!-- /.modal-dialog -->';
       	div+='</div><!-- /.modal -->';
-      	div+='</form>';
+      	// div+='</form>';
       	$('.div_modal').html(div);
       }
     </script>
@@ -124,8 +108,7 @@
                                		<?php
                                		if( !empty( $selected_review[$journalRow->id_journal])){
                                			foreach($selected_review[$journalRow->id_journal] as $REVIEWER =>$VALUE_REVIEW):
-                               				// echo "<button class='btnReviewer btn btn-primary' data-toggle=\"modal\" data-target=\"#myModal\" value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button> &nbsp;  ";
-                               				echo "<button class='btnReviewer btn btn-primary' value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button> &nbsp;  ";
+                               				echo "<button class='btnReviewer btn btn-primary' data-idjournal=",$VALUE_REVIEW['id_journal']," value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button> &nbsp;  ";
                                			endforeach;
                                			?>
                                			<br/>

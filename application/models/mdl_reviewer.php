@@ -38,6 +38,14 @@ class Mdl_reviewer extends CI_Model {
 		return $query->result_array();
 	}
 
+	public function deleteReviewer()
+	{	
+		$id_member = $this->input->post('idreviewer');
+
+		$sql = "DELETE FROM reviewer WHERE id_member = $id_member";
+		
+	}
+
 }
 
 /* End of file mdl_reviewer.php */

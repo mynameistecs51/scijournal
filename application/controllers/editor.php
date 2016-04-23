@@ -42,6 +42,7 @@ class Editor extends CI_Controller {
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
 		$this->data['url_edit']= base_url().'index.php/'.$this->ctl."/edit/";
+		$this->data['url_delete'] = base_url().'index.php/'.$this->ctl."/delete/";
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 
@@ -77,14 +78,25 @@ class Editor extends CI_Controller {
 		redirect('editor/send_reviewer','refresh');
 	}
 
-	public function EDIT()
+	public function EDIT($idjournal,$idreviewer)
 	{
 		$SCREENID="E001";
 		$this->mainpage($SCREENID);
 		// $this->data['idx']=$idx;
 		// $this->data['listcustomer']= $data_array;
 		// $this->load->view('editor/'.$SCREENID,$this->data);
-		$this->load->view('editor/'.$SCREENID);
+		$this->data['idjournal'] = $idjournal;
+		$this->data['idreviewer'] = $idreviewer;
+		$this->load->view('editor/'.$SCREENID,$this->data);
+	}
+
+	public function DELETE()
+	{
+		$data =array(
+			'idjournal' => $this->input->post('idjournal'),
+			'idreviewer' => $this->input->post('idreviewer'),
+			);
+		echo json_encode($data);
 	}
 }
 
