@@ -8,7 +8,7 @@
           //var idx=$(this).closest('tr').index(); // หาลำดับแถวของ TR ที่คลิกแก้ไข
           // edit($(this).data('idedit'));
           var idreviewer = $(this).val(); // id Reviewer
-           edit($(this).data('idjournal'),idreviewer);
+          edit($(this).data('idjournal'),$(this).data('id_reviewer'),idreviewer);
         } );
 
 	});
@@ -20,13 +20,14 @@
 		});
 	}
 
-	function edit(idjournal,idreviewer)
+	function edit(idjournal,id_reviewer,idreviewer)
 	{
 		var screenname=":: Management Reviewer :: ";
       	// var baseurl_edit = $('#baseurl_edit').val();
       	// var url=baseurl_edit+num+"/"+idx;
       	var baseurl_edit = "<?php echo $url_edit;?>";
-      	var url = baseurl_edit+idjournal+"/"+idreviewer;
+      	// var url = baseurl_edit+idjournal+"/"+id_reviewer+"/"+idreviewer;
+          var url = $.post(baseurl_edit,{"idjournal":idjournal,"id_reviewer":id_reviewer,"idreviewer":idreviewer});
       	var n=0;
       	$('.div_modal').html('');
       	modal_form(n,screenname);
@@ -46,11 +47,11 @@
       	div+='<div class="modal modal-wide fade" id="myModal'+n+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
       	div+='<div class="modal-dialog">';
       	div+='<div class="modal-content">';
-      	div+='<div class="modal-header info" style="background:#58FAF4color:#FFFFFF;">';
+      	div+='<div class="modal-header modal-info"style="background:#E0FFFF;color:#000;" >';
       	div+='<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
       	div+='<h4 class="modal-title">'+screenname+'</h4>';
       	div+='</div>';
-      	div+='<div class="modal-body">';
+      	div+='<div class="modal-body ">';
       	div+='</div>';
       	// div+='<div class="modal-footer" style="text-align:center; background:#F6CECE;">';
       	// div+='<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span></button>';
@@ -87,7 +88,7 @@
     							if( !isset($selected_review[$rowReviewer['id_journal']])){
     								$selected_review[$rowReviewer['id_journal']] = array();
     							}
-                                 array_push($selected_review[$rowReviewer['id_journal']],array('reviewer_name' => $rowReviewer['reviewer'],'id_member' => $rowReviewer['id_member'],'id_journal'=>$rowReviewer['id_journal'],'title'=>$rowReviewer['j_title']));     //แสดงชื่อกรรมการที่ตรวจโครงงาน
+                                 array_push($selected_review[$rowReviewer['id_journal']],array('reviewer_name' => $rowReviewer['reviewer'],'id_member' => $rowReviewer['id_member'],'id_journal'=>$rowReviewer['id_journal'],'id_reviewer'=>$rowReviewer['id_reviewer'],'title'=>$rowReviewer['j_title']));     //แสดงชื่อกรรมการที่ตรวจโครงงาน
 
                                }
                                  //  echo '--------------------';
@@ -108,7 +109,7 @@
                                		<?php
                                		if( !empty( $selected_review[$journalRow->id_journal])){
                                			foreach($selected_review[$journalRow->id_journal] as $REVIEWER =>$VALUE_REVIEW):
-                               				echo "<button class='btnReviewer btn btn-primary' data-idjournal=",$VALUE_REVIEW['id_journal']," value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button> &nbsp;  ";
+                               				echo "<button class='btnReviewer btn btn-primary' data-id_reviewer=",$VALUE_REVIEW['id_reviewer']," data-idjournal=",$VALUE_REVIEW['id_journal']," value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button> &nbsp;  ";
                                			endforeach;
                                			?>
                                			<br/>
