@@ -47,7 +47,7 @@
 			title:'SELECT REVIEWER',
 			text:'<?php $idreviewer;?>',
 		});
-		$('.selectpicker').selectpicker('val','<?php echo $idreviewer;?>');
+		$('#select_reviewer1').selectpicker('val','<?php echo $idreviewer;?>');
 	}
 
 	function saveData_update()
@@ -62,7 +62,7 @@
               		var form = $('#form').serialize();
               		$.ajax({
               			type: 'POST',
-              			url: '<?php echo base_url()."/index.php/".$controller; ?>/saveUpdate/',
+              			url: '<?php echo base_url()."index.php/".$controller; ?>/saveUpdate/',
                		data: {form}, //your form datas to post
                 		// dataType:'json',
                 		success: function(rs)
@@ -96,14 +96,13 @@
 			<input type="hidden" name="id_editor" id="id_editor" value="<?php echo $session_data['id_member'];?>"/>
 			<div class="form-group">
 				<label class=" inline" for="select_reviewer">UPDATE REVIEWER :  </label>
-				<select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer" title="SELECT REVIEWER" data-actions-box="true" >
+				<select id="select_reviewer1" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer" title="SELECT REVIEWER" data-actions-box="true" >
 					<?php foreach ($get_reviewer as $rowReviewer):?>
 						<?php $selected = ($rowReviewer->id_member == $idreviewer)?"selected":"";?>
 						<option value="<?php echo $rowReviewer->id_member;?>" selected="<?php echo $selected;?>" ><?php echo $rowReviewer->name; ?></option>
 					<?php endforeach; ?>
 				</select>
 				<button type="submit" class="btn btn-primary">UPDATE</button>
-			</div>
 		</form>
 	</div>
 </div>

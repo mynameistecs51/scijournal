@@ -78,18 +78,17 @@ class Editor extends CI_Controller {
 		redirect('editor/send_reviewer','refresh');
 	}
 
-	public function EDIT($idjournal,$id_reviewer,$idreviewer)
+	public function edit($idjournal,$id_reviewer,$idreviewer)
 	{
-		echo $this->input->post('idjournal');
 		$SCREENID="E001";
 		$this->mainpage($SCREENID);
 		// $this->data['idx']=$idx;
 		// $this->data['listcustomer']= $data_array;
 		// $this->load->view('editor/'.$SCREENID,$this->data);
 		$this->data['get_reviewer'] = $this->mdl_journal->getmember_ofType(3);
-		$this->data['idjournal'] = $idjournal;
+		$this->data['idjournal'] =  $idjournal;
 		$this->data['idreviewer'] = $idreviewer;
-		$this->data['id_reviewer'] = $id_reviewer; //id row fo reviwer table
+		$this->data['id_reviewer'] = $id_reviewer;//id row fo reviwer table
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
 

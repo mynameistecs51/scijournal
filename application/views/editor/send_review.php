@@ -26,17 +26,16 @@
       	// var baseurl_edit = $('#baseurl_edit').val();
       	// var url=baseurl_edit+num+"/"+idx;
       	var baseurl_edit = "<?php echo $url_edit;?>";
-      	// var url = baseurl_edit+idjournal+"/"+id_reviewer+"/"+idreviewer;
-          var url = $.post(baseurl_edit,{"idjournal":idjournal,"id_reviewer":id_reviewer,"idreviewer":idreviewer});
-      	var n=0;
-      	$('.div_modal').html('');
-      	modal_form(n,screenname);
-      	$('#myModal'+n+'.modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>images/loader.gif"/>');
-      	var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
-      	modal.on('show.bs.modal', function () {
-      		modalBody.load(url);
-      	}).modal({backdrop: 'static',keyboard: true});
-      	setInterval(function(){$('#ajaxLoaderModal').remove()},5000);
+      	var url = baseurl_edit+idjournal+"/"+id_reviewer+"/"+idreviewer;
+        var n=0;
+        $('.div_modal').html('');
+        modal_form(n,screenname);
+        $('#myModal'+n+'.modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>images/loader.gif"/>');
+        var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
+        modal.on('show.bs.modal', function () {
+          modalBody.load(url);
+        }).modal({backdrop: 'static',keyboard: true});
+        setInterval(function(){$('#ajaxLoaderModal').remove()},5000);
       }
 
       function modal_form(n,screenname)
