@@ -26,6 +26,7 @@ class Editor extends CI_Controller {
 		$SCREENID="editor";
 		$SCREENNAME = ">All Journal";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
+		$this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
