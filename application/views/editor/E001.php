@@ -54,7 +54,7 @@
 	{
 		$('#form').on('submit', function (e) {
 			if (e.isDefaultPrevented()) {
-				alert("ผิดพลาด : กรุณาตรวจสอบข้อมูลให้ถูกต้อง !");
+				alert("Error : Please review the information provided is correct. !");
           			// handle the invalid form...
           		} else {
               		// everything looks good!
@@ -68,13 +68,13 @@
                 		success: function(rs)
                 		{
                 			$('.modal').modal('hide');
-                			alert("#บันทึกข้อมูล เรียบร้อย !");
+                			alert("#Save completed !");
                 			window.location.reload();
           		  	  // alert(rs);
           		  	},
           		  	error: function(err)
           		  	{
-          		  		alert("#เกิดข้อผิดพลาด");
+          		  		alert("#Error");
           		  		console.log(err);
           		  	},
           		  });
