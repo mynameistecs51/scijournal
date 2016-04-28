@@ -46,6 +46,52 @@ class Mdl_reviewer extends CI_Model {
 
 	}
 
+	public function notsendReviewer()
+	{
+		$sql = "
+			SELECT
+				j.id_journal,
+				j.j_title,
+				j.j_author,
+				j.j_email,
+				j.j_abstract,
+				j.id_member,
+				p.id_ptype,
+				p.ptype_name,
+				c.id_category,
+				c.cat_name,
+				j.j_fulltext,
+				j.j_suggestedReview,
+				CONCAT(DATE_FORMAT(j.dt_create,'%d/%m/'),DATE_FORMAT(j.dt_create,'%Y')+543)AS dt_create,
+				CONCAT(DATE_FORMAT(j.dt_update,'%d/%m/'),DATE_FORMAT(j.dt_update,'%Y')+543)AS dt_update,
+				CASE  j.j_status
+					WHEN 0 THEN 'Send'
+					WHEN 1 THEN 'Reading'
+					WHEN 2 THEN 'Minor Revisions'
+					WHEN 3 THEN 'Major Revisions'
+					WHEN 4 THEN 'Accept'
+					WHEN 5 THEN 'Reject'
+				END status
+			FROM
+				journal j
+			INNER JOIN
+				paper_type p
+			ON
+				j.id_ptype = p.id_ptype
+			INNER JOIN
+				category c
+			ON
+				j.id_category = c.id_category
+			INNER JOIN
+				member m
+			ON
+				m.id_member = j.id_member
+			WHERE
+			     j.id_journal NOT IN (SELECT id_journal FROM reviewer GROUP BY id_journal)
+     		";
+  	   $query = $this->db->query($sql)->result_array();
+	}
+
 }
 
 /* End of file mdl_reviewer.php */

@@ -153,24 +153,7 @@
                    </div>
                    <!-- Modal -->
                    <div class="div_modal">
+                      <!-- show modal -->
                    </div>
-                  <!--
-                   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                   	<div class="modal-dialog" role="document">
-                   		<div class="modal-content">
-                   			<div class="modal-header">
-                   				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                   				<h4 class="modal-title" id="myModalLabel">Management Reviewer</h4>
-                   			</div>
-                   			<div class="modal-body ">
-                   				<div class="col-sm-4"></div>
-                   				<button class="btnEdit btn btn-pirmary ">Edit</button>   <button class="btnDelete btn btn-danger">Delete</button>
-                   				<div class="showContain" >
-                   					test
-                   				</div>
-                   			</div>
-                   		</div>
-                   	</div>
-                   </div>
-                 -->
+
                  <?php echo $footer;?>
