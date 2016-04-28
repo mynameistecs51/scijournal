@@ -26,7 +26,6 @@ class Editor extends CI_Controller {
 		$SCREENID="editor";
 		$SCREENNAME = ">All Journal";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
-		$this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
@@ -42,6 +41,8 @@ class Editor extends CI_Controller {
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
+		$this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
+		$this->data['notsend'] = $this->mdl_reviewer->notsendReviewer();
 		$this->data['url_edit']= base_url().'index.php/'.$this->ctl."/edit/";
 		$this->data['url_delete'] = base_url().'index.php/'.$this->ctl."/delete/";
 		// $this->data['NAV'] = $this->SCREENNAME;
@@ -54,7 +55,17 @@ class Editor extends CI_Controller {
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->mainpage($SCREENNAME);
 		$this->data['get_reviewer'] = $this->mdl_journal->getmember_ofType(3);
-		$this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
+		$this->load->view('editor/'.$SCREENID,$this->data);
+	}
+
+	public function notsend_reviewer()
+	{
+		$SCREENID="notsend_review";
+		$SCREENNAME = ">Send Reviewer";
+		// $SCREENNAME=$this->template->getScreenName($SCREENID);
+		$this->mainpage($SCREENNAME);
+		// $this->data['get_reviewer'] = $this->mdl_journal->getmember_ofType(3);
+		// $this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
 

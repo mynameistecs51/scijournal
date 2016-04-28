@@ -90,6 +90,7 @@ class Mdl_reviewer extends CI_Model {
 			     j.id_journal NOT IN (SELECT id_journal FROM reviewer GROUP BY id_journal)
      		";
   	   $query = $this->db->query($sql)->result_array();
+  	   return $query;
 	}
 
 }

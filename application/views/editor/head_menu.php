@@ -32,7 +32,7 @@
 							<i class="fa fa-share-square fa-5x"></i>
 						</div>
 						<div class="col-md-12 text-right">
-							<div class="huge">xxxx</div>
+							<div class="huge"><?php	echo count($getjournal['result'] ) - count($notsend);	?></div>
 							<div>Send To Reviewer</div>
 						</div>
 					</div>
@@ -46,7 +46,7 @@
 		</a>
 	</div>
 	<div class=" col-lg-3 col-md-2">
-		<a href="#">
+		<a href="<?php echo base_url().'index.php/editor/notsend_reviewer';?>">
 			<div class="panel panel-danger">
 				<div class="panel-heading">
 					<div class="row">
@@ -54,8 +54,8 @@
 							<i class="fa fa-shopping-cart fa-5x"></i>
 						</div>
 						<div class="col-xs-12 text-right">
-							<div class="huge">xxxx</div>
-							<div>Not Send </div>
+							<div class="huge"><?php echo  $countNot = count($notsend) ;?></div>
+							<div>NOT SEND</div>
 						</div>
 					</div>
 				</div>
