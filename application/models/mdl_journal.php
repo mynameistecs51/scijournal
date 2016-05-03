@@ -173,6 +173,29 @@ class Mdl_journal extends CI_Model {
 		return $query;
 	}
 
+	public function getmember_ofTypeComplase($type_member,$status_type) //type_ember ชนิด status สถานะ
+	{
+		$sql = "
+		SELECT
+			id_member,
+			CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
+			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%Y')+543)AS dt_create,
+			CONCAT(DATE_FORMAT(dt_update,'%d/%m/'), DATE_FORMAT(dt_update,'%Y')+543)AS dt_update,
+			m.m_organizetion,
+			m_statusType
+		FROM
+			member m
+		INNER JOIN
+			prefixname p
+		ON
+			m.id_prefixname = p.id_prefixName
+		WHERE
+			m_type ='$type_member' && m_statusType ='$status_type'  #status type success
+		";
+		$query = $this->db->query($sql)->result();
+		return $query;
+	}
+
 }
 
 /* End of file mdl_journal.php */

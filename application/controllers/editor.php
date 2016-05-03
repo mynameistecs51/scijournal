@@ -54,7 +54,7 @@ class Editor extends CI_Controller {
 		$SCREENNAME = ">Send Reviewer";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->mainpage($SCREENNAME);
-		$this->data['get_reviewer'] = $this->mdl_journal->getmember_ofType(3);
+		$this->data['get_reviewer'] = $this->mdl_journal->getmember_ofTypeComplase(3,1);
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
 
@@ -64,7 +64,7 @@ class Editor extends CI_Controller {
 		$SCREENNAME = ">Send Reviewer";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->mainpage($SCREENNAME);
-		// $this->data['get_reviewer'] = $this->mdl_journal->getmember_ofType(3);
+		// $this->data['get_reviewer'] = $this->mdl_journal->getmember_ofTypeComplase(3,1);
 		// $this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
@@ -97,7 +97,7 @@ class Editor extends CI_Controller {
 		// $this->data['idx']=$idx;
 		// $this->data['listcustomer']= $data_array;
 		// $this->load->view('editor/'.$SCREENID,$this->data);
-		$this->data['get_reviewer'] = $this->mdl_journal->getmember_ofType(3);
+		$this->data['get_reviewer'] = $this->mdl_journal->getmember_ofTypeComplase(3,1);
 		$this->data['idjournal'] =  $idjournal;
 		$this->data['idreviewer'] = $idreviewer;
 		$this->data['id_reviewer'] = $id_reviewer;//id row fo reviwer table

@@ -128,13 +128,14 @@ public function menu($SCREENNAME)
 			$menu.= '<li role="presentation" id="admin" class="">'.  anchor(site_url('admin'),'Admin').'</li>';
 		}elseif($this->session_data['m_type'] == 2 && $this->session_data['m_statusType'] ==1){	//editor
 			$menu.= '<li role="presentation" id="editer" class="">'.  anchor(site_url('editor'),'Editor').'</li>';
+		}elseif($this->session_data['m_type'] == 3 && $this->session_data['m_statusType'] ==1){	//editor
+			$menu.= '<li role="presentation" id="reviewer" class="">'.  anchor(site_url('reviewer'),'Reviewer').'</li>';
 		}
-		// ต้องเพิ่ม reviewer เข้าไปด้วยภายหลัง
-	$menu.= '<li role="presentation" id="login" class="">'.  anchor(site_url('authen/logout'),'logout'." ".$this->session_data['m_name']).'</li>';
-}
-$menu .= '</ul>';
+		$menu.= '<li role="presentation" id="login" class="">'.  anchor(site_url('authen/logout'),'logout'." ".$this->session_data['m_name']).'</li>';
+	}
+	$menu .= '</ul>';
 
-return $menu;
+	return $menu;
 }
 
 public function getScreenName($ctl_name)

@@ -55,8 +55,8 @@
 			<div class ="panel-body">
 				<table id ="" class="display" cellspacing="0" width="100%">
 					<thead>
-						<th class="col-sm-1">number</th>
-						<th class="text-center col-sm-12">details</th>
+						<th class="col-sm-1">#</th>
+						<th class="text-center col-sm-12">DETAIL</th>
 					</thead>
 					<tbody>
 						<?php $num = 0;?>
