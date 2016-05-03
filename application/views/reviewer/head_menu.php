@@ -2,7 +2,7 @@
 	<div class="nev_url"><div class="pull-left"><?php echo "Page -",$NAV; ?> </div><div class="pull-right"><?php echo $name;?></div></div>
 	<hr/>
 	<div class=" col-lg-3 col-md-2">
-		<a href="<?php echo site_url('#');?>">
+		<a href="<?php echo $controller;?>">
 			<div class="panel panel-primary ">
 				<div class="panel-heading">
 					<div class="row">

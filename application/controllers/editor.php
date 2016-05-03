@@ -10,7 +10,7 @@ class Editor extends CI_Controller {
 		$this->ctl="editor";
 		$this->load->model('mdl_journal');
 		$this->load->model('mdl_editor');
-		$this->load->model('mdl_reviewer');
+		// $this->load->model('mdl_reviewer');
 		$this->session_data = $this->session->userdata('session_data');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
@@ -41,8 +41,8 @@ class Editor extends CI_Controller {
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
-		$this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
-		$this->data['notsend'] = $this->mdl_reviewer->notsendReviewer();
+		$this->data['getReviewer'] = $this->mdl_editor->getReviewer();
+		$this->data['notsend'] = $this->mdl_editor->notsendReviewer();
 		$this->data['url_edit']= base_url().'index.php/'.$this->ctl."/edit/";
 		$this->data['url_delete'] = base_url().'index.php/'.$this->ctl."/delete/";
 		// $this->data['NAV'] = $this->SCREENNAME;
@@ -65,7 +65,7 @@ class Editor extends CI_Controller {
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->mainpage($SCREENNAME);
 		// $this->data['get_reviewer'] = $this->mdl_journal->getmember_ofTypeComplase(3,1);
-		// $this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
+		// $this->data['getReviewer'] = $this->mdl_editor->getReviewer();
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
 

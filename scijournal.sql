@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 05, 2016 at 11:42 AM
+-- Generation Time: May 03, 2016 at 12:21 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -19,6 +19,71 @@ SET time_zone = "+00:00";
 --
 -- Database: `scijournal`
 --
+
+DELIMITER $$
+--
+-- Procedures
+--
+CREATE DEFINER=`root`@`localhost` PROCEDURE `doiterate`(p1 INT)
+BEGIN
+  label1: LOOP
+    SET p1 = p1 + 1;
+    IF p1 < 10 THEN
+      ITERATE label1;
+    END IF;
+    LEAVE label1;
+  END LOOP label1;
+  SET @x = p1;
+END$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `test_mysql_loop`()
+BEGIN
+ DECLARE x  INT;
+        DECLARE str  VARCHAR(255);
+        
+ SET x = 1;
+        SET str =  '';
+        
+ loop_label:  LOOP
+ IF  x > 10 THEN 
+ LEAVE  loop_label;
+ END  IF;
+            
+ SET  x = x + 1;
+ IF  (x mod 2) THEN
+ ITERATE  loop_label;
+ ELSE
+                SET  str = CONCAT(str,x,',');
+ END  IF;
+         END LOOP;    
+ 
+         SELECT str;
+ 
+ END$$
+
+--
+-- Functions
+--
+CREATE DEFINER=`root`@`localhost` FUNCTION `CalcIncome`( starting_value INT ) RETURNS int(11)
+BEGIN
+
+   DECLARE income INT;
+
+   SET income = 0;
+
+   label1: LOOP
+     SET income = income + starting_value;
+     IF income < 4000 THEN
+       ITERATE label1;
+     END IF;
+     LEAVE label1;
+   END LOOP label1;
+
+   RETURN income;
+
+END$$
+
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -10039,7 +10104,7 @@ CREATE TABLE IF NOT EXISTS `journal` (
 --
 
 INSERT INTO `journal` (`id_journal`, `j_title`, `j_author`, `j_email`, `j_abstract`, `id_ptype`, `id_category`, `j_fulltext`, `j_suggestedReview`, `dt_create`, `id_member`, `dt_update`, `id_update`, `j_status`) VALUES
-(2, 'abcdefghijklmnopqrstuvwxyz', 'a', 'te@hotmail.com', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 1, 1, '280216033657.pdf', 'a', '0000-00-00 00:00:00', 1, '0000-00-00 00:00:00', 0, 0),
+(2, 'abcdefghijklmnopqrstuvwxyz', 'a', 'te@hotmail.com', 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 1, 1, '280216033657.pdf', 'a', '2016-04-12 00:00:00', 1, '0000-00-00 00:00:00', 0, 0),
 (3, 'asdfasdfasdf', 'asdfasdfasdf', 'te@hotmail.com', 'asdfasdf', 1, 1, '280216103822.pdf', 'asdfasdf', '0000-00-00 00:00:00', 6, '0000-00-00 00:00:00', 0, 0),
 (4, 'a', 'a', 'te@hotmail.com', '', 1, 1, '290216032419.pdf', 'shell_exec("uptime");', '0000-00-00 00:00:00', 7, '0000-00-00 00:00:00', 0, 0);
 
@@ -10078,9 +10143,9 @@ CREATE TABLE IF NOT EXISTS `member` (
 
 INSERT INTO `member` (`id_member`, `id_prefixname`, `m_name`, `m_lastname`, `m_sex`, `m_education`, `m_career`, `m_organizetion`, `m_address`, `m_country`, `m_zipcode`, `m_email`, `m_tel`, `m_username`, `m_password`, `m_type`, `dt_create`, `id_update`, `dt_update`, `m_statusType`) VALUES
 (1, 13, 'a', 'a', 1, 2, 'a', 'a', 'a', '', '', 'mynameistecs51@gmail.com', '1', 'a', '0cc175b9c0f1b6a831c399e269772661', 4, '0000-00-00 00:00:00', 0, '0000-00-00 00:00:00', 1),
-(2, 1, 'admin', 'a', 1, 2, 'a', 'a', 'a', '', '', 'mynameistecs51@gmail.com', '1', 's', '03c7c0ace395d80182db07ae2c30f034', 3, '2016-03-22 09:37:03', 1, '2016-03-27 10:37:48', 1),
+(2, 1, 'admin', 'a', 1, 2, 'a', 'a', 'a', '', '', 'mynameistecs51@gmail.com', '1', 's', '900150983cd24fb0d6963f7d28e17f72', 3, '2016-03-22 09:37:03', 1, '2016-03-27 10:37:48', 1),
 (6, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 'a', '', '', 'mynameistecs51@gmail.com', '1', 'chaiwat', '81dc9bdb52d04dc20036dbd8313ed055', 2, '2016-03-24 14:25:40', 1, '2016-03-27 10:51:21', 1),
-(7, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 'a', '', '', 'te@hotmail.com', '1', 's', '81dc9bdb52d04dc20036dbd8313ed055', 3, '2016-03-27 15:27:40', 1, '2016-03-27 15:47:30', 0),
+(7, 1, 'chaiwat', 'chaiwat', 1, 2, 'a', 'a', 'a', '', '', 'te@hotmail.com', '1', 's', '81dc9bdb52d04dc20036dbd8313ed055', 3, '2016-03-27 15:27:40', 1, '2016-05-03 16:47:32', 1),
 (8, 1, 'a', 'a', 2, 4, 'a', 'a', 'a', 'a', '41000', 'te@hotmail.com', 'a', 'a', '0cc175b9c0f1b6a831c399e269772661', 2, '2016-04-05 16:42:23', 0, '2016-04-05 16:42:23', 0);
 
 -- --------------------------------------------------------
@@ -10269,16 +10334,16 @@ CREATE TABLE IF NOT EXISTS `reviewer` (
   `id_journal` int(11) NOT NULL,
   `dt_create` datetime NOT NULL,
   `id_update` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `reviewer`
 --
 
 INSERT INTO `reviewer` (`id_reviewer`, `id_member`, `id_journal`, `dt_create`, `id_update`) VALUES
-(5, 2, 4, '2016-03-31 16:36:55', 6),
-(6, 7, 4, '2016-03-31 16:36:55', 6),
-(7, 2, 4, '2016-04-04 10:12:18', 6);
+(17, 2, 3, '2016-04-24 12:40:11', 6),
+(21, 2, 4, '2016-05-03 16:48:32', 6),
+(22, 7, 4, '2016-05-03 16:48:32', 6);
 
 -- --------------------------------------------------------
 
@@ -17920,7 +17985,7 @@ ALTER TABLE `province`
 -- AUTO_INCREMENT for table `reviewer`
 --
 ALTER TABLE `reviewer`
-  MODIFY `id_reviewer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
+  MODIFY `id_reviewer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `submission`
 --

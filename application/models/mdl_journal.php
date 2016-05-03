@@ -37,26 +37,26 @@ class Mdl_journal extends CI_Model {
 		return $query;
 	}
 
-	public function getProvince($zipcode) // province and zipcode
-	{
-		$sql_query ='
-		SELECT
-		z.ZIPCODE,
-		p.PROVINCE_ID,
-		p.PROVINCE_NAME,
-		a.AMPHUR_ID,
-		a.AMPHUR_NAME,
-		d.DISTRICT_ID,
-		d.DISTRICT_NAME
-		FROM zipcode z
-		INNER JOIN province p ON z.PROVINCE_ID = p.PROVINCE_ID
-		INNER JOIN amphur a ON z.AMPHUR_ID = a.AMPHUR_ID
-		INNER JOIN district d ON z.DISTRICT_ID=d.DISTRICT_ID
-		WHERE z.ZIPCODE ="'.$zipcode.'"
-		';
-		$query = $this->db->query($sql_query)->result_array();
-		return $query;
-	}
+	// public function getProvince($zipcode) // province and zipcode
+	// {
+	// 	$sql_query ='
+	// 	SELECT
+	// 	z.ZIPCODE,
+	// 	p.PROVINCE_ID,
+	// 	p.PROVINCE_NAME,
+	// 	a.AMPHUR_ID,
+	// 	a.AMPHUR_NAME,
+	// 	d.DISTRICT_ID,
+	// 	d.DISTRICT_NAME
+	// 	FROM zipcode z
+	// 	INNER JOIN province p ON z.PROVINCE_ID = p.PROVINCE_ID
+	// 	INNER JOIN amphur a ON z.AMPHUR_ID = a.AMPHUR_ID
+	// 	INNER JOIN district d ON z.DISTRICT_ID=d.DISTRICT_ID
+	// 	WHERE z.ZIPCODE ="'.$zipcode.'"
+	// 	';
+	// 	$query = $this->db->query($sql_query)->result_array();
+	// 	return $query;
+	// }
 
 	public function insertJournal()
 	{

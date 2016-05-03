@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Reviewer extends CI_Controller {
 
-	
+
 	public function __construct()
 	{
 		parent::__construct();
@@ -25,7 +25,7 @@ class Reviewer extends CI_Controller {
 	public function index()
 	{
 		$SCREENID="reviewer";
-		$SCREENNAME = ">REVIEWER";
+		$SCREENNAME = "> REVIEWER";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->mainpage($SCREENNAME);
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
@@ -42,10 +42,7 @@ class Reviewer extends CI_Controller {
 		$this->data["footer"] = $this->template->getFooter();
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
-		$this->data['getReviewer'] = $this->mdl_reviewer->getReviewer();
-		$this->data['notsend'] = $this->mdl_reviewer->notsendReviewer();
-		$this->data['url_edit']= base_url().'index.php/'.$this->ctl."/edit/";
-		$this->data['url_delete'] = base_url().'index.php/'.$this->ctl."/delete/";
+		$this->data['read_journal'] = $this->mdl_reviewer->check_journal($this->session_data['id_member']);
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 

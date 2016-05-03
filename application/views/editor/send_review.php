@@ -102,58 +102,63 @@
                                ?>
                                <tr>
                                	<td><?php echo $num;?></td>
-                               	<td><?php echo $journalRow->j_title;?></td>
-                               	<!-- <td><?php echo $journalRow->dt_create;?></td> -->
                                	<td>
-                               		<?php
-                               		if( !empty( $selected_review[$journalRow->id_journal])){
-                               			foreach($selected_review[$journalRow->id_journal] as $REVIEWER =>$VALUE_REVIEW):
-                               				echo "<button class='btnReviewer btn btn-primary' data-id_reviewer=",$VALUE_REVIEW['id_reviewer']," data-idjournal=",$VALUE_REVIEW['id_journal']," value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button> &nbsp;  ";
-                               			endforeach;
-                               			?>
-                               			<br/>
-                               			<br/>
-                               			<form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
-                               				<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
-                               				<input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
-                               				<input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
+                                  <?php
+                                   echo "Title :",$journalRow->j_title,"<br/>";
+                                   echo "Type :",$journalRow->cat_name;
+                                  ?>
+                                </td>
+                                <!-- <td><?php echo $journalRow->dt_create;?></td> -->
+                                <td>
+                                 <?php
+                                 if( !empty( $selected_review[$journalRow->id_journal])){
+                                  foreach($selected_review[$journalRow->id_journal] as $REVIEWER =>$VALUE_REVIEW):
+                                   echo "<button class='btnReviewer btn btn-primary' data-id_reviewer=",$VALUE_REVIEW['id_reviewer']," data-idjournal=",$VALUE_REVIEW['id_journal']," value=".$VALUE_REVIEW['id_member'].">",$VALUE_REVIEW['reviewer_name']," </button> &nbsp;  ";
+                                 endforeach;
+                                 ?>
+                                 <br/>
+                                 <br/>
+                                 <form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
+                                   <input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
+                                   <input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
+                                   <input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
 
-                               				<select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
-                               					<?php foreach ($get_reviewer as $rowReviewer):?>
-                               						<option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
-                               					<?php endforeach; ?>
-                               				</select>
-                               				<input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
-                               			</form>
-                               			<?php
-                               		}else{
-                               			?>
-                               			<form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
-                               				<input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
-                               				<input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
-                               				<input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
+                                   <select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] " title="SELECT REVIEWER" multiple="true"  data-actions-box="true">';
+                                    <?php foreach ($get_reviewer as $rowReviewer):?>
+                                     <option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
+                                   <?php endforeach; ?>
+                                 </select>
+                                 <input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
+                               </form>
+                               <?php
+                             }else{
+                              ?>
+                              <form class="check_status" name="check_status" action="<?php echo  site_url('editor/manage_reviewer');?>" method="post">
+                               <input type="hidden" name="id_admin" id="id_admin" value="<?php echo $session_data['id_member'];?>"/>
+                               <input type="hidden" name="id_user" id="id_user" value="<?php echo $journalRow->id_member;?>"/>
+                               <input type="hidden" name="id_journal" id="id_journal" value="<?php echo $journalRow->id_journal;?>"/>
 
-                               				<select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] "  multiple="true"  data-actions-box="true">';
-                               					<?php foreach ($get_reviewer as $rowReviewer):?>
-                               						<option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
-                               					<?php endforeach; ?>
-                               				</select>
-                               				<input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
-                               			</form>
-                               			<?php } ?>
-                               		</td>
-                               		<td><?php echo $journalRow->dt_update;?></td>
-                               	</tr>
+                               <select id="select_reviewer" class="selectpicker show-tick "  data-live-search="true"  name="select_reviewer[] "  multiple="true"  data-actions-box="true">';
+                                <?php foreach ($get_reviewer as $rowReviewer):?>
+                                 <option value="<?php echo $rowReviewer->id_member;?>"><?php echo $rowReviewer->name; ?></option>
                                <?php endforeach; ?>
-                             </tbody>
-                           </table>
-                         </div>
-                       </div>
-                     </div>
-                   </div>
-                   <!-- Modal -->
-                   <div class="div_modal">
-                      <!-- show modal -->
-                   </div>
+                             </select>
+                             <input type="submit" class="btn btn-primary btn-xs inline" name="send" value="send" />
+                           </form>
+                           <?php } ?>
+                         </td>
+                         <td><?php echo $journalRow->dt_update;?></td>
+                       </tr>
+                     <?php endforeach; ?>
+                   </tbody>
+                 </table>
+               </div>
+             </div>
+           </div>
+         </div>
+         <!-- Modal -->
+         <div class="div_modal">
+          <!-- show modal -->
+        </div>
 
-                 <?php echo $footer;?>
+        <?php echo $footer;?>
