@@ -43,7 +43,31 @@ class Reviewer extends CI_Controller {
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
 		$this->data['read_journal'] = $this->mdl_reviewer->check_journal($this->session_data['id_member']);
+		$this->data['baseurl_reading'] =  base_url().'index.php/'.$this->ctl."/reading_journal/";
 		// $this->data['NAV'] = $this->SCREENNAME;
+	}
+
+	public function download_journal($file)
+	{
+		$file = file_get_contents("file_journal/".$file);
+		$name = $file;
+		echo  force_download($name,$file);
+		redirect('index','refresh');
+	}
+
+	public function reading_journal($file)
+	{
+		$SCREENID="reading";
+		$this->mainpage($SCREENID);
+		// $this->data['idx']=$idx;
+		// $this->data['listcustomer']= $data_array;
+		// $this->load->view('editor/'.$SCREENID,$this->data);
+		// $this->data['get_reviewer'] = $this->mdl_journal->getmember_ofTypeComplase(3,1);
+		// $this->data['idjournal'] =  $idjournal;
+		// $this->data['idreviewer'] = $idreviewer;
+		// $this->data['id_reviewer'] = $id_reviewer;//id row fo reviwer table
+		$this->data['file'] = $file;
+		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 
 }

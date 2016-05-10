@@ -5,8 +5,6 @@
 	});
 	$(function(){
 		$('.btnReviewer').on( 'click', function () {
-          //var idx=$(this).closest('tr').index(); // หาลำดับแถวของ TR ที่คลิกแก้ไข
-          // edit($(this).data('idedit'));
           var idreviewer = $(this).val(); // id Reviewer
           edit($(this).data('idjournal'),$(this).data('id_reviewer'),idreviewer);
         } );
