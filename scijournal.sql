@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 03, 2016 at 12:21 PM
+-- Generation Time: May 11, 2016 at 10:32 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -19,6 +19,9 @@ SET time_zone = "+00:00";
 --
 -- Database: `scijournal`
 --
+
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `amphur`

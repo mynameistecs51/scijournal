@@ -81,7 +81,8 @@
     							<td><?php echo $read['j_title']; ?></td>
     							<td>
     								<button type="button" class="btn btn-info  btn-xs reading" name="reading" id="reading<?php echo $num;?>" data-file="<?php echo $read['j_fulltext'];?>">READING</button>&nbsp;
-    								<?php  echo  anchor('reviewer/download_journal/'.$read['j_fulltext'],"download",' class="btn btn-info  btn-xs" name="download" ') ;?>
+    								<?php  echo  anchor('reviewer/download_journal/'.$read['j_fulltext'],"download",' class="btn btn-info  btn-xs" name="download" ') ;?> &nbsp;
+    								<button type="button" class="btn btn-primary btn-xs check">CHECK</button>
     							</td>
     						</tr>
     					<?php endforeach;?>
