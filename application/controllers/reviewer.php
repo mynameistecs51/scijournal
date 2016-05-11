@@ -44,6 +44,7 @@ class Reviewer extends CI_Controller {
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
 		$this->data['read_journal'] = $this->mdl_reviewer->check_journal($this->session_data['id_member']);
 		$this->data['baseurl_reading'] =  base_url().'index.php/'.$this->ctl."/reading_journal/";
+		$this->data['baseurl_checked'] =  base_url().'index.php/'.$this->ctl."/checked/";
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 
@@ -67,6 +68,14 @@ class Reviewer extends CI_Controller {
 		// $this->data['idreviewer'] = $idreviewer;
 		// $this->data['id_reviewer'] = $id_reviewer;//id row fo reviwer table
 		$this->data['file'] = $file;
+		$this->load->view('reviewer/'.$SCREENID,$this->data);
+	}
+
+	public function checked($title)
+	{
+		$SCREENID="checked";
+		$this->mainpage($SCREENID);
+		$this->data['title'] = $title;
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 

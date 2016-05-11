@@ -8,7 +8,25 @@
 		var count = $('.reading').length;
 		for(i=1;i <= count ; i++){
 			reading_journal(i);
+			checked(i);
 		}
+	}
+
+	function checked(num){
+		$('#check'+num).click(function(){
+			var screenname=":: CHECKED JOURNAL :: "+$(this).data('title');
+			var baseurl_checked = "<?php echo $baseurl_checked;?>";
+			var url = baseurl_checked+$(this).data('title');
+			var n=0;
+			$('.div_modal').html('');
+			modal_form(n,screenname);
+			$('#myModal'+n+'.modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>images/loader.gif"/>');
+			var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
+			modal.on('show.bs.modal', function () {
+				modalBody.load(url);
+			}).modal({backdrop: 'static',keyboard: true});
+			setInterval(function(){$('#ajaxLoaderModal').remove()},5000);
+		});
 	}
 
 	function	reading_journal(num){
@@ -79,10 +97,10 @@
     						<tr>
     							<td><?php echo $num; ?></td>
     							<td><?php echo $read['j_title']; ?></td>
-    							<td>
+    							<td class="pull-right">
     								<button type="button" class="btn btn-info  btn-xs reading" name="reading" id="reading<?php echo $num;?>" data-file="<?php echo $read['j_fulltext'];?>">READING</button>&nbsp;
-    								<?php  echo  anchor('reviewer/download_journal/'.$read['j_fulltext'],"download",' class="btn btn-info  btn-xs" name="download" ') ;?> &nbsp;
-    								<button type="button" class="btn btn-primary btn-xs check">CHECK</button>
+    								<?php  //echo  anchor('reviewer/download_journal/'.$read['j_fulltext'],"download",' class="btn btn-info  btn-xs" name="download" ') ;?> &nbsp;
+    								<button type="button" class="btn btn-primary btn-xs check" id="check<?php echo $num;?>" data-title="<?php echo $read['j_title'];?>">CHECK</button>
     							</td>
     						</tr>
     					<?php endforeach;?>
