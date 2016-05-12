@@ -80,6 +80,20 @@ class Reviewer extends CI_Controller {
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 
+	public function savechecked()
+	{		
+		if($_POST){
+			parse_str($this->input->post('form'), $post);
+			$id_reviewer = $post['id_reviewer'];
+			$idjournal  =$post['idjournal'];
+			$status = $post['status'];
+			$comment = $post['comment'];
+		}
+
+		echo "id Reviewer =",$id_reviewer,"\r\n","id Journal =",$idjournal,"\r\n","status = ",$status,"\r\n","comment = ",$comment;
+		
+	}
+
 }
 
 /* End of file reviewer.php */

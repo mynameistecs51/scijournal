@@ -1,39 +1,80 @@
+<script type="text/javascript" >
+	$(function(){
+		saveData();
+	});
+
+	function saveData()
+	{
+		$('#form').on('submit', function (e) {
+			if (e.isDefaultPrevented()) {
+				alert("ผิดพลาด : กรุณาตรวจสอบข้อมูลให้ถูกต้อง !");
+              // handle the invalid form...
+            } else {
+              // everything looks good!
+              e.preventDefault();
+              var form = $('#form').serialize();
+              $.ajax(
+              {
+              	type: 'POST',
+              	url: '<?php echo base_url(),"index.php/",$controller; ?>/savechecked/',
+	                data: {form}, //your form datas to post
+	                // dataType:'json',
+	                success: function(rs)
+	                {
+	                	$('.modal').modal('hide');
+	                	// location.reload();
+	                	// alert("#SAVE DATA SUCCESS !");
+	                	alert(rs);
+	                },
+	                error: function(err)
+	                {
+	                	alert("#ERROR !!!");
+	                	console.log(err);
+	                }
+	              });
+            }
+          });
+	}
+</script>
 <div class="row">
-	<?php echo "id reviewer-->",$session_data['id_member'], "      id journal--", $idjournal ;?>
-	<div class="form-groupt col-sm-12">
-		<div class="col-sm-2">
-			<label for="status">status: </label><br/>
-			<label>
-				<input type="radio" name="status" value="1" checked>  Accept&nbsp;&nbsp;
-			</label>
-			<label>
-				<input type="radio" name="status" value="2" >  Minor Revisions&nbsp;&nbsp;
-			</label>
-			<label>
-				<input type="radio" name="status" value="3">  Major Revisions&nbsp;&nbsp;
-			</label>
-			<label>
-				<input type="radio" name="status" value="4">  Reject&nbsp;&nbsp;
-			</label>
+	<form role="form" id="form" method="post">
+		<input type="hidden" name="id_reviewer" id="id_reviewer" value="<?php echo $session_data['id_member']; ?>"/>
+		<input type="hidden" name="idjournal" id="idjournal" value="<?php echo $idjournal; ?>"/>
+		<div class="form-groupt col-sm-12">
+			<div class="col-sm-2">
+				<label for="status">status: </label><br/>
+				<label>
+					<input type="radio" name="status" value="1" checked>  Accept&nbsp;&nbsp;
+				</label>
+				<label>
+					<input type="radio" name="status" value="2" >  Minor Revisions&nbsp;&nbsp;
+				</label>
+				<label>
+					<input type="radio" name="status" value="3">  Major Revisions&nbsp;&nbsp;
+				</label>
+				<label>
+					<input type="radio" name="status" value="4">  Reject&nbsp;&nbsp;
+				</label>
+			</div>
+			<div class="col-sm-6">
+				<label for="comment">Comment:</label>
+				<textarea class="form-control" id="comment" name="comment" rows="5" cols="100"></textarea>
+			</div>
+			<div class="col-sm-4">
+				<label>upload file:</label>
+				<input type="text" class="form-control"/>
+			</div>
 		</div>
-		<div class="col-sm-6">
-			<label for="comment">Comment:</label>
-			<textarea class="form-control" id="comment" name="comment" rows="5" cols="100"></textarea>
+		<div class="form-groupt col-sm-12">
+			<div class="col-sm-12">
+				<br/>
+			</div>
 		</div>
-		<div class="col-sm-4">
-			<label>upload file:</label>
-			<input type="text" class="form-control"></input>
+		<div class="form-groupt col-sm-12">
+			<div class="modal-footer" style="text-align:center; background:#F6CECE;">
+				<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span></button>
+				<button type="reset" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span></button>
+			</div>
 		</div>
-	</div>
-	<div class="form-groupt col-sm-12">
-		<div class="col-sm-12">
-			<br/>
-		</div>
-	</div>
-	<div class="form-groupt col-sm-12">
-		<div class="modal-footer" style="text-align:center; background:#F6CECE;">
-			<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span></button>
-			<button type="reset" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span></button>
-		</div>
-	</div>
+	</form>
 </div>
