@@ -16,7 +16,7 @@
 		$('#check'+num).click(function(){
 			var screenname=":: CHECKED JOURNAL :: "+$(this).data('title');
 			var baseurl_checked = "<?php echo $baseurl_checked;?>";
-			var url = baseurl_checked+$(this).data('title');
+			var url = baseurl_checked+$(this).data('title')+'/'+$(this).data('idjournal');
 			var n=0;
 			$('.div_modal').html('');
 			modal_form(n,screenname);
@@ -100,7 +100,7 @@
     							<td class="pull-right">
     								<button type="button" class="btn btn-info  btn-xs reading" name="reading" id="reading<?php echo $num;?>" data-file="<?php echo $read['j_fulltext'];?>">READING</button>&nbsp;
     								<?php  //echo  anchor('reviewer/download_journal/'.$read['j_fulltext'],"download",' class="btn btn-info  btn-xs" name="download" ') ;?> &nbsp;
-    								<button type="button" class="btn btn-primary btn-xs check" id="check<?php echo $num;?>" data-title="<?php echo $read['j_title'];?>">CHECK</button>
+    								<button type="button" class="btn btn-primary btn-xs check" id="check<?php echo $num;?>" data-title="<?php echo $read['j_title'];?>" data-idjournal="<?php echo $read['id_journal']; ?>">CHECK</button>
     							</td>
     						</tr>
     					<?php endforeach;?>

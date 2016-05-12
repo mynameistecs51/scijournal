@@ -71,11 +71,12 @@ class Reviewer extends CI_Controller {
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 
-	public function checked($title)
+	public function checked($title,$idjournal)
 	{
 		$SCREENID="checked";
 		$this->mainpage($SCREENID);
 		$this->data['title'] = $title;
+		$this->data['idjournal'] = $idjournal;
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 
