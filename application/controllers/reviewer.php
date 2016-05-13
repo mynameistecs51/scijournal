@@ -1,9 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Reviewer extends CI_Controller {
-
-
 	public function __construct()
 	{
 		parent::__construct();
@@ -14,14 +11,11 @@ class Reviewer extends CI_Controller {
 		$this->session_data = $this->session->userdata('session_data');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
-
 		if($this->session_data['m_type']  != "3"   &&  $this->session_data['m_statusType'] != "1" )
 		{
 			redirect('authen','refresh');
 		}
 	}
-
-
 	public function index()
 	{
 		$SCREENID="reviewer";
@@ -30,7 +24,6 @@ class Reviewer extends CI_Controller {
 		$this->mainpage($SCREENNAME);
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
-
 	public function mainpage($SCREENNAME)
 	{
 		//$SCREENNAME="Home";
@@ -47,7 +40,6 @@ class Reviewer extends CI_Controller {
 		$this->data['baseurl_checked'] =  base_url().'index.php/'.$this->ctl."/checked/";
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
-
 	public function download_journal($file)
 	{
 		$file = file_get_contents("file_journal/".$file);
@@ -55,7 +47,6 @@ class Reviewer extends CI_Controller {
 		echo  force_download($name,$file);
 		redirect('index','refresh');
 	}
-
 	public function reading_journal($file)
 	{
 		$SCREENID="reading";
@@ -70,7 +61,6 @@ class Reviewer extends CI_Controller {
 		$this->data['file'] = $file;
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
-
 	public function checked($title,$idjournal)
 	{
 		$SCREENID="checked";
@@ -79,22 +69,26 @@ class Reviewer extends CI_Controller {
 		$this->data['idjournal'] = $idjournal;
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
-
 	public function savechecked()
-	{		
+	{
+		// $file_comment = $_FILES['userfile'];
+
+
 		if($_POST){
 			parse_str($this->input->post('form'), $post);
-			$id_reviewer = $post['id_reviewer'];
-			$idjournal  =$post['idjournal'];
-			$status = $post['status'];
-			$comment = $post['comment'];
+			// $data = array(
+			// 	'id_reviewer' => $post['id_reviewer'],
+			// 	'idjournal'  =>$post['idjournal'],
+			// 	'status' => $post['status'],
+			// 	'comment' => $post['comment'],
+			// 	//'file_comment' =>$file_comment,
+			// 	'dt_create' => $this->dt_now,
+			// 	);
+			//print_r($post);
 		}
-
-		echo "id Reviewer =",$id_reviewer,"\r\n","id Journal =",$idjournal,"\r\n","status = ",$status,"\r\n","comment = ",$comment;
-		
+		//print_r($data);
+		// print_r($file_comment);
 	}
-
 }
-
 /* End of file reviewer.php */
 /* Location: ./application/controllers/reviewer.php */

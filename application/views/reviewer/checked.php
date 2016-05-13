@@ -5,39 +5,43 @@
 
 	function saveData()
 	{
-		$('#form').on('submit', function (e) {
+		$('#form').on('submit', function (e,d) {
 			if (e.isDefaultPrevented()) {
-				alert("ผิดพลาด : กรุณาตรวจสอบข้อมูลให้ถูกต้อง !");
-              // handle the invalid form...
-            } else {
-              // everything looks good!
-              e.preventDefault();
-              var form = $('#form').serialize();
-              $.ajax(
-              {
-              	type: 'POST',
-              	url: '<?php echo base_url(),"index.php/",$controller; ?>/savechecked/',
-	                data: {form}, //your form datas to post
-	                // dataType:'json',
-	                success: function(rs)
-	                {
-	                	$('.modal').modal('hide');
-	                	// location.reload();
-	                	// alert("#SAVE DATA SUCCESS !");
-	                	alert(rs);
-	                },
-	                error: function(err)
-	                {
-	                	alert("#ERROR !!!");
-	                	console.log(err);
-	                }
-	              });
-            }
-          });
+				alert("ERROR  : CHECK DATA PLASE !");
+            	  // handle the invalid form...
+            	} else {
+              		// everything looks good!
+              		e.preventDefault();
+              		var form = $('#form').serialize();
+              		$.each(d,function(index,value){
+					console.log("INdex"+index+"value-->"+value);
+              		})
+
+              		$.ajax(
+              		{
+              			type: 'POST',
+              			url: '<?php echo base_url(),"index.php/",$controller; ?>/savechecked/',
+           		      data: {form}, //your form datas to post
+	              		  // dataType:'json',
+	              		  success: function(rs)
+	              		  {
+	              		  	$('.modal').modal('hide');
+			                	// location.reload();
+		                	// alert("#SAVE DATA SUCCESS !");
+		                	alert(rs);
+		                },
+		                error: function(err)
+		                {
+		                	alert("#ERROR !!!");
+		                	console.log(err);
+		                }
+		              });
+              	}
+              });
 	}
 </script>
 <div class="row">
-	<form role="form" id="form" method="post">
+	 <form  method="POST" id="form" enctype="multipart/form-data" >
 		<input type="hidden" name="id_reviewer" id="id_reviewer" value="<?php echo $session_data['id_member']; ?>"/>
 		<input type="hidden" name="idjournal" id="idjournal" value="<?php echo $idjournal; ?>"/>
 		<div class="form-groupt col-sm-12">
@@ -62,7 +66,7 @@
 			</div>
 			<div class="col-sm-4">
 				<label>upload file:</label>
-				<input type="text" class="form-control"/>
+				 <input type="file" name="userfile"  />
 			</div>
 		</div>
 		<div class="form-groupt col-sm-12">

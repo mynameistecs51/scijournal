@@ -1,13 +1,10 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Mdl_reviewer extends CI_Model {
-
 	public function __construct()
 	{
 		parent::__construct();
 	}
-
 	public function check_journal($id_reviewer)
 	{
 		$sql = "
@@ -42,6 +39,5 @@ class Mdl_reviewer extends CI_Model {
 		return $query->result_array();
 	}
 }
-
 /* End of file mdl_reviewer.php */
 /* Location: ./application/models/mdl_reviewer.php */
