@@ -71,15 +71,14 @@ class Reviewer extends CI_Controller {
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 	function savechecked(){  //upload file comment
-		$file_name =  date('d_m_y_H_i_s');
-		$config['upload_path'] =  './file_journal/checkedComment/';
-		// die(var_dump(is_dir($config['upload_path'])));
-		$config['allowed_types'] = 'doc|docx|pdf|zip|jpg|png';
+		if($_FILES['userfile']['name'] != ""){
+			$config['upload_path'] =  './file_journal/checkedComment/';
+			$config['allowed_types'] = 'doc|docx|pdf|zip|jpg|png';
 			$config['max_size'] = '7000';	// 7mb
-					$config['file_name'] = $file_name.'.'.substr($_FILES['userfile']['name'],-4);		//file_name
-					$config['remove_spaces'] = TRUE;
-					$this->load->library("upload",$config);		//library upload
-					$this->upload->initialize($config);
+			$config['file_name'] = $this->dt_now.'.'.substr($_FILES['userfile']['name'],-4); //file_name
+			$config['remove_spaces'] = TRUE;
+			$this->load->library("upload",$config);	//library upload
+			$this->upload->initialize($config);
 			if($this->upload->do_upload('userfile')){	//ถ้า upload ไม่มีปัญหา
 				$data = array(
 					'id_reviewer' => $this->input->post('id_reviewer'),
@@ -92,25 +91,32 @@ class Reviewer extends CI_Controller {
 				$this->mdl_reviewer->savechecked($data);
 				return TRUE;
 			}else{
-		// echo $this->upload->display_errors()."error_doc  ";
-		// return FALSE;
-				// $data = array(
-				// 	'active' => "document",
-				// 	'file_error' => $this->upload->display_errors(),
-				// 	);
-				$data = array(
-					'id_reviewer' => $this->input->post('id_reviewer'),
-					'idjournal'  =>$this->input->post('idjournal'),
-					'status' => $this->input->post('status'),
-					'comment' => $this->input->post('comment'),
-					'file_comment' =>"",
-					'dt_create' => $this->dt_now,
-					);
-				// $this->load->view('admin/manage_document',$data);
-				print_r($data);
+			//	echo $this->upload->display_errors();
+				$message = "File Upload Fail !!";
+				$url = $this->ctl;
+				$this->alert($message,$url);
 			}
-			return true;
+		}else{
+			$data = array(
+				'id_reviewer' => $this->input->post('id_reviewer'),
+				'idjournal'  =>$this->input->post('idjournal'),
+				'status' => $this->input->post('status'),
+				'comment' => $this->input->post('comment'),
+				'file_comment' =>"",
+				'dt_create' => $this->dt_now,
+				);
+			print_r($data);
 		}
+		return true;
 	}
-	/* End of file reviewer.php */
+	public function alert($massage, $url)
+	{
+		echo "<meta charset='UTF-8'>
+		<SCRIPT LANGUAGE='JavaScript'>
+			window.alert('$massage')
+			window.location.href='".site_url($url)."';
+		</SCRIPT>";
+	}
+}
+/* End of file reviewer.php */
 /* Location: ./application/controllers/reviewer.php */

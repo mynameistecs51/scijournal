@@ -1,6 +1,6 @@
 <script type="text/javascript" >
 	$(function(){
-		//saveData();
+		//saveData();  ยังไม่ได้เรียกใช้งานเพราะติดเรื่อง ajax upload
 	});
 
 	function saveData()
@@ -77,8 +77,8 @@
 		</div>
 		<div class="form-groupt col-sm-12">
 			<div class="modal-footer" style="text-align:center; background:#F6CECE;">
-				<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span></button>
-				<button type="reset" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span></button>
+				<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> SAVE</span></button>
+				<button type="reset" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> CANCEL</span></button>
 			</div>
 		</div>
 	</form>
