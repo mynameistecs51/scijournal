@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 11, 2016 at 10:32 AM
+-- Generation Time: May 16, 2016 at 12:35 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -19,7 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `scijournal`
 --
-
 
 -- --------------------------------------------------------
 
@@ -10284,6 +10283,22 @@ INSERT INTO `reviewer` (`id_reviewer`, `id_member`, `id_journal`, `dt_create`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `reviewer_check`
+--
+
+CREATE TABLE IF NOT EXISTS `reviewer_check` (
+  `id_checked` int(11) NOT NULL,
+  `id_reviewer` int(11) NOT NULL,
+  `id_journal` int(11) NOT NULL,
+  `check_status` int(11) NOT NULL,
+  `check_comment` text NOT NULL,
+  `check_filecomment` text NOT NULL,
+  `dt_create` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `submission`
 --
 
@@ -17852,6 +17867,12 @@ ALTER TABLE `reviewer`
   ADD PRIMARY KEY (`id_reviewer`);
 
 --
+-- Indexes for table `reviewer_check`
+--
+ALTER TABLE `reviewer_check`
+  ADD PRIMARY KEY (`id_checked`);
+
+--
 -- Indexes for table `submission`
 --
 ALTER TABLE `submission`
@@ -17922,6 +17943,11 @@ ALTER TABLE `province`
 --
 ALTER TABLE `reviewer`
   MODIFY `id_reviewer` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+--
+-- AUTO_INCREMENT for table `reviewer_check`
+--
+ALTER TABLE `reviewer_check`
+  MODIFY `id_checked` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `submission`
 --

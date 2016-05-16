@@ -38,6 +38,7 @@ class Reviewer extends CI_Controller {
 		$this->data['read_journal'] = $this->mdl_reviewer->check_journal($this->session_data['id_member']);
 		$this->data['baseurl_reading'] =  base_url().'index.php/'.$this->ctl."/reading_journal/";
 		$this->data['baseurl_checked'] =  base_url().'index.php/'.$this->ctl."/checked/";
+		$this->data['baseurl_savechecked'] = base_url().'index.php/'.$this->ctl."/savechecked/";
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 	public function download_journal($file)
@@ -69,26 +70,47 @@ class Reviewer extends CI_Controller {
 		$this->data['idjournal'] = $idjournal;
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
-	public function savechecked()
-	{
-		// $file_comment = $_FILES['userfile'];
-
-
-		if($_POST){
-			parse_str($this->input->post('form'), $post);
-			// $data = array(
-			// 	'id_reviewer' => $post['id_reviewer'],
-			// 	'idjournal'  =>$post['idjournal'],
-			// 	'status' => $post['status'],
-			// 	'comment' => $post['comment'],
-			// 	//'file_comment' =>$file_comment,
-			// 	'dt_create' => $this->dt_now,
-			// 	);
-			//print_r($post);
+	function savechecked(){  //upload file comment
+		$file_name =  date('d_m_y_H_i_s');
+		$config['upload_path'] =  './file_journal/checkedComment/';
+		// die(var_dump(is_dir($config['upload_path'])));
+		$config['allowed_types'] = 'doc|docx|pdf|zip|jpg|png';
+			$config['max_size'] = '7000';	// 7mb
+					$config['file_name'] = $file_name.'.'.substr($_FILES['userfile']['name'],-4);		//file_name
+					$config['remove_spaces'] = TRUE;
+					$this->load->library("upload",$config);		//library upload
+					$this->upload->initialize($config);
+			if($this->upload->do_upload('userfile')){	//ถ้า upload ไม่มีปัญหา
+				$data = array(
+					'id_reviewer' => $this->input->post('id_reviewer'),
+					'idjournal'  =>$this->input->post('idjournal'),
+					'status' => $this->input->post('status'),
+					'comment' => $this->input->post('comment'),
+					'file_comment' =>$this->upload->data('file_name'),
+					'dt_create' => $this->dt_now,
+					);
+				$this->mdl_reviewer->savechecked($data);
+				return TRUE;
+			}else{
+		// echo $this->upload->display_errors()."error_doc  ";
+		// return FALSE;
+				// $data = array(
+				// 	'active' => "document",
+				// 	'file_error' => $this->upload->display_errors(),
+				// 	);
+				$data = array(
+					'id_reviewer' => $this->input->post('id_reviewer'),
+					'idjournal'  =>$this->input->post('idjournal'),
+					'status' => $this->input->post('status'),
+					'comment' => $this->input->post('comment'),
+					'file_comment' =>"",
+					'dt_create' => $this->dt_now,
+					);
+				// $this->load->view('admin/manage_document',$data);
+				print_r($data);
+			}
+			return true;
 		}
-		//print_r($data);
-		// print_r($file_comment);
 	}
-}
-/* End of file reviewer.php */
+	/* End of file reviewer.php */
 /* Location: ./application/controllers/reviewer.php */

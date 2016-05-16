@@ -38,6 +38,11 @@ class Mdl_reviewer extends CI_Model {
 		$query = $this->db->query($sql);
 		return $query->result_array();
 	}
+
+	public function savechecked($data)
+	{
+		print_r($data);
+	}
 }
 /* End of file mdl_reviewer.php */
 /* Location: ./application/models/mdl_reviewer.php */

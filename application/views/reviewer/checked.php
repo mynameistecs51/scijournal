@@ -1,6 +1,6 @@
 <script type="text/javascript" >
 	$(function(){
-		saveData();
+		//saveData();
 	});
 
 	function saveData()
@@ -41,7 +41,8 @@
 	}
 </script>
 <div class="row">
-	 <form  method="POST" id="form" enctype="multipart/form-data" >
+	 <!-- <form action="<?php echo $baseurl_savechecked; ?>"  method="POST" id="form" enctype="multipart/form-data" > -->
+	 <?php echo form_open_multipart($baseurl_savechecked); ?>
 		<input type="hidden" name="id_reviewer" id="id_reviewer" value="<?php echo $session_data['id_member']; ?>"/>
 		<input type="hidden" name="idjournal" id="idjournal" value="<?php echo $idjournal; ?>"/>
 		<div class="form-groupt col-sm-12">
@@ -66,7 +67,7 @@
 			</div>
 			<div class="col-sm-4">
 				<label>upload file:</label>
-				 <input type="file" name="userfile"  />
+				 <input type="file" name="userfile"  id="userfile" class="form-control" />
 			</div>
 		</div>
 		<div class="form-groupt col-sm-12">
