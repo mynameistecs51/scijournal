@@ -71,6 +71,8 @@ class Reviewer extends CI_Controller {
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 	function savechecked(){  //upload file comment
+		$this->form_validation->set_rules('comment','comment','xss_clean');
+
 		$date = date("d_m_Y_His");
 		if($_FILES['userfile']['name'] != ""){
 			$config['upload_path'] =  './file_journal/checkedComment';
