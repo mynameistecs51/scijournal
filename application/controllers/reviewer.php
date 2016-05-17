@@ -71,27 +71,30 @@ class Reviewer extends CI_Controller {
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 	function savechecked(){  //upload file comment
+		$date = date("d_m_Y_His");
 		if($_FILES['userfile']['name'] != ""){
-			$config['upload_path'] =  './file_journal/checkedComment/';
+			$config['upload_path'] =  './file_journal/checkedComment';
 			$config['allowed_types'] = 'doc|docx|pdf|zip|jpg|png';
 			$config['max_size'] = '7000';	// 7mb
-			$config['file_name'] = $this->dt_now.'.'.substr($_FILES['userfile']['name'],-4); //file_name
+			$config['file_name'] = $date.'.'.substr($_FILES['userfile']['name'],-4); //file_name
 			$config['remove_spaces'] = TRUE;
 			$this->load->library("upload",$config);	//library upload
 			$this->upload->initialize($config);
 			if($this->upload->do_upload('userfile')){	//ถ้า upload ไม่มีปัญหา
+				$file_name = $this->upload->data();
 				$data = array(
 					'id_reviewer' => $this->input->post('id_reviewer'),
-					'idjournal'  =>$this->input->post('idjournal'),
-					'status' => $this->input->post('status'),
-					'comment' => $this->input->post('comment'),
-					'file_comment' =>$this->upload->data('file_name'),
+					'id_journal'  =>$this->input->post('idjournal'),
+					'check_status' => $this->input->post('status'),
+					'check_comment' => $this->input->post('comment'),
+					'check_filecomment' =>$file_name['file_name'],
 					'dt_create' => $this->dt_now,
 					);
 				$this->mdl_reviewer->savechecked($data);
-				return TRUE;
+				// echo "<pre>";
+				// print_r($data);
 			}else{
-			//	echo $this->upload->display_errors();
+				// echo $this->upload->display_errors();
 				$message = "File Upload Fail !!";
 				$url = $this->ctl;
 				$this->alert($message,$url);
@@ -99,15 +102,15 @@ class Reviewer extends CI_Controller {
 		}else{
 			$data = array(
 				'id_reviewer' => $this->input->post('id_reviewer'),
-				'idjournal'  =>$this->input->post('idjournal'),
-				'status' => $this->input->post('status'),
-				'comment' => $this->input->post('comment'),
-				'file_comment' =>"",
+				'id_journal'  =>$this->input->post('idjournal'),
+				'check_status' => $this->input->post('status'),
+				'check_comment' => $this->input->post('comment'),
+				'check_filecomment' =>"",
 				'dt_create' => $this->dt_now,
 				);
-			print_r($data);
+			$this->mdl_reviewer->savechecked($data);
 		}
-		return true;
+		redirect($this->ctl,'refresh');
 	}
 	public function alert($massage, $url)
 	{

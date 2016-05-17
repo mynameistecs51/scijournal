@@ -41,7 +41,7 @@ class Mdl_reviewer extends CI_Model {
 
 	public function savechecked($data)
 	{
-		print_r($data);
+		$this->db->insert('reviewer_check',$data);
 	}
 }
 /* End of file mdl_reviewer.php */

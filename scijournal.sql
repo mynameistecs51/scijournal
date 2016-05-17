@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2016 at 12:35 PM
+-- Generation Time: May 17, 2016 at 06:34 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -10293,8 +10293,20 @@ CREATE TABLE IF NOT EXISTS `reviewer_check` (
   `check_status` int(11) NOT NULL,
   `check_comment` text NOT NULL,
   `check_filecomment` text NOT NULL,
-  `dt_create` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `dt_create` datetime NOT NULL,
+  `status_editorcheck` int(11) DEFAULT '0' COMMENT 'default=0,editorcheck=1',
+  `dt_editorcheck` datetime NOT NULL,
+  `id_editorcheck` int(11) NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `reviewer_check`
+--
+
+INSERT INTO `reviewer_check` (`id_checked`, `id_reviewer`, `id_journal`, `check_status`, `check_comment`, `check_filecomment`, `dt_create`, `status_editorcheck`, `dt_editorcheck`, `id_editorcheck`) VALUES
+(4, 2, 4, 1, 'test', '17_05_2016_135855._.pdf', '2016-05-17 13:58:55', 0, '0000-00-00 00:00:00', 0),
+(5, 2, 4, 1, 'test', '17_05_2016_140418._.jpg', '2016-05-17 14:04:18', 0, '0000-00-00 00:00:00', 0),
+(6, 2, 4, 1, 'ะำหะ', '', '2016-05-17 15:06:31', 0, '0000-00-00 00:00:00', 0);
 
 -- --------------------------------------------------------
 
@@ -17947,7 +17959,7 @@ ALTER TABLE `reviewer`
 -- AUTO_INCREMENT for table `reviewer_check`
 --
 ALTER TABLE `reviewer_check`
-  MODIFY `id_checked` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_checked` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `submission`
 --
