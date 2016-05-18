@@ -63,7 +63,7 @@ class Mdl_reviewer extends CI_Model {
 			r.id_member = m.id_member
 			WHERE
 			r.id_member = '$id_reviewer'
-			AND 
+			AND
 			-- r.id_member NOT IN (SELECT id_reviewer FROM reviewer_check WHERE id_reviewer = '$id_reviewer' )
 			r.id_journal NOT IN (SELECT id_journal FROM reviewer_check WHERE id_journal = '0' )
 			";
