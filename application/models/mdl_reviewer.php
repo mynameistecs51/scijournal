@@ -78,3 +78,19 @@ class Mdl_reviewer extends CI_Model {
 	}
 	/* End of file mdl_reviewer.php */
 /* Location: ./application/models/mdl_reviewer.php */
+
+/* sql query ตารางว่ากรรมการตรวจอะไรบ้าง
+SELECT
+     r.id_reviewer,
+     r.id_member,
+     r.id_journal,
+     chk.id_journal,
+     chk.id_checked
+FROM
+   reviewer r
+LEFT JOIN (
+     SELECT id_checked,id_reviewer,id_member,id_journal from reviewer_check
+     GROUP BY id_journal
+) AS chk ON r.id_reviewer=chk.id_reviewer
+WHERE    r.id_member = '2' AND ifnull(chk.id_reviewer,'')=''
+ */
