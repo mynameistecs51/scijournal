@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 21, 2016 at 03:03 PM
+-- Generation Time: May 21, 2016 at 04:52 PM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
 
@@ -10299,7 +10299,7 @@ CREATE TABLE IF NOT EXISTS `reviewer_check` (
   `status_editorcheck` int(11) DEFAULT '0' COMMENT 'default=0,editorcheck=1',
   `dt_editorcheck` datetime NOT NULL,
   `id_editorcheck` int(11) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `reviewer_check`
@@ -17960,7 +17960,7 @@ ALTER TABLE `reviewer`
 -- AUTO_INCREMENT for table `reviewer_check`
 --
 ALTER TABLE `reviewer_check`
-  MODIFY `id_checked` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
+  MODIFY `id_checked` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=15;
 --
 -- AUTO_INCREMENT for table `submission`
 --
