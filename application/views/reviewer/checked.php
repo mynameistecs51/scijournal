@@ -45,6 +45,7 @@
 	<?php echo form_open_multipart($baseurl_savechecked); ?>
 	<input type="hidden" name="id_reviewer" id="id_reviewer" value="<?php echo $session_data['id_member']; ?>"/>
 	<input type="hidden" name="idjournal" id="idjournal" value="<?php echo $idjournal; ?>"/>
+	<input type="hidden" name="idreviewer" id="idreviewer" value="<?php echo $idreviewer; ?>"/>
 	<div class="form-groupt col-sm-12">
 		<div class="col-sm-2">
 			<label for="status">status: </label><br/>

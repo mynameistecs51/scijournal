@@ -10,8 +10,8 @@
 							<i class="fa fa-file-text fa-5x"></i>
 						</div>
 						<div class="col-md-12 text-right">
-							<div class="huge"> xxx</div>
-							<div>Journal ที่ต้องตรวจ</div>
+							<div class="huge"> <?php echo count($read_journal); ?></div>
+							<div>Journal Review</div>
 						</div>
 					</div>
 				</div>
@@ -33,7 +33,7 @@
 						</div>
 						<div class="col-md-12 text-right">
 							<div class="huge">xxx</div>
-							<div>Journal ที่ตรวจแล้ว</div>
+							<div>Journal Checked</div>
 						</div>
 					</div>
 				</div>

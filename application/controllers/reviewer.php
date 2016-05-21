@@ -62,12 +62,13 @@ class Reviewer extends CI_Controller {
 		$this->data['file'] = $file;
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
-	public function checked($title,$idjournal)
+	public function checked($title,$idjournal,$idreviewer)
 	{
 		$SCREENID="checked";
 		$this->mainpage($SCREENID);
 		$this->data['title'] = $title;
 		$this->data['idjournal'] = $idjournal;
+		$this->data['idreviewer'] = $idreviewer;
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 	function savechecked(){  //upload file comment
@@ -85,7 +86,8 @@ class Reviewer extends CI_Controller {
 			if($this->upload->do_upload('userfile')){	//ถ้า upload ไม่มีปัญหา
 				$file_name = $this->upload->data();
 				$data = array(
-					'id_reviewer' => $this->input->post('id_reviewer'),
+					'id_reviewer' => $this->input->post('idreviewer'),
+					'id_member' => $this->input->post('id_reviewer'),
 					'id_journal'  =>$this->input->post('idjournal'),
 					'check_status' => $this->input->post('status'),
 					'check_comment' => $this->input->post('comment'),
@@ -103,7 +105,8 @@ class Reviewer extends CI_Controller {
 			}
 		}else{
 			$data = array(
-				'id_reviewer' => $this->input->post('id_reviewer'),
+				'id_reviewer' => $this->input->post('idreviewer'),
+				'id_member' => $this->input->post('id_reviewer'),
 				'id_journal'  =>$this->input->post('idjournal'),
 				'check_status' => $this->input->post('status'),
 				'check_comment' => $this->input->post('comment'),

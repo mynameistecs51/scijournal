@@ -37,35 +37,32 @@ class Mdl_reviewer extends CI_Model {
 		";
 		*/
 		$sql = "
-		SELECT
-		r.id_journal,
-			r.id_member,  #--reviewer--
-			CONCAT(m.m_name,' ',m.m_lastname) AS reviewer_name,
-			j.j_title,
-			j.j_author,
-			j.j_email,
-			j.j_abstract,
-			j.j_fulltext,
-			c.cat_name
+			SELECT
+				r.id_reviewer,
+	    			r.id_journal,
+				r.id_member,  #--reviewer--
+				CONCAT(m.m_name,' ',m.m_lastname) AS reviewer_name,
+				j.j_title,
+				j.j_author,
+				j.j_email,
+				j.j_abstract,
+				j.j_fulltext,
+				c.cat_name
+			     # chk.id_journal,
+			     #chk.id_checked
 			FROM
-			journal j
+			   reviewer r
 			INNER JOIN
-			reviewer r
-			ON
-			r.id_journal = j.id_journal
+			      journal j ON j.id_journal = r.id_journal
 			INNER JOIN
-			category c
-			ON
-			j.id_category = c.id_category
+				category c	ON  j.id_category = c.id_category
 			INNER JOIN
-			member m
-			ON
-			r.id_member = m.id_member
-			WHERE
-			r.id_member = '$id_reviewer'
-			AND
-			-- r.id_member NOT IN (SELECT id_reviewer FROM reviewer_check WHERE id_reviewer = '$id_reviewer' )
-			r.id_journal NOT IN (SELECT id_journal FROM reviewer_check WHERE id_journal = '0' )
+				member m	ON	r.id_member = m.id_member
+			LEFT JOIN (
+			     SELECT id_checked,id_reviewer,id_member,id_journal from reviewer_check
+			     #GROUP BY id_journal
+			) AS chk ON r.id_reviewer=chk.id_reviewer
+			WHERE    r.id_member = '$id_reviewer' AND ifnull(chk.id_reviewer,'')=''
 			";
 			$query = $this->db->query($sql);
 			return $query->result_array();
