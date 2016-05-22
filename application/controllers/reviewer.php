@@ -36,9 +36,12 @@ class Reviewer extends CI_Controller {
 		$this->data['NAV'] = $SCREENNAME;
 		$this->data['getjournal'] = $this->mdl_journal->getjournal();
 		$this->data['read_journal'] = $this->mdl_reviewer->check_journal($this->session_data['id_member']);
+		$this->data['row_checked'] = $this->mdl_reviewer->journal_checked($this->session_data['id_member']);
+		$this->data['base_urlreviewer'] = base_url().'index.php/'.$this->ctl;
 		$this->data['baseurl_reading'] =  base_url().'index.php/'.$this->ctl."/reading_journal/";
 		$this->data['baseurl_checked'] =  base_url().'index.php/'.$this->ctl."/checked/";
 		$this->data['baseurl_savechecked'] = base_url().'index.php/'.$this->ctl."/savechecked/";
+		$this->data['baseurl_journalchecked'] = base_url().'index.php/'.$this->ctl.'/journal_checked/';
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 	public function download_journal($file)
@@ -52,13 +55,6 @@ class Reviewer extends CI_Controller {
 	{
 		$SCREENID="reading";
 		$this->mainpage($SCREENID);
-		// $this->data['idx']=$idx;
-		// $this->data['listcustomer']= $data_array;
-		// $this->load->view('editor/'.$SCREENID,$this->data);
-		// $this->data['get_reviewer'] = $this->mdl_journal->getmember_ofTypeComplase(3,1);
-		// $this->data['idjournal'] =  $idjournal;
-		// $this->data['idreviewer'] = $idreviewer;
-		// $this->data['id_reviewer'] = $id_reviewer;//id row fo reviwer table
 		$this->data['file'] = $file;
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
@@ -116,6 +112,13 @@ class Reviewer extends CI_Controller {
 			$this->mdl_reviewer->savechecked($data);
 		}
 		redirect($this->ctl,'refresh');
+	}
+	public function journal_checked()
+	{
+		$SCREENID="journal_checked";
+		$SCREENNAME = "> JOURNAL CHECKED";
+		$this->mainpage($SCREENNAME);
+		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 	public function alert($massage, $url)
 	{

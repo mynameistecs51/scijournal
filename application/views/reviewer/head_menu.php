@@ -2,7 +2,7 @@
 	<div class="nev_url"><div class="pull-left"><?php echo "Page -",$NAV; ?> </div><div class="pull-right"><?php echo $name;?></div></div>
 	<hr/>
 	<div class=" col-lg-3 col-md-2">
-		<a href="<?php echo $controller;?>">
+		<a href="<?php echo $base_urlreviewer;?>">
 			<div class="panel panel-primary ">
 				<div class="panel-heading">
 					<div class="row">
@@ -24,7 +24,7 @@
 		</a>
 	</div>
 	<div class=" col-lg-3 col-md-2">
-		<a href="<?php echo site_url('#');?>">
+		<a href="<?php echo $baseurl_journalchecked;?>">
 			<div class="panel panel-success">
 				<div class="panel-heading">
 					<div class="row">
@@ -32,7 +32,7 @@
 							<i class="fa fa-share-square fa-5x"></i>
 						</div>
 						<div class="col-md-12 text-right">
-							<div class="huge">xxx</div>
+							<div class="huge"><?php echo count($row_checked); ?></div>
 							<div>Journal Checked</div>
 						</div>
 					</div>
