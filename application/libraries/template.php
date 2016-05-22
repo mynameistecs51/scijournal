@@ -69,11 +69,13 @@ class Template
 						<p>Faculty of Science and Journal</p>
 					</header> -->
 					<!-- menu -->
-					<div class="col-sm-3 well pull-left">
-						<div class="col-sm-12">
+				<div class="col-sm-3 well pull-left">
+				<h4><p>Menu</p></h4>
+						<div class="col-sm-12" style="font-family: "Times New Roman", Times, serif;word-wrap:break-word;">
 							'.$this->menu($base_url).'
 						</div>
 					</div>
+					
 					<!-- end menu -->
 					<!-- body -->
 					<div class="col-sm-9  ">
@@ -119,10 +121,10 @@ public function menu($SCREENNAME)
 	$menu = '<ul class="row  nav nav-pills nav-stacked pull-left inline ">';
 	foreach($result['result'] as $row) {
 			//$active=($active_menu=='active'?'active':'');
-		$menu.='<li role="presentation" id="'.$row->menu_name.'" class="">'. anchor("$row->filelocation","$row->menu_name").'</li>';
+		$menu.='<li role="presentation" id="'.$row->menu_name.'" class=""><h4><p>'. anchor("$row->filelocation","$row->menu_name",'class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
 	}
 	if($this->session_data == ''){
-		$menu.='<li role="presentation" id="login" class="">'.  anchor('home/login','Login / Register').'</li>';
+		$menu.='<li role="presentation" id="login" class=""><p >'.  anchor('home/login','Login/Register','class="glyphicon glyphicon-chevron-right from-group"').'</p ></li>';
 	}else{
 		if($this->session_data['m_type'] == 4 && $this->session_data['m_statusType'] == 1){	//admin
 			$menu.= '<li role="presentation" id="admin" class="">'.  anchor(site_url('admin'),'Admin').'</li>';
