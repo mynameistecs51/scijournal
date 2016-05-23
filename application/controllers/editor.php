@@ -113,6 +113,14 @@ class Editor extends CI_Controller {
 	{
 		$this->mdl_editor->saveUpdate();
 	}
+	public function reviewer_comment()
+	{
+		$SCREENID="reviewer_comment";
+		$SCREENNAME = ">Reviewer Comment";
+		// $SCREENNAME=$this->template->getScreenName($SCREENID);
+		$this->mainpage($SCREENNAME);
+		$this->load->view('editor/'.$SCREENID,$this->data);
+	}
 }
 
 

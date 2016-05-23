@@ -75,7 +75,6 @@ class Template
 							'.$this->menu($base_url).'
 						</div>
 					</div>
-					
 					<!-- end menu -->
 					<!-- body -->
 					<div class="col-sm-9  ">
@@ -124,16 +123,16 @@ public function menu($SCREENNAME)
 		$menu.='<li role="presentation" id="'.$row->menu_name.'" class=""><h4><p>'. anchor("$row->filelocation","$row->menu_name",'class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
 	}
 	if($this->session_data == ''){
-		$menu.='<li role="presentation" id="login" class=""><p >'.  anchor('home/login','Login/Register','class="glyphicon glyphicon-chevron-right from-group"').'</p ></li>';
+		$menu.='<li role="presentation" id="login" class=""><h4><p >'.  anchor('home/login','Login/Register','class="glyphicon glyphicon-chevron-right from-group"').'</p ></h4></li>';
 	}else{
 		if($this->session_data['m_type'] == 4 && $this->session_data['m_statusType'] == 1){	//admin
-			$menu.= '<li role="presentation" id="admin" class="">'.  anchor(site_url('admin'),'Admin').'</li>';
+			$menu.= '<li role="presentation" id="admin" class=""><h4><p>'.  anchor(site_url('admin'),'Admin','class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
 		}elseif($this->session_data['m_type'] == 2 && $this->session_data['m_statusType'] ==1){	//editor
-			$menu.= '<li role="presentation" id="editer" class="">'.  anchor(site_url('editor'),'Editor').'</li>';
+			$menu.= '<li role="presentation" id="editer" class=""><h4><p>'.  anchor(site_url('editor'),'Editor','class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
 		}elseif($this->session_data['m_type'] == 3 && $this->session_data['m_statusType'] ==1){	//editor
-			$menu.= '<li role="presentation" id="reviewer" class="">'.  anchor(site_url('reviewer'),'Reviewer').'</li>';
+			$menu.= '<li role="presentation" id="reviewer" class=""><h4><p>'.  anchor(site_url('reviewer'),'Reviewer','class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
 		}
-		$menu.= '<li role="presentation" id="login" class="">'.  anchor(site_url('authen/logout'),'logout'." ".$this->session_data['m_name']).'</li>';
+		$menu.= '<li role="presentation" id="login" class=""><h4><p>'.  anchor(site_url('authen/logout'),'logout'." ".$this->session_data['m_name'],'class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
 	}
 	$menu .= '</ul>';
 

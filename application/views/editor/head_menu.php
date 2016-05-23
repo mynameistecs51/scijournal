@@ -68,7 +68,7 @@
 		</a>
 	</div>
 	<div class=" col-lg-3 col-md-2">
-		<a href="admin_status_paper">
+		<a href="<?php echo base_url().'index.php/editor/reviewer_comment';?>">
 			<div class="panel panel-info ">
 				<div class="panel-heading">
 					<div class="row">
