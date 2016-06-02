@@ -42,6 +42,7 @@ class Reviewer extends CI_Controller {
 		$this->data['baseurl_checked'] =  base_url().'index.php/'.$this->ctl."/checked/";
 		$this->data['baseurl_savechecked'] = base_url().'index.php/'.$this->ctl."/savechecked/";
 		$this->data['baseurl_journalchecked'] = base_url().'index.php/'.$this->ctl.'/journal_checked/';
+		$this->data['baseurl_satusjournal'] = base_url().'index.php/'.$this->ctl.'/satus_journal/';
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 	public function download_journal($file)
@@ -119,6 +120,10 @@ class Reviewer extends CI_Controller {
 		$SCREENNAME = "> JOURNAL CHECKED";
 		$this->mainpage($SCREENNAME);
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
+	}
+	public function satus_journal()
+	{
+
 	}
 	public function alert($massage, $url)
 	{

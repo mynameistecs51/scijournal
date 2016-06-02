@@ -132,7 +132,7 @@ public function menu($SCREENNAME)
 		}elseif($this->session_data['m_type'] == 3 && $this->session_data['m_statusType'] ==1){	//editor
 			$menu.= '<li role="presentation" id="reviewer" class=""><h4><p>'.  anchor(site_url('reviewer'),'Reviewer','class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
 		}
-		$menu.= '<li role="presentation" id="login" class=""><h4><p>'.  anchor(site_url('authen/logout'),'logout'." ".$this->session_data['m_name'],'class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
+		$menu.= '<li role="presentation" id="login" class=""><h4><p>'.  anchor(site_url('authen/logout'),'Logout'." ".$this->session_data['m_name'],'class="glyphicon glyphicon-chevron-right"').'</p ></h4></li>';
 	}
 	$menu .= '</ul>';
 
