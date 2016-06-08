@@ -76,7 +76,7 @@
 							<i class="fa fa-file-text fa-5x"></i>
 						</div>
 						<div class="col-md-12 text-right">
-							<div class="huge">xxxx</div>
+							<div class="huge"><?php echo count($row_checked); ?></div>
 							<div>Reviewer comment</div>
 						</div>
 					</div>

@@ -10,7 +10,7 @@ class Editor extends CI_Controller {
 		$this->ctl="editor";
 		$this->load->model('mdl_journal');
 		$this->load->model('mdl_editor');
-		// $this->load->model('mdl_reviewer');
+		$this->load->model('mdl_reviewer');
 		$this->session_data = $this->session->userdata('session_data');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
@@ -45,6 +45,8 @@ class Editor extends CI_Controller {
 		$this->data['notsend'] = $this->mdl_editor->notsendReviewer();
 		$this->data['url_edit']= base_url().'index.php/'.$this->ctl."/edit/";
 		$this->data['url_delete'] = base_url().'index.php/'.$this->ctl."/delete/";
+		$this->data['row_checked'] = $this->mdl_reviewer->journal_checked("");
+		$this->data['baseurl_satusjournal'] = base_url().'index.php/'.$this->ctl.'/satus_journal/';
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 
@@ -118,8 +120,22 @@ class Editor extends CI_Controller {
 		$SCREENID="reviewer_comment";
 		$SCREENNAME = ">Reviewer Comment";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
+		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck('','');
+		array_push($this->data['row_checked'],$this->data['dataStatus']);
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
+		// print_r($this->data['row_checked']);
+	}
+	public function satus_journal($idjournal,$id_member)
+	{
+		$SCREENID="status_journal";
+		$SCREENNAME = "> STATUS JOURNAL";
+		// $SCREENNAME=$this->template->getScreenName($SCREENID);
+		$this->data['idjournal'] = $idjournal;
+		$this->data['id_member'] = $id_member;
+		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck($idjournal,$id_member);
+		$this->mainpage($SCREENNAME);
+		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 }
 

@@ -1,5 +1,4 @@
 <div class="row">
-	<!-- <form action="<?php echo $baseurl_savechecked; ?>"  method="POST" id="form" enctype="multipart/form-data" > -->
 	<?php echo form_open_multipart('#'); ?>
 	<?php foreach ($dataStatus as $rowStatus):?>
 		<input type="hidden" name="id_reviewer" id="id_reviewer" value="<?php echo $session_data['id_member']; ?>"/>
@@ -30,7 +29,7 @@
 				<textarea class="form-control" id="comment" name="comment" rows="5" cols="100"><?php echo $rowStatus['check_comment']; ?></textarea>
 			</div>
 			<div class="col-sm-4">
-			<label>edit file:</label>
+				<label>edit file:</label>
 				<input type="file" name="userfile"  id="userfile" class="form-control" />
 				<p class="text-danger">**upload file type .doc,.docx,.pdf,.zip,.jpg,.png</p>
 			</div>

@@ -66,8 +66,10 @@
     						</tr>
     					</thead>
     					<tbody>
-    						<?php foreach ($row_checked as $rowchecked):
-    						$num = count($row_checked);
+    						<?php 
+                                      $count = count($row_checked);
+                                    foreach ($row_checked as $rowchecked):
+                                      $num = $count--;
     						?>
     						<tr>
     							<td><?php echo $num; ?></td>
