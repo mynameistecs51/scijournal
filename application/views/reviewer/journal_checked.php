@@ -5,12 +5,12 @@
 	});
 	function countstatus(){
 		var count = $('.status').length;
-		for (i=1;i <= count;I++){
-			reading_journal(i);
+		for (i=1;i <= count;i++){
+			reading_journal(i); 
 		}
 	}
 	function	reading_journal(num){
-		$('#reading'+num).click(function(){
+		$('#status'+num).click(function(){
 			var screenname=":: DETAIL :: ";
 			var baseurl_satusjournal = "<?php echo $baseurl_satusjournal;?>";
 			var url = baseurl_satusjournal+$(this).data('idjournal');
@@ -73,7 +73,11 @@
     							<td><?php echo $num; ?></td>
     							<td><?php echo $rowchecked['j_title']; ?></td>
     							<td>
-    								<button type="button" class="btn btn-primary status"  id="status<?php echo $num;?>" data-idjournal="test">
+    								<button type="button" class="btn btn-primary status"  id="status<?php echo $num;?>" data-idjournal="<?php 
+                                          $data = array(
+                                            'j_title' => $rowchecked['j_title'],
+                                            );
+                                         ?>">
     									<?php echo $rowchecked['check_status']; ?>
     								</button>
     							</td>

@@ -121,9 +121,14 @@ class Reviewer extends CI_Controller {
 		$this->mainpage($SCREENNAME);
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
-	public function satus_journal()
+	public function satus_journal($data=array())
 	{
-
+		$SCREENID="status_journal";
+		$SCREENNAME = "> STATUS JOURNAL";
+		// $SCREENNAME=$this->template->getScreenName($SCREENID);
+		$this->data['rowchecked'] = $data;
+		$this->mainpage($SCREENNAME);
+		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 	public function alert($massage, $url)
 	{
