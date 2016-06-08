@@ -7,35 +7,6 @@ class Mdl_reviewer extends CI_Model {
 	}
 	public function check_journal($id_reviewer)
 	{
-		/*$sql = "
-		SELECT
-			r.id_journal,
-			r.id_member,  #--reviewer--
-			CONCAT(m.m_name,' ',m.m_lastname) AS reviewer_name,
-			j.j_title,
-			j.j_author,
-			j.j_email,
-			j.j_abstract,
-			j.j_fulltext,
-			c.cat_name
-		FROM
-			journal j
-		INNER JOIN
-			reviewer r
-		ON
-			r.id_journal = j.id_journal
-		INNER JOIN
-			category c
-		ON
-			j.id_category = c.id_category
-		INNER JOIN
-			member m
-		ON
-			r.id_member = m.id_member
-		WHERE
-			r.id_member = '$id_reviewer'
-		";
-		*/
 		$sql = "
 			SELECT
 				r.id_reviewer,
@@ -86,8 +57,8 @@ class Mdl_reviewer extends CI_Model {
 				c.cat_name,
 				CASE check_status
 				     WHEN 1 THEN 'Accept'
-				     WHEN 2 THEN 'Minor Reviewer'
-				     WHEN 3 THEN 'Major Reviewer'
+				     WHEN 2 THEN 'Minor Revisions  '
+				     WHEN 3 THEN 'Major Revisions  '
 				     WHEN 4 THEN 'Reject'
 				END check_status
 			FROM
@@ -108,6 +79,11 @@ class Mdl_reviewer extends CI_Model {
 				rc.id_member = '$idmember'
 			";
 			$query = $this->db->query($sql);
+			return $query->result_array();
+		}
+		public function getReviewercheck($idjournal,$id_member)
+		{
+			$query = $this->db->query("SELECT * FROM reviewer_check WHERE id_member = '$id_member' AND id_journal ='$idjournal'");
 			return $query->result_array();
 		}
 	}

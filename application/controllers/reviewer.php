@@ -121,12 +121,14 @@ class Reviewer extends CI_Controller {
 		$this->mainpage($SCREENNAME);
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
-	public function satus_journal($data=array())
+	public function satus_journal($idjournal,$id_member)
 	{
 		$SCREENID="status_journal";
 		$SCREENNAME = "> STATUS JOURNAL";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
-		$this->data['rowchecked'] = $data;
+		$this->data['idjournal'] = $idjournal;
+		$this->data['id_member'] = $id_member;
+		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck($idjournal,$id_member);
 		$this->mainpage($SCREENNAME);
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}

@@ -6,18 +6,18 @@
 	function countstatus(){
 		var count = $('.status').length;
 		for (i=1;i <= count;i++){
-			reading_journal(i); 
+			reading_journal(i);
 		}
 	}
 	function	reading_journal(num){
 		$('#status'+num).click(function(){
 			var screenname=":: DETAIL :: ";
 			var baseurl_satusjournal = "<?php echo $baseurl_satusjournal;?>";
-			var url = baseurl_satusjournal+$(this).data('idjournal');
+			var url = baseurl_satusjournal+$(this).data('idjournal')+"/"+$(this).data('idreviewer');
 			var n=0;
 			$('.div_modal').html('');
 			modal_form(n,screenname);
-			$('#myModal'+n+'.modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>images/loader.gif"/>');
+			$('#myModal'+n+'.modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>img/loader.gif"/>');
 			var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
 			modal.on('show.bs.modal', function () {
 				modalBody.load(url);
@@ -73,11 +73,7 @@
     							<td><?php echo $num; ?></td>
     							<td><?php echo $rowchecked['j_title']; ?></td>
     							<td>
-    								<button type="button" class="btn btn-primary status"  id="status<?php echo $num;?>" data-idjournal="<?php 
-                                          $data = array(
-                                            'j_title' => $rowchecked['j_title'],
-                                            );
-                                         ?>">
+    								<button type="button" class="btn btn-primary status"  id="status<?php echo $num;?>" data-idjournal="<?php echo $rowchecked['id_journal']; ?>" data-idreviewer="<?php echo $rowchecked['id_member']; ?>">
     									<?php echo $rowchecked['check_status']; ?>
     								</button>
     							</td>
