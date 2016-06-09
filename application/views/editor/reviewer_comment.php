@@ -7,6 +7,7 @@
 		var count = $('.status').length;
 		for (i=1;i <= count;i++){
 			reading_journal(i);
+                 $('.status').attr("id","status"+i);
 		}
 	}
 	function	reading_journal(num){
@@ -67,7 +68,39 @@
     						</tr>
     					</thead>
     					<tbody>
-    						<?php
+   <?php
+
+                                   // echo "<pre/>---------";
+                                   // print_r($reviewerCheck);
+                                   // echo "-------------------";
+                                   $count = count($reviewerCheck);
+                                   foreach ($reviewerCheck as $key => $value) {
+                                    $num = $count--;
+                                     ?>
+                                     <tr>
+                                      <td><?php echo $num; ?></td>
+                                      <td><?php echo $value['j_title']; ?></td>
+                                      <td>
+                                     <?php
+                                     // $status =$value['reviewer']['check_status'];
+                                      $count_reviewer = count($value['reviewer']);
+                                      for($i=0;$i<$count_reviewer;$i++){
+                                        echo $i,"<<<<<";
+                                       // echo   $value['reviewer'][$i]['check_status'],',';
+                                       echo '<button type="button" class="btn btn-primary status"  data-idjournal="'.$value['id_journal'].'" data-idreviewer="'. $value['reviewer'][$i]['id_member'].'">'.
+                     $value['reviewer'][$i]['check_status'].'
+                    </button>';
+                                      }
+                                      // echo $status;
+                                      ?>
+                                      </td>
+                                    </tr>
+                                    <?php
+                                  }
+
+                                ?>
+    			<!--
+                        <?php
     						$count = count($row_checked);
     						foreach ($row_checked as $rowchecked):
     							$num = $count--;
@@ -82,6 +115,7 @@
     							</td>
     						</tr>
     					<?php endforeach; ?>
+            -->
     				</tbody>
     			</table>
     		</div>

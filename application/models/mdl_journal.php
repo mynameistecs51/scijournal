@@ -8,6 +8,57 @@ class Mdl_journal extends CI_Model {
 		parent::__construct();
 	}
 
+
+	public function getjournal()
+	{
+		$sql = "
+		SELECT
+			j.id_journal,
+			j.j_title,
+			j.j_author,
+			j.j_email,
+			j.j_abstract,
+			j.id_member,
+			p.id_ptype,
+			p.ptype_name,
+			c.id_category,
+			c.cat_name,
+			j.j_fulltext,
+			j.j_suggestedReview,
+			CONCAT(DATE_FORMAT(j.dt_create,'%d/%m/'),DATE_FORMAT(j.dt_create,'%Y')+543)AS dt_create,
+			CONCAT(DATE_FORMAT(j.dt_update,'%d/%m/'),DATE_FORMAT(j.dt_update,'%Y')+543)AS dt_update,
+			CASE  j.j_status
+				WHEN 0 THEN 'Send'
+				WHEN 1 THEN 'Reading'
+				WHEN 2 THEN 'Minor Revisions'
+				WHEN 3 THEN 'Major Revisions'
+				WHEN 4 THEN 'Accept'
+				WHEN 5 THEN 'Reject'
+			END status
+		FROM
+			journal j
+		INNER JOIN
+			paper_type p
+		ON
+			j.id_ptype = p.id_ptype
+		INNER JOIN
+			category c
+		ON
+			j.id_category = c.id_category
+		INNER JOIN
+			member m
+		ON
+			m.id_member = j.id_member
+		 ";
+		$query = $this->db->query($sql);
+		$result = $query->result();
+		$data = array(
+			'result' => $result,
+			);
+		return $data;
+	}
+
+
 	public function getPaper_type()
 	{
 		$sql = "SELECT * FROM paper_type";
@@ -99,55 +150,6 @@ class Mdl_journal extends CI_Model {
 		}else{
 			return $this->upload->display_errors();
 		}
-	}
-
-	public function getjournal()
-	{
-		$sql = "
-		SELECT
-			j.id_journal,
-			j.j_title,
-			j.j_author,
-			j.j_email,
-			j.j_abstract,
-			j.id_member,
-			p.id_ptype,
-			p.ptype_name,
-			c.id_category,
-			c.cat_name,
-			j.j_fulltext,
-			j.j_suggestedReview,
-			CONCAT(DATE_FORMAT(j.dt_create,'%d/%m/'),DATE_FORMAT(j.dt_create,'%Y')+543)AS dt_create,
-			CONCAT(DATE_FORMAT(j.dt_update,'%d/%m/'),DATE_FORMAT(j.dt_update,'%Y')+543)AS dt_update,
-			CASE  j.j_status
-				WHEN 0 THEN 'Send'
-				WHEN 1 THEN 'Reading'
-				WHEN 2 THEN 'Minor Revisions'
-				WHEN 3 THEN 'Major Revisions'
-				WHEN 4 THEN 'Accept'
-				WHEN 5 THEN 'Reject'
-			END status
-		FROM
-			journal j
-		INNER JOIN
-			paper_type p
-		ON
-			j.id_ptype = p.id_ptype
-		INNER JOIN
-			category c
-		ON
-			j.id_category = c.id_category
-		INNER JOIN
-			member m
-		ON
-			m.id_member = j.id_member
-		 ";
-		$query = $this->db->query($sql);
-		$result = $query->result();
-		$data = array(
-			'result' => $result,
-			);
-		return $data;
 	}
 
 	public function getmember_ofType($type_member)

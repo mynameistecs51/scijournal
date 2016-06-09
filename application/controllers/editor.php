@@ -117,11 +117,33 @@ class Editor extends CI_Controller {
 	}
 	public function reviewer_comment()
 	{
+		$checked = array();
+		foreach ($this->mdl_reviewer->journal_checked("")  as $rowchecked => $valueCheck) {
+			if(isset($checked[$valueCheck['id_journal']])){
+				array_push($checked[$valueCheck['id_journal']]['reviewer'],array(
+					'id_member' => $valueCheck['id_member'],
+					'check_status' => $valueCheck['check_status'],
+					));
+				continue;
+			}else{
+				$checked[$valueCheck['id_journal']] =array(
+					'id_journal' => $valueCheck['id_journal'],
+					'j_title' => $valueCheck['j_title'],
+					'reviewer' =>array(
+						$key = array(
+                                              // 'j_title' => $valueCheck['j_title'],
+						'id_member' => $valueCheck['id_member'],
+						'check_status' => $valueCheck['check_status'],
+						)
+					)
+				);
+			}
+		}
 		$SCREENID="reviewer_comment";
 		$SCREENNAME = ">Reviewer Comment";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck('','');
-		array_push($this->data['row_checked'],$this->data['dataStatus']);
+		$this->data['reviewerCheck'] = $checked;
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
 		// print_r($this->data['row_checked']);
@@ -134,11 +156,11 @@ class Editor extends CI_Controller {
 		$this->data['idjournal'] = $idjournal;
 		$this->data['id_member'] = $id_member;
 		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck($idjournal,$id_member);
+		$this->data['reviewerCheck'] = $checked;
 		$this->mainpage($SCREENNAME);
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
 }
-
 
 /* End of file editor.php */
 /* Location: ./application/controllers/editor.php */
