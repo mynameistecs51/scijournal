@@ -156,7 +156,7 @@ class Editor extends CI_Controller {
 		$this->data['idjournal'] = $idjournal;
 		$this->data['id_member'] = $id_member;
 		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck($idjournal,$id_member);
-		$this->data['reviewerCheck'] = $checked;
+		// $this->data['reviewerCheck'] = $checked;
 		$this->mainpage($SCREENNAME);
 		$this->load->view('reviewer/'.$SCREENID,$this->data);
 	}
