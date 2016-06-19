@@ -6,12 +6,11 @@
 	function countstatus(){
 		var count = $('.status').length;
 		for ( i =1 ; i <= count ; i++){
-			var  status = "status"+i;
-			reading_journal(i,status);
+			reading_journal(i);
 		}
 	}
-	function  reading_journal(num,status){
-		$('.status').attr('id',status);
+	function  reading_journal(num){
+		$('#status').attr('id','status'+num);
 		$('#status'+num).click(function(){
 			var screenname=":: DETAIL :: ";
 			var baseurl_satusjournal = "<?php echo $baseurl_satusjournal;?>";
@@ -84,7 +83,7 @@
                                                              // $status =$value['reviewer']['check_status'];
   									$count_reviewer = count($value['reviewer']);
   									for($i=0;$i<$count_reviewer;$i++){
-  										echo '<button type="button" class="btn btn-primary status"  id=""  data-idjournal="'.$value['id_journal'].'" data-idreviewer="'. $value['reviewer'][$i]['id_member'].'">'.
+  										echo '<button type="button" class="btn btn-primary status" id="status" data-idjournal="'.$value['id_journal'].'" data-idreviewer="'. $value['reviewer'][$i]['id_member'].'">'.
   										$value['reviewer'][$i]['check_status'].'
   									</button>';
   								}
