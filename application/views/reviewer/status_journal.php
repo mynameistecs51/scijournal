@@ -42,7 +42,7 @@
 	</div>
 	<div class="form-groupt col-sm-12">
 		<div class="modal-footer" style="text-align:center; background:#F6CECE;">
-			<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> SAVE</span></button>
+			<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> CONFIRME</span></button>
 			<button type="reset" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> CANCEL</span></button>
 		</div>
 	</div>
