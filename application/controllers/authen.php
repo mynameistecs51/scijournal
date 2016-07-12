@@ -20,7 +20,21 @@ class Authen extends CI_Controller {
 		}elseif($this->session->userdata('session_data')){
 			$session_data = $this->session->userdata('session_data');
 			//print_r($session_data);
-			redirect('home','refresh');
+			// redirect('home','refresh');
+			switch ($session_data['m_type']) {
+				case '2':
+				redirect('editor','refresh');
+				break;
+				case '3':
+				redirect('reviewer','refresh');
+				break;
+				case '4':
+				redirect('admin','refresh');
+				break;
+				default:
+				redirect('home','refresh');
+				break;
+			}
 		}else{
 			//redirect('home/login','refresh');
 			//redirect(site_url('home/login',$error="NO"));
