@@ -8,48 +8,53 @@ class Mdl_journal extends CI_Model {
 		parent::__construct();
 	}
 
-
+	public function getDatajournal()
+	{ 
+		$sql = "SELECT * FROM journal GROUP BY id_journal";
+		$getdatajournal = $this->db->query($sql)->result_array();
+		return $getdatajournal;
+	}
 	public function getjournal()
 	{
 		$sql = "
 		SELECT
-			j.id_journal,
-			j.j_title,
-			j.j_author,
-			j.j_email,
-			j.j_abstract,
-			j.id_member,
-			p.id_ptype,
-			p.ptype_name,
-			c.id_category,
-			c.cat_name,
-			j.j_fulltext,
-			j.j_suggestedReview,
-			CONCAT(DATE_FORMAT(j.dt_create,'%d/%m/'),DATE_FORMAT(j.dt_create,'%Y')+543)AS dt_create,
-			CONCAT(DATE_FORMAT(j.dt_update,'%d/%m/'),DATE_FORMAT(j.dt_update,'%Y')+543)AS dt_update,
-			CASE  j.j_status
-				WHEN 0 THEN 'Send'
-				WHEN 1 THEN 'Reading'
-				WHEN 2 THEN 'Minor Revisions'
-				WHEN 3 THEN 'Major Revisions'
-				WHEN 4 THEN 'Accept'
-				WHEN 5 THEN 'Reject'
-			END status
+		j.id_journal,
+		j.j_title,
+		j.j_author,
+		j.j_email,
+		j.j_abstract,
+		j.id_member,
+		p.id_ptype,
+		p.ptype_name,
+		c.id_category,
+		c.cat_name,
+		j.j_fulltext,
+		j.j_suggestedReview,
+		CONCAT(DATE_FORMAT(j.dt_create,'%d/%m/'),DATE_FORMAT(j.dt_create,'%Y')+543)AS dt_create,
+		CONCAT(DATE_FORMAT(j.dt_update,'%d/%m/'),DATE_FORMAT(j.dt_update,'%Y')+543)AS dt_update,
+		CASE  j.j_status
+		WHEN 0 THEN 'Send'
+		WHEN 5 THEN 'Reading'
+		WHEN 1 THEN 'Minor Revisions'
+		WHEN 2 THEN 'Major Revisions'
+		WHEN 3 THEN 'Accept'
+		WHEN 4 THEN 'Reject'
+		END status
 		FROM
-			journal j
+		journal j
 		INNER JOIN
-			paper_type p
+		paper_type p
 		ON
-			j.id_ptype = p.id_ptype
+		j.id_ptype = p.id_ptype
 		INNER JOIN
-			category c
+		category c
 		ON
-			j.id_category = c.id_category
+		j.id_category = c.id_category
 		INNER JOIN
-			member m
+		member m
 		ON
-			m.id_member = j.id_member
-		 ";
+		m.id_member = j.id_member
+		";
 		$query = $this->db->query($sql);
 		$result = $query->result();
 		$data = array(
@@ -156,20 +161,20 @@ class Mdl_journal extends CI_Model {
 	{
 		$sql = "
 		SELECT
-			id_member,
-			CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
-			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%Y')+543)AS dt_create,
-			CONCAT(DATE_FORMAT(dt_update,'%d/%m/'), DATE_FORMAT(dt_update,'%Y')+543)AS dt_update,
-			m.m_organizetion,
-			m_statusType
+		id_member,
+		CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
+		CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%Y')+543)AS dt_create,
+		CONCAT(DATE_FORMAT(dt_update,'%d/%m/'), DATE_FORMAT(dt_update,'%Y')+543)AS dt_update,
+		m.m_organizetion,
+		m_statusType
 		FROM
-			member m
+		member m
 		INNER JOIN
-			prefixname p
+		prefixname p
 		ON
-			m.id_prefixname = p.id_prefixName
+		m.id_prefixname = p.id_prefixName
 		WHERE
-			m_type ='$type_member'
+		m_type ='$type_member'
 		";
 		$query = $this->db->query($sql)->result();
 		return $query;
@@ -179,26 +184,26 @@ class Mdl_journal extends CI_Model {
 	{
 		$sql = "
 		SELECT
-			id_member,
-			CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
-			CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%Y')+543)AS dt_create,
-			CONCAT(DATE_FORMAT(dt_update,'%d/%m/'), DATE_FORMAT(dt_update,'%Y')+543)AS dt_update,
-			m.m_organizetion,
-			m_statusType
+		id_member,
+		CONCAT(p.pre_nameEng,' ',m.m_name,' ',m.m_lastname) AS name,
+		CONCAT(DATE_FORMAT(dt_create,'%d/%m/'), DATE_FORMAT(dt_create,'%Y')+543)AS dt_create,
+		CONCAT(DATE_FORMAT(dt_update,'%d/%m/'), DATE_FORMAT(dt_update,'%Y')+543)AS dt_update,
+		m.m_organizetion,
+		m_statusType
 		FROM
-			member m
+		member m
 		INNER JOIN
-			prefixname p
+		prefixname p
 		ON
-			m.id_prefixname = p.id_prefixName
+		m.id_prefixname = p.id_prefixName
 		WHERE
 			m_type ='$type_member' && m_statusType ='$status_type'  #status type success
-		";
-		$query = $this->db->query($sql)->result();
-		return $query;
+			";
+			$query = $this->db->query($sql)->result();
+			return $query;
+		}
+
 	}
 
-}
-
-/* End of file mdl_journal.php */
+	/* End of file mdl_journal.php */
 /* Location: ./application/models/mdl_journal.php */

@@ -149,6 +149,7 @@ class Mdl_editor extends CI_Model {
 		}
 		$query = $this->db->insert('editor_checkJournal',$data);
 
+		//------ update status on journal table ---
 		$this->db->where('id_journal',$data['id_journal']);
 		$this->db->update('journal',array('j_status' => $data['edit_status']));
 

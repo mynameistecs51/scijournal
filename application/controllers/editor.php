@@ -145,6 +145,7 @@ class Editor extends CI_Controller {
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck('','');
 		$this->data['reviewerCheck'] = $checked;
+		$this->data['statusJournal'] = $this->mdl_journal->getDatajournal();
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
 		// print_r($this->data['row_checked']);

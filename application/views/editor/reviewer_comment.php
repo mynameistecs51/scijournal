@@ -53,17 +53,17 @@
 	function modal_form(n,screenname)
 	{
 		var div='';
-            // div+='<form name="main" role="form" data-toggle="validator" id="form" method="post">';
-            div+='<!-- Modal -->';
-            div+='<div class="modal modal-wide fade" id="myModal'+n+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
-            div+='<div class="modal-dialog " style="width:95%;height:768px;">';
-            div+='<div class="modal-content ">';
-            div+='<div class="modal-header modal-info"style="background:#E0FFFF;color:#000;" >';
-            div+='<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
-            div+='<h4 class="modal-title">'+screenname+'</h4>';
-            div+='</div>';
-            div+='<div class="modal-body ">';
-            div+='</div>';
+// div+='<form name="main" role="form" data-toggle="validator" id="form" method="post">';
+div+='<!-- Modal -->';
+div+='<div class="modal modal-wide fade" id="myModal'+n+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">';
+div+='<div class="modal-dialog " style="width:95%;height:768px;">';
+div+='<div class="modal-content ">';
+div+='<div class="modal-header modal-info"style="background:#E0FFFF;color:#000;" >';
+div+='<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>';
+div+='<h4 class="modal-title">'+screenname+'</h4>';
+div+='</div>';
+div+='<div class="modal-body ">';
+div+='</div>';
         // div+='<div class="modal-footer" style="text-align:center; background:#F6CECE;">';
           // div+='<button type="submit" id="save" class="btn btn-modal"><span class="   glyphicon glyphicon-floppy-saved"> บันทึก</span></button>';
           // div+='<button type="reset" class="btn btn-modal" data-dismiss="modal"><span class="   glyphicon glyphicon-floppy-remove"> ยกเลิก</span></button>';
@@ -111,7 +111,10 @@
   								?>
   							</td>
   							<td >
-  								<?php 
+  								<?php
+  								foreach($statusJournal as $data_statusJournal){
+  									echo $data_statusJournal['j_status'],"<br>";
+  								}
   								echo '<button type="button" class="btn btn-warning statusEditor" id="statusEditor"  data-idChecked="'.$value['id_checked'].'"  data-idjournal="'. $value['id_journal'].'" >
   								<p class="glyphicon glyphicon-remove text-danger">  No Checked !!</p>
   							</button>';
