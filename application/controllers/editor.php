@@ -14,7 +14,6 @@ class Editor extends CI_Controller {
 		$this->session_data = $this->session->userdata('session_data');
 		$now = new DateTime(null, new DateTimeZone('Asia/Bangkok'));
 		$this->dt_now = $now->format('Y-m-d H:i:s');
-
 		if($this->session_data['m_type']  != "2"   &&  $this->session_data['m_statusType'] != "1" )
 		{
 			redirect('authen','refresh');
@@ -47,6 +46,7 @@ class Editor extends CI_Controller {
 		$this->data['url_delete'] = base_url().'index.php/'.$this->ctl."/delete/";
 		$this->data['row_checked'] = $this->mdl_reviewer->journal_checked("");
 		$this->data['baseurl_satusjournal'] = base_url().'index.php/'.$this->ctl.'/satus_journal/';
+		$this->data['base_statusEditor'] = base_url().'index.php/'.$this->ctl.'/statusEditor_click/';
 		// $this->data['NAV'] = $this->SCREENNAME;
 	}
 
@@ -158,7 +158,19 @@ class Editor extends CI_Controller {
 		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck($idjournal,$id_member);
 		// $this->data['reviewerCheck'] = $checked;
 		$this->mainpage($SCREENNAME);
-		$this->load->view('reviewer/'.$SCREENID,$this->data);
+		$this->load->view('editor/'.$SCREENID,$this->data);
+	}
+	public function statusEditor_click($idjournal)
+	{
+		$SCREENID="editorComment";
+		$SCREENNAME = "> STATUS JOURNAL";
+		// $SCREENNAME=$this->template->getScreenName($SCREENID);
+		$this->data['idjournal'] = $idjournal;
+		// $this->data['id_member'] = $id_member;
+		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck($idjournal,'');
+		// $this->data['reviewerCheck'] = $checked;
+		$this->mainpage($SCREENNAME);
+		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
 }
 

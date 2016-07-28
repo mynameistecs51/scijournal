@@ -2,6 +2,7 @@
 <script  type="text/javascript" charset="utf-8">
 	$(function(){
 		countstatus();
+		countStatusEditor();
 	});
 	function countstatus(){
 		var count = $('.status').length;
@@ -15,6 +16,29 @@
 			var screenname=":: DETAIL :: ";
 			var baseurl_satusjournal = "<?php echo $baseurl_satusjournal;?>";
 			var url = baseurl_satusjournal+$(this).data('idjournal')+"/"+$(this).data('idreviewer');
+			var n=0;
+			$('.div_modal').html('');
+			modal_form(n,screenname);
+			$('#myModal'+n+'.modal-body').html('<img id="ajaxLoaderModal" src="<?php echo base_url(); ?>img/loader.gif"/>');
+			var modal = $('#myModal'+n), modalBody = $('#myModal'+n+' .modal-body');
+			modal.on('show.bs.modal', function () {
+				modalBody.load(url);
+			}).modal({backdrop: 'static',keyboard: true});
+			setInterval(function(){$('#ajaxLoaderModal').remove()},5000);
+		});
+	}
+	function countStatusEditor(){
+		var statusEditor = $('.statusEditor').length;
+		for (i= 1 ; i <= statusEditor; i ++) {
+			btnEditorCheck(i);
+		}
+	}
+	function btnEditorCheck(num) {
+		$('#statusEditor').attr('id','statusEditor'+num);
+		$('#statusEditor'+num).click(function(){
+			var screenname=":: DETAIL :: ";
+			var base_statusEditor = "<?php echo $base_statusEditor;?>";
+			var url = base_statusEditor+$(this).data('idjournal');
 			var n=0;
 			$('.div_modal').html('');
 			modal_form(n,screenname);
@@ -63,7 +87,8 @@
   							<th class="col-sm-1">#</th>
   							<th class="text-center">DETAIL</th>
   							<!-- <th class="col-sm-2">date send</th> -->
-  							<th class="col-sm-3 text-center">STATUS</th>
+  							<th class="col-sm-3 text-center">REVIEWER</th>
+  							<th class="col-sm-2 text-center">EDITOR</th>
   						</tr>
   					</thead>
   					<tbody>
@@ -80,26 +105,33 @@
   								<td><?php echo $value['j_title']; ?></td>
   								<td>
   									<?php
-                                                             // $status =$value['reviewer']['check_status'];
+                                                 // $status =$value['reviewer']['check_status'];
   									$count_reviewer = count($value['reviewer']);
   									for($i=0;$i<$count_reviewer;$i++){
-  										echo '<button type="button" class="btn btn-primary status" id="status" data-idjournal="'.$value['id_journal'].'" data-idreviewer="'. $value['reviewer'][$i]['id_member'].'">'.
+  										echo '<p> <button type="button" class="btn btn-primary btn-xs status" id="status" data-idjournal="'.$value['id_journal'].'" data-idreviewer="'. $value['reviewer'][$i]['id_member'].'">'.
   										$value['reviewer'][$i]['check_status'].'
-  									</button>';
+  									</button></p>';
   								}
   								?>
   							</td>
-  						</tr>
-  						<?php
-  					}
-  					?>
-  				</tbody>
-  			</table>
-  		</div>
-  	</div>
-  </div>
-</div>
-<div class="div_modal">
-	<!-- show modal -->
-</div>
-<?php echo $footer;?>
+  							<td >
+  							<button type="button" class="btn btn-warning statusEditor" id="statusEditor" data-idjournal="<?php echo $value['id_journal'];?>">
+  									<p class="glyphicon glyphicon-remove text-danger">  No Checked !!</p>
+  								</button>
+  							</tr>
+  							<?php
+  						}
+  						?>
+                       <!--  <tr>
+                          <td><input type="checkbox"></td>
+                        </tr> -->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="div_modal">
+            	<!-- show modal -->
+            </div>
+            <?php echo $footer;?>
