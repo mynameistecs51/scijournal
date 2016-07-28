@@ -4,6 +4,7 @@
 		<input type="hidden" name="id_reviewer" id="id_reviewer" value="<?php echo $session_data['id_member']; ?>"/>
 		<input type="hidden" name="idjournal" id="idjournal" value="<?php echo $idjournal; ?>"/>
 		<input type="hidden" name="idreviewer" id="idreviewer" value="<?php echo $id_member; ?>"/>
+		
 		<div class="form-groupt col-sm-12">
 			<p>:: Comment From <?php echo $rowStatus['m_name']; ?> ::</p>
 			<hr/>

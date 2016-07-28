@@ -41,6 +41,7 @@ class Mdl_reviewer extends CI_Model {
 		if(!!$idmember){
 			$sql = "
 			SELECT
+			rc.id_checked,
 			rc.id_journal,
 				rc.id_member,  #--reviewer--
 				CONCAT(m.m_name,' ',m.m_lastname) AS reviewer_name,
@@ -65,6 +66,7 @@ class Mdl_reviewer extends CI_Model {
 			}else{
 				$sql = "
 				SELECT
+				rc.id_checked,
 				rc.id_journal,
 				rc.id_member,  #--reviewer--
 				CONCAT(m.m_name,' ',m.m_lastname) AS reviewer_name,
@@ -93,10 +95,10 @@ class Mdl_reviewer extends CI_Model {
 		{
 			if (!!$idjournal & !!$id_member) {
 				$sql = "
-					SELECT * FROM reviewer_check rc 
-					INNER JOIN member m ON rc.id_member = m.id_member 
-					WHERE rc.id_member = '$id_member' AND rc.id_journal ='$idjournal' 
-					" ;
+				SELECT * FROM reviewer_check rc 
+				INNER JOIN member m ON rc.id_member = m.id_member 
+				WHERE rc.id_member = '$id_member' AND rc.id_journal ='$idjournal' 
+				" ;
 				$query = $this->db->query($sql);
 			}else{
 				$query = $this->db->query("SELECT * FROM reviewer_check");
