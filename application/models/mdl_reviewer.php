@@ -35,6 +35,10 @@ class Mdl_reviewer extends CI_Model {
 	public function savechecked($data)
 	{
 		$this->db->insert('reviewer_check',$data);
+
+		//---update status jquery = 1  , = reading ---- update date 28/7/59
+		$this->db->where('id_journal',$data['id_journal']);
+		$this->db->update('journal',array('j_status' => '1') );
 	}
 	public function journal_checked($idmember)
 	{

@@ -162,7 +162,8 @@ class Editor extends CI_Controller {
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
 	public function statusEditor_click($idjournal,$idChecked)
-	{echo $idChecked,'<<<<<<<<<<<<<<<<<<<<<';
+	{
+		// echo $idChecked,'<<<<<<<<<<<<<<<<<<<<<';
 		$SCREENID="editorComment";
 		$SCREENNAME = "> STATUS JOURNAL";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);

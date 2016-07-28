@@ -130,17 +130,32 @@ class Mdl_editor extends CI_Model {
 	}
 	public function editorStatus_save()
 	{
-		echo "OK";
 		if($_POST){
 			parse_str($this->input->post('form'), $post);
-			$idjournal = $post['idjournal'];
-			$id_editor = $post['id_editor'];
-			$status = $post['status'];
-			$comment = $post['comment'];
+			$data = array(
+				'id_Echeck' => '',
+				// $idjournal => $post['idjournal'],
+				// $id_editor => $post['id_editor'],
+				// $status => $post['status'],
+				// $comment => $post['comment'],
+				// $date_update => $this->dt_now,
+				'id_journal' => $post['idjournal'],
+				'id_editor' => $post['id_editor'],
+				'edit_status' => $post['status'],
+				'edit_comment' => $post['comment'],
+				'dt_create' => $this->dt_now,
+				
+				);
 		}
+		$query = $this->db->insert('editor_checkJournal',$data);
+
+		$this->db->where('id_journal',$data['id_journal']);
+		$this->db->update('journal',array('j_status' => $data['edit_status']));
+
 		// echo $idjournal,'<br>',$id_editor,'<br>',$status,'<br>',$comment;
-		$sql = "UPDATE reviewer_check SET status_editorcheck ='".$status."', editor_comment ='".$comment."',dt_editorcheck = '".$this->now."',id_editorcheck = '".$id_editor."' WHERE id_checked ='".$row_reviewer."' ";
-		$query = $this->db->query($sql);
+		// $sql = "UPDATE reviewer_check SET status_editorcheck ='".$status."', editor_comment ='".$comment."',dt_editorcheck = '".$date_update."',id_editorcheck = '".$id_editor."' WHERE id_checked ='".$row_reviewer."' ";
+		// echo json_encode($sql);
+		// $query = $this->db->query($sql);
 		// --------------------------------//
 		// $data = array(
 		// 	// 'idjournal' => $this->input->post('idjournal'),
