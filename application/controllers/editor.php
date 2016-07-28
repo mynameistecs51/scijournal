@@ -127,16 +127,17 @@ class Editor extends CI_Controller {
 				continue;
 			}else{
 				$checked[$valueCheck['id_journal']] =array(
+					'id_checked' => $valueCheck['id_checked'],
 					'id_journal' => $valueCheck['id_journal'],
 					'j_title' => $valueCheck['j_title'],
 					'reviewer' =>array(
 						$key = array(
                                               // 'j_title' => $valueCheck['j_title'],
-						'id_member' => $valueCheck['id_member'],
-						'check_status' => $valueCheck['check_status'],
+							'id_member' => $valueCheck['id_member'],
+							'check_status' => $valueCheck['check_status'],
+							)
 						)
-					)
-				);
+					);
 			}
 		}
 		$SCREENID="reviewer_comment";
@@ -160,17 +161,29 @@ class Editor extends CI_Controller {
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
 	}
-	public function statusEditor_click($idjournal)
-	{
+	public function statusEditor_click($idjournal,$idChecked)
+	{echo $idChecked,'<<<<<<<<<<<<<<<<<<<<<';
 		$SCREENID="editorComment";
 		$SCREENNAME = "> STATUS JOURNAL";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
 		$this->data['idjournal'] = $idjournal;
+		$this->data['id_editor'] = $this->session_data['id_member'];
 		// $this->data['id_member'] = $id_member;
 		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck($idjournal,'');
 		// $this->data['reviewerCheck'] = $checked;
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
+	}
+	public function editorStatus_save()
+	{
+		// $data = array(
+		// 	// 'idjournal' => $this->input->post('idjournal'),
+		// 	'status_editorcheck' => $this->input->post('status'),
+		// 	'check_comment' => $this->input->post('comment'),
+		// 	'dt_update' => $this->dt_now ,
+		// 	'id_update' => $this->session_data['id_member'],
+		// 	);
+		$this->mdl_editor->editorStatus_save();
 	}
 }
 
