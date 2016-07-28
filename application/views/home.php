@@ -32,16 +32,7 @@
 		<div class="nev_url"><div class="pull-left"><?php echo "Page -",$NAV; ?> </div><div class="pull-right"><?php echo $name;?></div></div>
 		<hr/>
 		<p class="">
-			<?php ?>
-<<<<<<< HEAD
-<<<<<<< HEAD
 			Welcome  to udon thani rajabhat university Journal of Science, an international journal for the publication of all preliminary communications in Science.
-=======
-			Welcome  aaaa to udon thani rajabhat university Journal of Science, an international journal for the publication of all preliminary communications in Science.
->>>>>>> 466c0c97f72f7d93224a01400bfabd40ba3d45e7
-=======
-			Welcome  aaaa to udon thani rajabhat university Journal of Science, an international journal for the publication of all preliminary communications in Science.
->>>>>>> refs/remotes/origin/master
 			<br/><br/>
 			First launched in 1973 by Faculty of Science, udon thani rajabhat university, CMJS is peer-reviewed and published as hardcopy and online open-access journal. It is indexed/abstracted in :
 			<br/><br/>
