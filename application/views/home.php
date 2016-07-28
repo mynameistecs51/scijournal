@@ -35,7 +35,7 @@
 		<hr/>
 		<p class="">
 			<?php ?>
-			Welcome to udon thani rajabhat university Journal of Science, an international journal for the publication of all preliminary communications in Science.
+			Welcome  to udon thani rajabhat university Journal of Science, an international journal for the publication of all preliminary communications in Science.
 			<br/><br/>
 			First launched in 1973 by Faculty of Science, udon thani rajabhat university, CMJS is peer-reviewed and published as hardcopy and online open-access journal. It is indexed/abstracted in :
 			<br/><br/>

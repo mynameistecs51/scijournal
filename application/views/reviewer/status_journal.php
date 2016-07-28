@@ -28,7 +28,7 @@
 				<label for="comment">Comment:</label>
 				<textarea class="form-control" id="comment" name="comment" rows="5" cols="100"><?php echo $rowStatus['check_comment']; ?></textarea>
 			</div>
-			<div class="col-sm-4">
+			<div class="col-sm-4 ">
 				<label>edit file:</label>
 				<input type="file" name="userfile"  id="userfile" class="form-control" />
 				<p class="text-danger">**upload file type .doc,.docx,.pdf,.zip,.jpg,.png</p>
