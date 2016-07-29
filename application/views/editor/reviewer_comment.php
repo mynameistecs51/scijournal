@@ -112,12 +112,28 @@ div+='</div>';
   							</td>
   							<td >
   								<?php
-  								foreach($statusJournal as $data_statusJournal){
-  									echo $data_statusJournal['j_status'],"<br>";
-  								}
-  								echo '<button type="button" class="btn btn-warning statusEditor" id="statusEditor"  data-idChecked="'.$value['id_checked'].'"  data-idjournal="'. $value['id_journal'].'" >
-  								<p class="glyphicon glyphicon-remove text-danger">  No Checked !!</p>
-  							</button>';
+  								if($value['j_status'] == 0 || $value['j_status'] == 5){
+  									echo '<button type="button" class="btn btn-warning statusEditor" id="statusEditor"  data-idChecked="'.$value['id_checked'].'"  data-idjournal="'. $value['id_journal'].'" >
+  									<p class="glyphicon glyphicon-remove text-danger"> '.$value['journal_status'].'</p></button>';
+  								}else{
+  									echo '<button type="button" class="btn btn-success statusEditor" id="statusEditor"  data-idChecked="'.$value['id_checked'].'"  data-idjournal="'. $value['id_journal'].'" >
+  									<p class="glyphicon glyphicon-ok "> '.$value['journal_status'].' </p></button>';
+
+  								// switch ($value['j_status']) {
+  								// 	case '0':
+  								// 	echo '<button type="button" class="btn btn-warning statusEditor" id="statusEditor"  data-idChecked="'.$value['id_checked'].'"  data-idjournal="'. $value['id_journal'].'" >
+  								// 	<p class="glyphicon glyphicon-remove text-danger">  No Checked !!</p></button>';
+  								// 	break;
+  								// 	case '5':
+  								// 	echo '<button type="button" class="btn btn-warning statusEditor" id="statusEditor"  data-idChecked="'.$value['id_checked'].'"  data-idjournal="'. $value['id_journal'].'" >
+  								// 	<p class="glyphicon glyphicon-remove text-danger">  No Checked !!</p></button>';
+  								// 	break;
+  								// 	default:
+  								// 	echo '<button type="button" class="btn btn-success statusEditor" id="statusEditor"  data-idChecked="'.$value['id_checked'].'"  data-idjournal="'. $value['id_journal'].'" >
+  								// 	<p class="glyphicon glyphicon-ok "> Checked </p></button>';
+  								// 	break;
+  							}
+
   							?>
   						</td>
   					</tr>

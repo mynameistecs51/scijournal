@@ -54,6 +54,15 @@ class Mdl_reviewer extends CI_Model {
 				j.j_email,
 				j.j_abstract,
 				j.j_fulltext,
+				j.j_status, #--- status journal ---
+				CASE j_status
+				WHEN 0 THEN 'NO CHECK'
+				WHEN 5 THEN 'NO CHECK'
+				WHEN 1 THEN 'Accept'
+				WHEN 2 THEN 'Minor Revisions  '
+				WHEN 3 THEN 'Major Revisions  '
+				WHEN 4 THEN 'Reject'
+				END journal_status,
 				c.cat_name,
 				CASE check_status
 				WHEN 1 THEN 'Accept'
@@ -79,6 +88,15 @@ class Mdl_reviewer extends CI_Model {
 				j.j_email,
 				j.j_abstract,
 				j.j_fulltext,
+				j.j_status, #--- status journal ---
+				CASE j_status
+				WHEN 0 THEN 'NO CHECK'
+				WHEN 5 THEN 'NO CHECK'
+				WHEN 1 THEN 'Accept'
+				WHEN 2 THEN 'Minor Revisions  '
+				WHEN 3 THEN 'Major Revisions  '
+				WHEN 4 THEN 'Reject'
+				END journal_status,
 				c.cat_name,
 				CASE check_status
 				WHEN 1 THEN 'Accept'
@@ -99,9 +117,9 @@ class Mdl_reviewer extends CI_Model {
 		{
 			if (!!$idjournal & !!$id_member) {
 				$sql = "
-				SELECT * FROM reviewer_check rc 
-				INNER JOIN member m ON rc.id_member = m.id_member 
-				WHERE rc.id_member = '$id_member' AND rc.id_journal ='$idjournal' 
+				SELECT * FROM reviewer_check rc
+				INNER JOIN member m ON rc.id_member = m.id_member
+				WHERE rc.id_member = '$id_member' AND rc.id_journal ='$idjournal'
 				" ;
 				$query = $this->db->query($sql);
 			}else{

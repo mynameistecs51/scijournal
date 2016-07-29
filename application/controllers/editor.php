@@ -130,6 +130,8 @@ class Editor extends CI_Controller {
 					'id_checked' => $valueCheck['id_checked'],
 					'id_journal' => $valueCheck['id_journal'],
 					'j_title' => $valueCheck['j_title'],
+					'j_status' => $valueCheck['j_status'],
+					'journal_status' => $valueCheck['journal_status'],
 					'reviewer' =>array(
 						$key = array(
                                               // 'j_title' => $valueCheck['j_title'],
@@ -143,9 +145,8 @@ class Editor extends CI_Controller {
 		$SCREENID="reviewer_comment";
 		$SCREENNAME = ">Reviewer Comment";
 		// $SCREENNAME=$this->template->getScreenName($SCREENID);
-		$this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck('','');
+		// $this->data['dataStatus'] = $this->mdl_reviewer->getReviewercheck('','');
 		$this->data['reviewerCheck'] = $checked;
-		$this->data['statusJournal'] = $this->mdl_journal->getDatajournal();
 		$this->mainpage($SCREENNAME);
 		$this->load->view('editor/'.$SCREENID,$this->data);
 		// print_r($this->data['row_checked']);
