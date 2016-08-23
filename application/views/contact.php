@@ -1,11 +1,10 @@
 <?php echo $header;?>
 <div class="nev_url"><?php echo "Page -",$NAV; ?> </div>
 <hr/>
-<h2>UDON THANI Journal of  Science</h2>
-<br/>
-คณะวิทยาศาสตร์
-64 มหาวิทยาลัยราชภัฏอุดรธานี ถนนทหาร ตำบลหมากแข้ง
-อำเภอเมือง จังหวัดอุดรธานี 41000
-<br/>
-โทร 042211040-1201
+	South East Asian Journal of Science <br>
+Faculty of Science, Udon Thani Rajabhat University <br>
+64 Taharn Rd., Muang, Udon Thani 41000, Thailand <br>
+Tel. 66 (0) 42 211040 ext. 1201, 1202 <br>
+Email Address: 	<br>
+
 <?php echo $footer; ?>
