@@ -31,17 +31,18 @@
 	<div class="col-sm-12">
 		<div class="nev_url"><div class="pull-left"><?php echo "Page -",$NAV; ?> </div><div class="pull-right"><?php echo $name;?></div></div>
 		<hr/>
-		<p class="">
-			Welcome  to udon thani rajabhat university Journal of Science, an international journal for the publication of all preliminary communications in Science.
-			<br/><br/>
-			First launched in 1973 by Faculty of Science, udon thani rajabhat university, CMJS is peer-reviewed and published as hardcopy and online open-access journal. It is indexed/abstracted in :
-			<br/><br/>
-			• Science Citation Index Expanded (SciResearch®)<br/>
-			• Journal Citation Reports/Science Edition<br/>
-			• SCOPUS<br/>
-			• SciFinder - Chemical Abatracts Service<br/>
-			• BIOSIS Previews<br/>
-			• Google Scholar.
+		<p style="text-indent:1cm; text-align:justify;">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The South East Asian Journal of Science (SEAJ Science) is an international journal for the publication of original research results covering all aspects of the basic and applied sciences, including mathematics, IT and computer science, public health and sport science.<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			The SEAJ Science is peer-reviewed and published in hardcopy and online forms as an open-access journal. 
+			<br>
+			<br>
+			Print ISSN: xxx-xxx
+			<br>
+			eISSN: xxxx-xxxx
+			<br>
+			Frequency: 2 issues/year
+
 		</p>
 	</div>
 	<div class="col-sm-12">

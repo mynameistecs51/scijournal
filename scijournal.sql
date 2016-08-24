@@ -2,10 +2,17 @@
 -- version 4.4.14
 -- http://www.phpmyadmin.net
 --
+<<<<<<< HEAD
 -- Host: 127.0.0.1
 -- Generation Time: Aug 02, 2016 at 10:47 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.6.12
+=======
+-- Host: localhost
+-- Generation Time: Aug 23, 2016 at 07:14 PM
+-- Server version: 10.0.17-MariaDB
+-- PHP Version: 5.6.14
+>>>>>>> origin/master
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -1055,15 +1062,15 @@ CREATE TABLE IF NOT EXISTS `category` (
 
 INSERT INTO `category` (`id_category`, `cat_name`) VALUES
 (1, 'Biology'),
-(2, 'Chemistry'),
-(3, 'Computer Sciences'),
-(4, 'Geology'),
-(5, 'Material Sciences'),
-(6, 'Mathematics'),
-(7, 'Microbiology'),
-(8, 'Physics'),
-(9, 'Statistics'),
-(10, 'Environmental Sciences');
+(2, 'Microbiologh'),
+(3, 'Chemistry'),
+(4, 'Physics'),
+(5, 'Mathematics and Statistics'),
+(6, 'Material Science and Nano Technology'),
+(7, 'Environmental Science'),
+(8, 'Environmental Science'),
+(9, 'Information Technology and Computer Science'),
+(10, 'Public Health and Sport Science');
 
 -- --------------------------------------------------------
 
@@ -10127,9 +10134,9 @@ INSERT INTO `menu` (`id_menu`, `menu_name`, `filelocation`) VALUES
 (3, 'Papers In Press', 'home/paperInpress'),
 (4, 'Search', 'Search'),
 (5, 'Information for Contributors', 'home/information'),
-(6, 'Introducing the Journal', 'home/Introducing'),
-(7, 'Board of Journal of Science', 'Board of Journal of Science'),
-(8, 'Contact addrress', 'home/contact');
+(6, 'Instructions for Authors', 'home/Introducing'),
+(7, 'Board of SEAJ Science', 'home/board'),
+(8, 'Contact Address', 'home/contact');
 
 -- --------------------------------------------------------
 

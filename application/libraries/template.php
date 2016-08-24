@@ -100,7 +100,7 @@ class Template
 						<p>
 							Faculty of Science <br/>
 							UDON THANI RAJABHAT UNIVERSITY<br/>
-							Copyright &copy; Your Website 2016
+							Copyright &copy; Chaiwat Homsang
 						</p>
 					</div>
 				</div>

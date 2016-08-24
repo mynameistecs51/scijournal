@@ -182,6 +182,14 @@ class Home extends CI_Controller {
 		$this->load->view($SCREENID,$this->data);
 	}
 
+	public function board()
+	{
+		$SCREENID="board";
+		$SCREENNAME="> Board of SEAJ Science";
+		$this->mainpage($SCREENNAME);
+		$this->load->view($SCREENID,$this->data);
+	}
+
 }
 
 /* End of file ctl_journal.php */
