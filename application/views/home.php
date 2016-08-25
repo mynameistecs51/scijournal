@@ -32,7 +32,7 @@
 		<div class="nev_url"><div class="pull-left"><?php echo "Page -",$NAV; ?> </div><div class="pull-right"><?php echo $name;?></div></div>
 		<hr/>
 		<p style="text-indent:1cm; text-align:justify;">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The South East Asian Journal of Science (SEAJ Science) is an international journal for the publication of original research results covering all aspects of the basic and applied sciences, including mathematics, IT and computer science, public health and sport science.<br>
+			The South East Asian Journal of Science (SEAJ Science) is an international journal for the publication of original research results covering all aspects of the basic and applied sciences, including mathematics, IT and computer science, public health and sport science.<br>
 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 			The SEAJ Science is peer-reviewed and published in hardcopy and online forms as an open-access journal. 
 			<br>

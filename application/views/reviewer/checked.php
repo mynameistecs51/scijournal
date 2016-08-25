@@ -74,6 +74,29 @@
 	</div>
 	<div class="form-groupt col-sm-12">
 		<div class="col-sm-12">
+			<hr/>
+			<table border="1" class="col-sm-12 table table-striped">
+				<tr>
+					<td>Reviewer Recommendation Term:</td>
+					<td>Major Revision Meetd</td>
+				</tr>
+				<tr>
+					<td><b>Transfor Authorization</b></td>
+					<td><b>Response</b></td>
+				</tr>
+				<tr>
+					<td>If this submission is transfered to another publication, do we have your consent to include your identifying information?</td>
+					<td>yes</td>
+				</tr>
+				<tr>
+					<td>If this submission is transfered to another publication, do we have your consent to include your original reviewer?</td>
+					<td>yes</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<div class="form-groupt col-sm-12">
+		<div class="col-sm-12">
 			<br/>
 		</div>
 	</div>

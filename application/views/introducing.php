@@ -38,7 +38,7 @@
 			<ul>
 				<li><b>Journal article</b>	Poonlaphdecha S, Ribas A. (2016) Yeasts in amphibians are common: isolation and the first molecular characterization from Thailand. Acta Herpetologica, 11(1): 81-84.
 				</li>
-				<li><b>Article by DOI</b>	Ribas A, Saijuntha W, Agatsuma T, Prantlová V, Poonlaphdecha S. (2016) Rodents as a source of Salmonella contamination in wet markets in Thailand. Vector-Borne and Zoonotic Diseases, doi:10.1089/vbz.2015.1894.
+				<li><b>Article by DOI</b>	Ribas A, Saijuntha W, Agatsuma T, Prantlová V, Poonlaphdecha S. (2016) Rodents as a source of <i>Salmonella</i> contamination in wet markets in Thailand. Vector-Borne and Zoonotic Diseases, doi:10.1089/vbz.2015.1894.
 				</li>
 				<li><b>Book</b>	Nowak R. (1999) Walker’s mammals of the world, 6th edn. Johns Hopkins University Press, Baltimore, Maryland.
 				</li>
